@@ -1,0 +1,1481 @@
+{
+    "meta": {
+        "delta_last_id": "11e9-6e26-755363d1-8d28-6a8bdfa0c75f"
+    },
+    "events": [
+        {
+            "event_id": "337b9a37fdd4bce887edff405c18f3da",
+            "sport_id": 4,
+            "event_date": "2019-05-06T23:05:00Z",
+            "rotation_number_away": 501,
+            "rotation_number_home": 502,
+            "teams": [
+                {
+                    "team_id": 32733,
+                    "team_normalized_id": 10,
+                    "is_away": true,
+                    "is_home": false,
+                    "name": "Milwaukee Bucks"
+                },
+                {
+                    "team_id": 31167,
+                    "team_normalized_id": 1,
+                    "is_away": false,
+                    "is_home": true,
+                    "name": "Boston Celtics"
+                }
+            ],
+            "teams_normalized": [
+                {
+                    "team_id": 10,
+                    "name": "Milwaukee",
+                    "mascot": "Bucks",
+                    "abbreviation": "MIL",
+                    "is_away": true,
+                    "is_home": false,
+                    "ranking": "",
+                    "record": "60-22"
+                },
+                {
+                    "team_id": 1,
+                    "name": "Boston",
+                    "mascot": "Celtics",
+                    "abbreviation": "BOS",
+                    "is_away": false,
+                    "is_home": true,
+                    "ranking": "",
+                    "record": "49-33"
+                }
+            ],
+            "lines": {
+                "4": {
+                    "line_id": 5864842,
+                    "moneyline": {
+                        "line_id": 5864842,
+                        "moneyline_away": 0.0001,
+                        "moneyline_away_delta": 0.0001,
+                        "moneyline_home": 0.0001,
+                        "moneyline_home_delta": 0.0001,
+                        "date_updated": "2019-05-04T02:50:46.895084Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864842,
+                        "point_spread_away": 1.5,
+                        "point_spread_away_delta": 1.5,
+                        "point_spread_home": -1.5,
+                        "point_spread_home_delta": -1.5,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": -110,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -110,
+                        "date_updated": "2019-05-04T02:50:46.900348Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864842,
+                        "total_over": 221,
+                        "total_over_delta": 220.9999,
+                        "total_under": 221,
+                        "total_under_delta": 220.9999,
+                        "total_over_money": -110,
+                        "total_over_money_delta": -110.0001,
+                        "total_under_money": -110,
+                        "total_under_money_delta": -110.0001,
+                        "date_updated": "2019-05-04T02:50:46.906352Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 4,
+                        "affiliate_name": "SportsBetting",
+                        "affiliate_url": " https://sportsbetting.ag/"
+                    }
+                },
+                "6": {
+                    "line_id": 5864843,
+                    "moneyline": {
+                        "line_id": 5864843,
+                        "moneyline_away": 0.0001,
+                        "moneyline_away_delta": 0.0001,
+                        "moneyline_home": 0.0001,
+                        "moneyline_home_delta": 0.0001,
+                        "date_updated": "2019-05-04T02:50:49.82506Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864843,
+                        "point_spread_away": 1.5,
+                        "point_spread_away_delta": 1.5,
+                        "point_spread_home": -1.5,
+                        "point_spread_home_delta": -1.5,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": -110,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -110,
+                        "date_updated": "2019-05-04T02:50:49.831398Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864843,
+                        "total_over": 221,
+                        "total_over_delta": 220.9999,
+                        "total_under": 221,
+                        "total_under_delta": 220.9999,
+                        "total_over_money": -110,
+                        "total_over_money_delta": -110.0001,
+                        "total_under_money": -110,
+                        "total_under_money_delta": -110.0001,
+                        "date_updated": "2019-05-04T02:50:49.836373Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 6,
+                        "affiliate_name": "BetOnline",
+                        "affiliate_url": "https://betonline.ag/"
+                    }
+                },
+                "7": {
+                    "line_id": 5864838,
+                    "moneyline": {
+                        "line_id": 5864838,
+                        "moneyline_away": 100,
+                        "moneyline_away_delta": 99.9999,
+                        "moneyline_home": -120,
+                        "moneyline_home_delta": -120.0001,
+                        "date_updated": "2019-05-04T02:57:35.709131Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864838,
+                        "point_spread_away": 1.5,
+                        "point_spread_away_delta": 1.5,
+                        "point_spread_home": -1.5,
+                        "point_spread_home_delta": -1.5,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": -110,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -110,
+                        "date_updated": "2019-05-04T02:44:10.629252Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864838,
+                        "total_over": 221,
+                        "total_over_delta": 220.9999,
+                        "total_under": 221,
+                        "total_under_delta": 220.9999,
+                        "total_over_money": -110,
+                        "total_over_money_delta": -110.0001,
+                        "total_under_money": -110,
+                        "total_under_money_delta": -110.0001,
+                        "date_updated": "2019-05-04T02:46:56.47213Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 7,
+                        "affiliate_name": "Bookmaker",
+                        "affiliate_url": "http://www.bookmaker.eu/"
+                    }
+                },
+                "9": {
+                    "line_id": 5864839,
+                    "moneyline": {
+                        "line_id": 5864839,
+                        "moneyline_away": 100,
+                        "moneyline_away_delta": 99.9999,
+                        "moneyline_home": -120,
+                        "moneyline_home_delta": -120.0001,
+                        "date_updated": "2019-05-04T02:56:13.28277Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864839,
+                        "point_spread_away": 1.5,
+                        "point_spread_away_delta": 1.5,
+                        "point_spread_home": -1.5,
+                        "point_spread_home_delta": -1.5,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": -110,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -110,
+                        "date_updated": "2019-05-04T02:45:09.092144Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864839,
+                        "total_over": 221,
+                        "total_over_delta": 220.9999,
+                        "total_under": 221,
+                        "total_under_delta": 220.9999,
+                        "total_over_money": -110,
+                        "total_over_money_delta": -110.0001,
+                        "total_under_money": -110,
+                        "total_under_money_delta": -110.0001,
+                        "date_updated": "2019-05-04T02:45:09.096974Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 9,
+                        "affiliate_name": "betcris",
+                        "affiliate_url": "https://www.betcris.com/en/sportsbook"
+                    }
+                },
+                "10": {
+                    "line_id": 5864840,
+                    "moneyline": {
+                        "line_id": 5864840,
+                        "moneyline_away": 100,
+                        "moneyline_away_delta": 99.9999,
+                        "moneyline_home": -120,
+                        "moneyline_home_delta": -120.0001,
+                        "date_updated": "2019-05-04T02:57:25.855081Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864840,
+                        "point_spread_away": 1.5,
+                        "point_spread_away_delta": 1.5,
+                        "point_spread_home": -1.5,
+                        "point_spread_home_delta": -1.5,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": -110,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -110,
+                        "date_updated": "2019-05-04T02:46:34.250541Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864840,
+                        "total_over": 221,
+                        "total_over_delta": 220.9999,
+                        "total_under": 221,
+                        "total_under_delta": 220.9999,
+                        "total_over_money": -110,
+                        "total_over_money_delta": -110.0001,
+                        "total_under_money": -110,
+                        "total_under_money_delta": -110.0001,
+                        "date_updated": "2019-05-04T02:46:34.258377Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 10,
+                        "affiliate_name": "JustBet",
+                        "affiliate_url": "http://www.justbet.cx/sportsbook-betting"
+                    }
+                },
+                "11": {
+                    "line_id": 5864841,
+                    "moneyline": {
+                        "line_id": 5864841,
+                        "moneyline_away": 0.0001,
+                        "moneyline_away_delta": 0.0001,
+                        "moneyline_home": 0.0001,
+                        "moneyline_home_delta": 0.0001,
+                        "date_updated": "2019-05-04T02:50:38.651073Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864841,
+                        "point_spread_away": 1.5,
+                        "point_spread_away_delta": 1.5,
+                        "point_spread_home": -1.5,
+                        "point_spread_home_delta": -1.5,
+                        "point_spread_away_money": -105,
+                        "point_spread_away_money_delta": -105,
+                        "point_spread_home_money": -105,
+                        "point_spread_home_money_delta": -105,
+                        "date_updated": "2019-05-04T02:50:38.656729Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864841,
+                        "total_over": 221,
+                        "total_over_delta": 220.9999,
+                        "total_under": 221,
+                        "total_under_delta": 220.9999,
+                        "total_over_money": -105,
+                        "total_over_money_delta": -105.0001,
+                        "total_under_money": -105,
+                        "total_under_money_delta": -105.0001,
+                        "date_updated": "2019-05-04T02:50:38.662479Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 11,
+                        "affiliate_name": "LowVig",
+                        "affiliate_url": "https://sportsbook.lowvig.ag/"
+                    }
+                },
+                "15": {
+                    "line_id": 5864675,
+                    "moneyline": {
+                        "line_id": 5864675,
+                        "moneyline_away": 0.0001,
+                        "moneyline_away_delta": 0.0001,
+                        "moneyline_home": 0.0001,
+                        "moneyline_home_delta": 0.0001,
+                        "date_updated": "2019-05-03T11:40:27.794857Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864675,
+                        "point_spread_away": 1.5,
+                        "point_spread_away_delta": 1.4999,
+                        "point_spread_home": -1.5,
+                        "point_spread_home_delta": -1.5001,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": -110.0001,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -110.0001,
+                        "date_updated": "2019-05-04T02:50:18.723003Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864675,
+                        "total_over": 221,
+                        "total_over_delta": 220.9999,
+                        "total_under": 221,
+                        "total_under_delta": 220.9999,
+                        "total_over_money": -110,
+                        "total_over_money_delta": -110.0001,
+                        "total_under_money": -110,
+                        "total_under_money_delta": -110.0001,
+                        "date_updated": "2019-05-04T02:50:18.730082Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 15,
+                        "affiliate_name": "TigerGaming",
+                        "affiliate_url": "https://sportsbook.tigergaming.com/"
+                    }
+                }
+            }
+        },
+        {
+            "event_id": "4450c1f399a79cd5acf54d6ac86f455d",
+            "sport_id": 4,
+            "event_date": "2019-05-05T00:35:00Z",
+            "rotation_number_away": 589,
+            "rotation_number_home": 590,
+            "teams": [
+                {
+                    "team_id": 31165,
+                    "team_normalized_id": 21,
+                    "is_away": true,
+                    "is_home": false,
+                    "name": "Golden State Warriors"
+                },
+                {
+                    "team_id": 31163,
+                    "team_normalized_id": 27,
+                    "is_away": false,
+                    "is_home": true,
+                    "name": "Houston Rockets"
+                }
+            ],
+            "teams_normalized": [
+                {
+                    "team_id": 21,
+                    "name": "Golden State",
+                    "mascot": "Warriors",
+                    "abbreviation": "GS",
+                    "is_away": true,
+                    "is_home": false,
+                    "ranking": "",
+                    "record": "57-25"
+                },
+                {
+                    "team_id": 27,
+                    "name": "Houston",
+                    "mascot": "Rockets",
+                    "abbreviation": "HOU",
+                    "is_away": false,
+                    "is_home": true,
+                    "ranking": "",
+                    "record": "53-29"
+                }
+            ],
+            "lines": {
+                "1": {
+                    "line_id": 5864307,
+                    "moneyline": {
+                        "line_id": 5864307,
+                        "moneyline_away": 150,
+                        "moneyline_away_delta": -10,
+                        "moneyline_home": -160,
+                        "moneyline_home_delta": 10,
+                        "date_updated": "2019-05-01T17:59:34.872188Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864307,
+                        "point_spread_away": 3.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": -3.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -105,
+                        "point_spread_away_money_delta": -4,
+                        "point_spread_home_money": -105,
+                        "point_spread_home_money_delta": 4,
+                        "date_updated": "2019-05-03T14:46:50.947098Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864307,
+                        "total_over": 222,
+                        "total_over_delta": 0.5,
+                        "total_under": 222,
+                        "total_under_delta": 0.5,
+                        "total_over_money": -105,
+                        "total_over_money_delta": 3,
+                        "total_under_money": -105,
+                        "total_under_money_delta": -3,
+                        "date_updated": "2019-05-04T03:55:35.324334Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 1,
+                        "affiliate_name": "5Dimes",
+                        "affiliate_url": "https://www.5dimes.eu/"
+                    }
+                },
+                "3": {
+                    "line_id": 5864305,
+                    "moneyline": {
+                        "line_id": 5864305,
+                        "moneyline_away": 145,
+                        "moneyline_away_delta": -1,
+                        "moneyline_home": -160,
+                        "moneyline_home_delta": 2,
+                        "date_updated": "2019-05-03T17:10:35.369918Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864305,
+                        "point_spread_away": 3.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": -3.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -106,
+                        "point_spread_away_money_delta": -1,
+                        "point_spread_home_money": -104,
+                        "point_spread_home_money_delta": 1,
+                        "date_updated": "2019-05-03T17:10:35.374734Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864305,
+                        "total_over": 222,
+                        "total_over_delta": 0.5,
+                        "total_under": 222,
+                        "total_under_delta": 0.5,
+                        "total_over_money": -105,
+                        "total_over_money_delta": 4,
+                        "total_under_money": -105,
+                        "total_under_money_delta": -4,
+                        "date_updated": "2019-05-04T03:55:01.361231Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 3,
+                        "affiliate_name": "Pinnacle",
+                        "affiliate_url": "https://www.pinnacle.com/en/rtn"
+                    }
+                },
+                "4": {
+                    "line_id": 5864281,
+                    "moneyline": {
+                        "line_id": 5864281,
+                        "moneyline_away": 145,
+                        "moneyline_away_delta": 1,
+                        "moneyline_home": -165,
+                        "moneyline_home_delta": -1,
+                        "date_updated": "2019-05-03T14:50:08.436865Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864281,
+                        "point_spread_away": 3.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": -3.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": -2,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": 2,
+                        "date_updated": "2019-05-04T03:10:59.596019Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864281,
+                        "total_over": 221.5,
+                        "total_over_delta": 0.5,
+                        "total_under": 221.5,
+                        "total_under_delta": 0.5,
+                        "total_over_money": -110,
+                        "total_over_money_delta": 0,
+                        "total_under_money": -110,
+                        "total_under_money_delta": 0,
+                        "date_updated": "2019-05-02T14:55:57.704911Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 4,
+                        "affiliate_name": "SportsBetting",
+                        "affiliate_url": " https://sportsbetting.ag/"
+                    }
+                },
+                "6": {
+                    "line_id": 5864279,
+                    "moneyline": {
+                        "line_id": 5864279,
+                        "moneyline_away": 145,
+                        "moneyline_away_delta": 1,
+                        "moneyline_home": -165,
+                        "moneyline_home_delta": -1,
+                        "date_updated": "2019-05-03T14:50:09.856615Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864279,
+                        "point_spread_away": 3.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": -3.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": -2,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": 2,
+                        "date_updated": "2019-05-04T03:11:08.177101Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864279,
+                        "total_over": 221.5,
+                        "total_over_delta": 0.5,
+                        "total_under": 221.5,
+                        "total_under_delta": 0.5,
+                        "total_over_money": -110,
+                        "total_over_money_delta": 0,
+                        "total_under_money": -110,
+                        "total_under_money_delta": 0,
+                        "date_updated": "2019-05-02T14:55:55.53601Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 6,
+                        "affiliate_name": "BetOnline",
+                        "affiliate_url": "https://betonline.ag/"
+                    }
+                },
+                "7": {
+                    "line_id": 5864276,
+                    "moneyline": {
+                        "line_id": 5864276,
+                        "moneyline_away": 144,
+                        "moneyline_away_delta": 0,
+                        "moneyline_home": -165,
+                        "moneyline_home_delta": 5,
+                        "date_updated": "2019-05-04T03:42:06.900744Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864276,
+                        "point_spread_away": 3.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": -3.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -115,
+                        "point_spread_away_money_delta": -4,
+                        "point_spread_home_money": -105,
+                        "point_spread_home_money_delta": 4,
+                        "date_updated": "2019-05-04T03:41:07.706531Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864276,
+                        "total_over": 222,
+                        "total_over_delta": 0.5,
+                        "total_under": 222,
+                        "total_under_delta": 0.5,
+                        "total_over_money": -110,
+                        "total_over_money_delta": 0,
+                        "total_under_money": -110,
+                        "total_under_money_delta": 0,
+                        "date_updated": "2019-05-02T14:55:57.695778Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 7,
+                        "affiliate_name": "Bookmaker",
+                        "affiliate_url": "http://www.bookmaker.eu/"
+                    }
+                },
+                "9": {
+                    "line_id": 5864278,
+                    "moneyline": {
+                        "line_id": 5864278,
+                        "moneyline_away": 144,
+                        "moneyline_away_delta": 0,
+                        "moneyline_home": -165,
+                        "moneyline_home_delta": 5,
+                        "date_updated": "2019-05-04T03:43:36.400567Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864278,
+                        "point_spread_away": 3.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": -3.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -115,
+                        "point_spread_away_money_delta": -4,
+                        "point_spread_home_money": -105,
+                        "point_spread_home_money_delta": 4,
+                        "date_updated": "2019-05-04T03:41:07.753263Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864278,
+                        "total_over": 222,
+                        "total_over_delta": 0.5,
+                        "total_under": 222,
+                        "total_under_delta": 0.5,
+                        "total_over_money": -110,
+                        "total_over_money_delta": 0,
+                        "total_under_money": -110,
+                        "total_under_money_delta": 0,
+                        "date_updated": "2019-05-02T14:55:57.654447Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 9,
+                        "affiliate_name": "betcris",
+                        "affiliate_url": "https://www.betcris.com/en/sportsbook"
+                    }
+                },
+                "10": {
+                    "line_id": 5864277,
+                    "moneyline": {
+                        "line_id": 5864277,
+                        "moneyline_away": 144,
+                        "moneyline_away_delta": 0,
+                        "moneyline_home": -165,
+                        "moneyline_home_delta": 5,
+                        "date_updated": "2019-05-04T03:43:47.384109Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864277,
+                        "point_spread_away": 3.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": -3.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -115,
+                        "point_spread_away_money_delta": -4,
+                        "point_spread_home_money": -105,
+                        "point_spread_home_money_delta": 4,
+                        "date_updated": "2019-05-04T03:41:07.753507Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864277,
+                        "total_over": 222,
+                        "total_over_delta": 0.5,
+                        "total_under": 222,
+                        "total_under_delta": 0.5,
+                        "total_over_money": -110,
+                        "total_over_money_delta": 0,
+                        "total_under_money": -110,
+                        "total_under_money_delta": 0,
+                        "date_updated": "2019-05-02T14:55:57.645578Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 10,
+                        "affiliate_name": "JustBet",
+                        "affiliate_url": "http://www.justbet.cx/sportsbook-betting"
+                    }
+                },
+                "11": {
+                    "line_id": 5864280,
+                    "moneyline": {
+                        "line_id": 5864280,
+                        "moneyline_away": 145,
+                        "moneyline_away_delta": 1,
+                        "moneyline_home": -165,
+                        "moneyline_home_delta": -1,
+                        "date_updated": "2019-05-03T14:50:03.280655Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864280,
+                        "point_spread_away": 3.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": -3.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -105,
+                        "point_spread_away_money_delta": -2,
+                        "point_spread_home_money": -105,
+                        "point_spread_home_money_delta": 2,
+                        "date_updated": "2019-05-04T03:10:58.986134Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864280,
+                        "total_over": 221.5,
+                        "total_over_delta": 0.5,
+                        "total_under": 221.5,
+                        "total_under_delta": 0.5,
+                        "total_over_money": -105,
+                        "total_over_money_delta": 0,
+                        "total_under_money": -105,
+                        "total_under_money_delta": 0,
+                        "date_updated": "2019-05-02T14:56:04.383522Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 11,
+                        "affiliate_name": "LowVig",
+                        "affiliate_url": "https://sportsbook.lowvig.ag/"
+                    }
+                },
+                "14": {
+                    "line_id": 5864308,
+                    "moneyline": {
+                        "line_id": 5864308,
+                        "moneyline_away": 145,
+                        "moneyline_away_delta": -10,
+                        "moneyline_home": -165,
+                        "moneyline_home_delta": 10,
+                        "date_updated": "2019-05-01T18:09:28.87808Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864308,
+                        "point_spread_away": 3.5,
+                        "point_spread_away_delta": -0.5,
+                        "point_spread_home": -3.5,
+                        "point_spread_home_delta": 0.5,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": 0,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": 0,
+                        "date_updated": "2019-05-01T18:09:22.693592Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864308,
+                        "total_over": 222,
+                        "total_over_delta": 0.5,
+                        "total_under": 222,
+                        "total_under_delta": 0.5,
+                        "total_over_money": -110,
+                        "total_over_money_delta": 0,
+                        "total_under_money": -110,
+                        "total_under_money_delta": 0,
+                        "date_updated": "2019-05-04T03:55:22.479975Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 14,
+                        "affiliate_name": "Intertops",
+                        "affiliate_url": "https://sports.intertops.eu/"
+                    }
+                },
+                "15": {
+                    "line_id": 5864275,
+                    "moneyline": {
+                        "line_id": 5864275,
+                        "moneyline_away": 145,
+                        "moneyline_away_delta": 1,
+                        "moneyline_home": -165,
+                        "moneyline_home_delta": -1,
+                        "date_updated": "2019-05-03T14:49:40.914167Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864275,
+                        "point_spread_away": 3.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": -3.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": -2,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": 2,
+                        "date_updated": "2019-05-04T03:10:52.590741Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864275,
+                        "total_over": 221.5,
+                        "total_over_delta": 0.5,
+                        "total_under": 221.5,
+                        "total_under_delta": 0.5,
+                        "total_over_money": -110,
+                        "total_over_money_delta": 0,
+                        "total_under_money": -110,
+                        "total_under_money_delta": 0,
+                        "date_updated": "2019-05-02T14:55:35.060392Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 15,
+                        "affiliate_name": "TigerGaming",
+                        "affiliate_url": "https://sportsbook.tigergaming.com/"
+                    }
+                },
+                "16": {
+                    "line_id": 5864306,
+                    "moneyline": {
+                        "line_id": 5864306,
+                        "moneyline_away": 155,
+                        "moneyline_away_delta": 7,
+                        "moneyline_home": -157,
+                        "moneyline_home_delta": -2,
+                        "date_updated": "2019-05-04T03:33:14.200549Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864306,
+                        "point_spread_away": 3.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": -3.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -101,
+                        "point_spread_away_money_delta": 0,
+                        "point_spread_home_money": -101,
+                        "point_spread_home_money_delta": 1,
+                        "date_updated": "2019-05-03T17:10:37.675481Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864306,
+                        "total_over": 221.5,
+                        "total_over_delta": 0,
+                        "total_under": 221.5,
+                        "total_under_delta": 0,
+                        "total_over_money": -110,
+                        "total_over_money_delta": -2,
+                        "total_under_money": 102,
+                        "total_under_money_delta": 2,
+                        "date_updated": "2019-05-04T03:55:07.426218Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 16,
+                        "affiliate_name": "Matchbook",
+                        "affiliate_url": "https://www.matchbook.com/"
+                    }
+                },
+                "17": {
+                    "line_id": 5864362,
+                    "moneyline": {
+                        "line_id": 5864362,
+                        "moneyline_away": 125,
+                        "moneyline_away_delta": -5,
+                        "moneyline_home": -165,
+                        "moneyline_home_delta": 0,
+                        "date_updated": "2019-05-03T17:40:00.213853Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864362,
+                        "point_spread_away": 3.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": -3.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -116,
+                        "point_spread_away_money_delta": -7,
+                        "point_spread_home_money": -102,
+                        "point_spread_home_money_delta": 7,
+                        "date_updated": "2019-05-02T10:08:08.301806Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864362,
+                        "total_over": 222,
+                        "total_over_delta": 0,
+                        "total_under": 222,
+                        "total_under_delta": 0,
+                        "total_over_money": -136,
+                        "total_over_money_delta": -1,
+                        "total_under_money": -136,
+                        "total_under_money_delta": 2,
+                        "date_updated": "2019-05-04T04:25:03.741463Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 17,
+                        "affiliate_name": "RedZone",
+                        "affiliate_url": "https://www.redzonesports.bet/en/sports/"
+                    }
+                }
+            }
+        },
+        {
+            "event_id": "d49634a5505c0a30cb7dd76c0b444b26",
+            "sport_id": 4,
+            "event_date": "2019-05-05T19:35:00Z",
+            "rotation_number_away": 591,
+            "rotation_number_home": 592,
+            "teams": [
+                {
+                    "team_id": 32935,
+                    "team_normalized_id": 5,
+                    "is_away": true,
+                    "is_home": false,
+                    "name": "Toronto Raptors"
+                },
+                {
+                    "team_id": 31166,
+                    "team_normalized_id": 4,
+                    "is_away": false,
+                    "is_home": true,
+                    "name": "Philadelphia 76ers"
+                }
+            ],
+            "teams_normalized": [
+                {
+                    "team_id": 5,
+                    "name": "Toronto",
+                    "mascot": "Raptors",
+                    "abbreviation": "TOR",
+                    "is_away": true,
+                    "is_home": false,
+                    "ranking": "",
+                    "record": "58-24"
+                },
+                {
+                    "team_id": 4,
+                    "name": "Philadelphia",
+                    "mascot": "76ers",
+                    "abbreviation": "PHI",
+                    "is_away": false,
+                    "is_home": true,
+                    "ranking": "",
+                    "record": "51-31"
+                }
+            ],
+            "lines": {
+                "1": {
+                    "line_id": 5864628,
+                    "moneyline": {
+                        "line_id": 5864628,
+                        "moneyline_away": -118,
+                        "moneyline_away_delta": 5,
+                        "moneyline_home": 108,
+                        "moneyline_home_delta": 5,
+                        "date_updated": "2019-05-03T14:25:13.942976Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864628,
+                        "point_spread_away": -1.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": 1.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -105,
+                        "point_spread_away_money_delta": 5,
+                        "point_spread_home_money": -105,
+                        "point_spread_home_money_delta": 5,
+                        "date_updated": "2019-05-03T14:25:10.747899Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864628,
+                        "total_over": 214.5,
+                        "total_over_delta": 0,
+                        "total_under": 214.5,
+                        "total_under_delta": 0,
+                        "total_over_money": -105,
+                        "total_over_money_delta": 5,
+                        "total_under_money": -105,
+                        "total_under_money_delta": 5,
+                        "date_updated": "2019-05-03T14:25:17.518909Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 1,
+                        "affiliate_name": "5Dimes",
+                        "affiliate_url": "https://www.5dimes.eu/"
+                    }
+                },
+                "3": {
+                    "line_id": 5864674,
+                    "moneyline": {
+                        "line_id": 5864674,
+                        "moneyline_away": -117,
+                        "moneyline_away_delta": 4,
+                        "moneyline_home": 106,
+                        "moneyline_home_delta": -4,
+                        "date_updated": "2019-05-03T15:16:41.664567Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864674,
+                        "point_spread_away": -1.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": 1.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -105,
+                        "point_spread_away_money_delta": 5,
+                        "point_spread_home_money": -105,
+                        "point_spread_home_money_delta": -5,
+                        "date_updated": "2019-05-03T15:16:41.670801Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864674,
+                        "total_over": 214.5,
+                        "total_over_delta": 0,
+                        "total_under": 214.5,
+                        "total_under_delta": 0,
+                        "total_over_money": -112,
+                        "total_over_money_delta": -1,
+                        "total_under_money": 102,
+                        "total_under_money_delta": 1,
+                        "date_updated": "2019-05-03T21:04:20.305117Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 3,
+                        "affiliate_name": "Pinnacle",
+                        "affiliate_url": "https://www.pinnacle.com/en/rtn"
+                    }
+                },
+                "4": {
+                    "line_id": 5864627,
+                    "moneyline": {
+                        "line_id": 5864627,
+                        "moneyline_away": -120,
+                        "moneyline_away_delta": -120.0001,
+                        "moneyline_home": 100,
+                        "moneyline_home_delta": 99.9999,
+                        "date_updated": "2019-05-03T11:40:54.656662Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864627,
+                        "point_spread_away": -1.5,
+                        "point_spread_away_delta": -0.5,
+                        "point_spread_home": 1.5,
+                        "point_spread_home_delta": 0.5,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": 5,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -5,
+                        "date_updated": "2019-05-03T13:39:35.461882Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864627,
+                        "total_over": 214.5,
+                        "total_over_delta": 0,
+                        "total_under": 214.5,
+                        "total_under_delta": 0,
+                        "total_over_money": -115,
+                        "total_over_money_delta": -5,
+                        "total_under_money": -105,
+                        "total_under_money_delta": 5,
+                        "date_updated": "2019-05-03T22:29:33.97133Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 4,
+                        "affiliate_name": "SportsBetting",
+                        "affiliate_url": " https://sportsbetting.ag/"
+                    }
+                },
+                "6": {
+                    "line_id": 5864626,
+                    "moneyline": {
+                        "line_id": 5864626,
+                        "moneyline_away": -120,
+                        "moneyline_away_delta": -120.0001,
+                        "moneyline_home": 100,
+                        "moneyline_home_delta": 99.9999,
+                        "date_updated": "2019-05-03T11:40:56.944768Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864626,
+                        "point_spread_away": -1.5,
+                        "point_spread_away_delta": -0.5,
+                        "point_spread_home": 1.5,
+                        "point_spread_home_delta": 0.5,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": 5,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -5,
+                        "date_updated": "2019-05-03T13:39:19.637351Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864626,
+                        "total_over": 214.5,
+                        "total_over_delta": 0,
+                        "total_under": 214.5,
+                        "total_under_delta": 0,
+                        "total_over_money": -115,
+                        "total_over_money_delta": -5,
+                        "total_under_money": -105,
+                        "total_under_money_delta": 5,
+                        "date_updated": "2019-05-03T22:29:54.728152Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 6,
+                        "affiliate_name": "BetOnline",
+                        "affiliate_url": "https://betonline.ag/"
+                    }
+                },
+                "7": {
+                    "line_id": 5864624,
+                    "moneyline": {
+                        "line_id": 5864624,
+                        "moneyline_away": -121,
+                        "moneyline_away_delta": -3,
+                        "moneyline_home": 100,
+                        "moneyline_home_delta": 202,
+                        "date_updated": "2019-05-04T04:04:23.687741Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864624,
+                        "point_spread_away": -1.5,
+                        "point_spread_away_delta": -0.5,
+                        "point_spread_home": 1.5,
+                        "point_spread_home_delta": 0.5,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": 5,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -5,
+                        "date_updated": "2019-05-03T13:38:49.708981Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864624,
+                        "total_over": 214.5,
+                        "total_over_delta": 0,
+                        "total_under": 214.5,
+                        "total_under_delta": 0,
+                        "total_over_money": -110,
+                        "total_over_money_delta": -5,
+                        "total_under_money": -110,
+                        "total_under_money_delta": 5,
+                        "date_updated": "2019-05-03T13:39:30.706812Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 7,
+                        "affiliate_name": "Bookmaker",
+                        "affiliate_url": "http://www.bookmaker.eu/"
+                    }
+                },
+                "9": {
+                    "line_id": 5864622,
+                    "moneyline": {
+                        "line_id": 5864622,
+                        "moneyline_away": -121,
+                        "moneyline_away_delta": -3,
+                        "moneyline_home": 100,
+                        "moneyline_home_delta": 202,
+                        "date_updated": "2019-05-04T04:04:23.743761Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864622,
+                        "point_spread_away": -1.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": 1.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": 5,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -5,
+                        "date_updated": "2019-05-03T13:38:49.795938Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864622,
+                        "total_over": 214.5,
+                        "total_over_delta": 0,
+                        "total_under": 214.5,
+                        "total_under_delta": 0,
+                        "total_over_money": -110,
+                        "total_over_money_delta": -5,
+                        "total_under_money": -110,
+                        "total_under_money_delta": 5,
+                        "date_updated": "2019-05-03T13:39:30.113634Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 9,
+                        "affiliate_name": "betcris",
+                        "affiliate_url": "https://www.betcris.com/en/sportsbook"
+                    }
+                },
+                "10": {
+                    "line_id": 5864623,
+                    "moneyline": {
+                        "line_id": 5864623,
+                        "moneyline_away": -121,
+                        "moneyline_away_delta": -3,
+                        "moneyline_home": 100,
+                        "moneyline_home_delta": 202,
+                        "date_updated": "2019-05-04T04:04:24.650425Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864623,
+                        "point_spread_away": -1.5,
+                        "point_spread_away_delta": 0,
+                        "point_spread_home": 1.5,
+                        "point_spread_home_delta": 0,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": 5,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -5,
+                        "date_updated": "2019-05-03T13:38:49.153831Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864623,
+                        "total_over": 214.5,
+                        "total_over_delta": -0.5,
+                        "total_under": 214.5,
+                        "total_under_delta": -0.5,
+                        "total_over_money": -110,
+                        "total_over_money_delta": -5,
+                        "total_under_money": -110,
+                        "total_under_money_delta": 5,
+                        "date_updated": "2019-05-03T13:39:48.494745Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 10,
+                        "affiliate_name": "JustBet",
+                        "affiliate_url": "http://www.justbet.cx/sportsbook-betting"
+                    }
+                },
+                "11": {
+                    "line_id": 5864625,
+                    "moneyline": {
+                        "line_id": 5864625,
+                        "moneyline_away": -120,
+                        "moneyline_away_delta": -120.0001,
+                        "moneyline_home": 100,
+                        "moneyline_home_delta": 99.9999,
+                        "date_updated": "2019-05-03T11:40:24.055879Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864625,
+                        "point_spread_away": -1.5,
+                        "point_spread_away_delta": -0.5,
+                        "point_spread_home": 1.5,
+                        "point_spread_home_delta": 0.5,
+                        "point_spread_away_money": -105,
+                        "point_spread_away_money_delta": 5,
+                        "point_spread_home_money": -105,
+                        "point_spread_home_money_delta": -205,
+                        "date_updated": "2019-05-03T13:39:21.010332Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864625,
+                        "total_over": 214.5,
+                        "total_over_delta": 0,
+                        "total_under": 214.5,
+                        "total_under_delta": 0,
+                        "total_over_money": -112,
+                        "total_over_money_delta": -7,
+                        "total_under_money": 101,
+                        "total_under_money_delta": 206,
+                        "date_updated": "2019-05-03T22:29:33.726903Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 11,
+                        "affiliate_name": "LowVig",
+                        "affiliate_url": "https://sportsbook.lowvig.ag/"
+                    }
+                },
+                "14": {
+                    "line_id": 5864713,
+                    "moneyline": {
+                        "line_id": 5864713,
+                        "moneyline_away": -120,
+                        "moneyline_away_delta": -120,
+                        "moneyline_home": 100,
+                        "moneyline_home_delta": 100,
+                        "date_updated": "2019-05-03T14:11:48.497985Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864713,
+                        "point_spread_away": -1.5,
+                        "point_spread_away_delta": -1.5,
+                        "point_spread_home": 1.5,
+                        "point_spread_home_delta": 1.5,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": -110,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -110,
+                        "date_updated": "2019-05-03T14:11:48.497996Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864713,
+                        "total_over": 214.5,
+                        "total_over_delta": 214.4999,
+                        "total_under": 214.5,
+                        "total_under_delta": 214.4999,
+                        "total_over_money": -110,
+                        "total_over_money_delta": -110.0001,
+                        "total_under_money": -110,
+                        "total_under_money_delta": -110.0001,
+                        "date_updated": "2019-05-03T14:11:48.498004Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 14,
+                        "affiliate_name": "Intertops",
+                        "affiliate_url": "https://sports.intertops.eu/"
+                    }
+                },
+                "15": {
+                    "line_id": 5864486,
+                    "moneyline": {
+                        "line_id": 5864486,
+                        "moneyline_away": -120,
+                        "moneyline_away_delta": -120.0001,
+                        "moneyline_home": 100,
+                        "moneyline_home_delta": 99.9999,
+                        "date_updated": "2019-05-03T11:40:13.967373Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864486,
+                        "point_spread_away": -1.5,
+                        "point_spread_away_delta": -0.5,
+                        "point_spread_home": -1.5,
+                        "point_spread_home_delta": -0.5,
+                        "point_spread_away_money": -110,
+                        "point_spread_away_money_delta": 5,
+                        "point_spread_home_money": -110,
+                        "point_spread_home_money_delta": -5,
+                        "date_updated": "2019-05-03T13:39:10.757245Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864486,
+                        "total_over": 214.5,
+                        "total_over_delta": 0,
+                        "total_under": 214.5,
+                        "total_under_delta": 0,
+                        "total_over_money": -115,
+                        "total_over_money_delta": -5,
+                        "total_under_money": -105,
+                        "total_under_money_delta": 5,
+                        "date_updated": "2019-05-03T22:29:00.187417Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 15,
+                        "affiliate_name": "TigerGaming",
+                        "affiliate_url": "https://sportsbook.tigergaming.com/"
+                    }
+                },
+                "16": {
+                    "line_id": 5864677,
+                    "moneyline": {
+                        "line_id": 5864677,
+                        "moneyline_away": -115,
+                        "moneyline_away_delta": 0,
+                        "moneyline_home": 107,
+                        "moneyline_home_delta": -1,
+                        "date_updated": "2019-05-03T20:06:36.41417Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864677,
+                        "point_spread_away": -1.5,
+                        "point_spread_away_delta": 0.5,
+                        "point_spread_home": 1.5,
+                        "point_spread_home_delta": -0.5,
+                        "point_spread_away_money": -102,
+                        "point_spread_away_money_delta": -209,
+                        "point_spread_home_money": -102,
+                        "point_spread_home_money_delta": 10,
+                        "date_updated": "2019-05-03T16:30:51.451959Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864677,
+                        "total_over": 215,
+                        "total_over_delta": 0.5,
+                        "total_under": 215,
+                        "total_under_delta": 0.5,
+                        "total_over_money": -105,
+                        "total_over_money_delta": 5,
+                        "total_under_money": -103,
+                        "total_under_money_delta": -206,
+                        "date_updated": "2019-05-03T21:49:35.157743Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 16,
+                        "affiliate_name": "Matchbook",
+                        "affiliate_url": "https://www.matchbook.com/"
+                    }
+                },
+                "17": {
+                    "line_id": 5864698,
+                    "moneyline": {
+                        "line_id": 5864698,
+                        "moneyline_away": -120,
+                        "moneyline_away_delta": 5,
+                        "moneyline_home": -105,
+                        "moneyline_home_delta": 0,
+                        "date_updated": "2019-05-03T21:04:49.998846Z",
+                        "format": "American"
+                    },
+                    "spread": {
+                        "line_id": 5864698,
+                        "point_spread_away": -1.5,
+                        "point_spread_away_delta": 0.5,
+                        "point_spread_home": 1.5,
+                        "point_spread_home_delta": -0.5,
+                        "point_spread_away_money": -102,
+                        "point_spread_away_money_delta": -202,
+                        "point_spread_home_money": -116,
+                        "point_spread_home_money_delta": 3,
+                        "date_updated": "2019-05-03T15:17:24.274124Z",
+                        "format": "American"
+                    },
+                    "total": {
+                        "line_id": 5864698,
+                        "total_over": 215,
+                        "total_over_delta": 0.5,
+                        "total_under": 215,
+                        "total_under_delta": 0.5,
+                        "total_over_money": -136,
+                        "total_over_money_delta": 0,
+                        "total_under_money": -136,
+                        "total_under_money_delta": 0,
+                        "date_updated": "2019-05-03T21:04:40.547772Z",
+                        "format": "American"
+                    },
+                    "affiliate": {
+                        "affiliate_id": 17,
+                        "affiliate_name": "RedZone",
+                        "affiliate_url": "https://www.redzonesports.bet/en/sports/"
+                    }
+                }
+            }
+        }
+    ]
+}
