@@ -24,9 +24,12 @@
   },
   "homepage": "https://github.com/pinion31/EtherBet#readme",
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
     "express": "^4.16.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.2",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
     "reactdom": "^2.0.0"
   },
   "devDependencies": {
