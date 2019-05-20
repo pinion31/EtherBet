@@ -17,6 +17,7 @@ class Home extends React.Component {
     sportsList: [],
     sportsEvents: {},
     modalOpen: false,
+    selectedDate: '',
   };
 
   componentDidMount = () => {
@@ -55,12 +56,12 @@ class Home extends React.Component {
     this.setState({value});
   };
 
-  handleChangeDate = (event, value) => {
-    console.log('eventdate', event.target.value);
+  handleChangeDate = (date, value) => {
+    this.setState({selectedDate: this.extractFormattedDate(date)})
   };
 
   render() {
-    const { value, sportsList, sportsEvents, modalOpen } = this.state;
+    const { value, sportsList, sportsEvents, modalOpen, selectedDate } = this.state;
     return (
       <div style={{backgroundColor: 'red'}}>
         <Provider value={{handleToggleModal: this.toggleBetModal}}>
@@ -69,6 +70,7 @@ class Home extends React.Component {
             tabIndex={value}
             sportsList={sportsList}
             handleChange={this.handleChange}
+            selectedDate={selectedDate}
             sportsEvents={sportsEvents}
             onChangeDate={this.handleChangeDate}
            />

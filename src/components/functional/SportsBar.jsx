@@ -14,7 +14,7 @@ import MomentLocaleUtils, {
 
 //import 'moment/locale/it';
 
-const SportsBar = ({tabIndex, handleChange, sportsList, sportsEvents, onChangeDate}) => (
+const SportsBar = ({tabIndex, handleChange, sportsList, sportsEvents, onChangeDate, selectedDate}) => (
   <div>
     <AppBar position="static">
       {/*<TextField
@@ -29,6 +29,7 @@ const SportsBar = ({tabIndex, handleChange, sportsList, sportsEvents, onChangeDa
       <DayPickerInput
         style={{color:'black'}}
         formatDate={formatDate}
+        onDayChange={onChangeDate}
         parseDate={parseDate}
         placeholder={`${formatDate(new Date())}`}
       />
@@ -41,13 +42,13 @@ const SportsBar = ({tabIndex, handleChange, sportsList, sportsEvents, onChangeDa
       </Tabs>
     </AppBar>
     { tabIndex == 0
-        && <SportsListing events={sportsEvents["2019-05-12"] ? sportsEvents["2019-05-12"][1] : [] } /> }
+        && <SportsListing events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][1] : [] } /> }
     { tabIndex == 1
-        && <SportsListing events={sportsEvents["2019-05-12"] ? sportsEvents["2019-05-12"][2] : [] } /> }
-    { tabIndex == 2 && <SportsListing  events={sportsEvents["2019-05-12"] ? sportsEvents["2019-05-12"][3] : [] } /> }
-    { tabIndex == 3 && <SportsListing  events={sportsEvents["2019-05-12"] ? sportsEvents["2019-05-12"][4] : [] } /> }
-    { tabIndex == 4 && <SportsListing  events={sportsEvents["2019-05-12"] ? sportsEvents["2019-05-12"][5] : [] } /> }
-    { tabIndex == 5 && <SportsListing  events={sportsEvents["2019-05-12"] ? sportsEvents["2019-05-12"][6] : [] } /> }
+        && <SportsListing events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][2] : [] } /> }
+    { tabIndex == 2 && <SportsListing  events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][3] : [] } /> }
+    { tabIndex == 3 && <SportsListing  events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][4] : [] } /> }
+    { tabIndex == 4 && <SportsListing  events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][5] : [] } /> }
+    { tabIndex == 5 && <SportsListing  events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][6] : [] } /> }
   </div>
 );
 
