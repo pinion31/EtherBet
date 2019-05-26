@@ -7,6 +7,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
+import { bindActionCreators } from 'redux';
+import { proposeBet } from '../actions/UserActions';
 import { Provider } from './ContextStore.js';
 import { sports } from '../../__tests__/responses/sports'; // temporary; replace with API call
 import { events } from '../../__tests__/responses/NBA_events_2019_05_12_Scheduled';
@@ -40,6 +43,7 @@ class Home extends React.Component {
   toggleBetModal = () => {
     const { modalOpen } = this.state;
     this.setState({ modalOpen : !modalOpen });
+    this.props.proposeBet({});
 
   };
 
@@ -106,4 +110,17 @@ class Home extends React.Component {
 }
 }
 
-export default Home;
+function mapStateToProps(state) {
+  return {
+    bets: state.bets,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    proposeBet,
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
+//export default Home;
