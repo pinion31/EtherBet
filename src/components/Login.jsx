@@ -27,7 +27,7 @@ class Login extends React.Component {
           />
         </div>
         <div>
-          <Button onClick={() => this.props.history.push('/home')} color="primary">
+          <Button onClick={() => this.props.history.push('/todays-events')} color="primary">
             Login
           </Button>
         </div>

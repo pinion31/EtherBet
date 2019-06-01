@@ -7,10 +7,12 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { menuWrapper } from './functional/MenuBarWrapper.jsx';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
 import { proposeBet } from '../actions/UserActions';
 import { Provider } from './ContextStore.js';
+import { formatEvents, extractFormattedDate } from '../helpers/helpers';
 import { sports } from '../../__tests__/responses/sports'; // temporary; replace with API call
 import { events } from '../../__tests__/responses/NBA_events_2019_05_12_Scheduled';
 
@@ -24,36 +26,16 @@ class Home extends React.Component {
   };
 
   componentDidMount = () => {
-    const allEvents = {};
-    events.forEach(event => {
-      const {event_date: eventDate, sport_id: sportId } = event;
-      const formattedDate =  this.extractFormattedDate(eventDate);
-      if (!allEvents[formattedDate]) allEvents[formattedDate] = {};
-      allEvents[formattedDate] [sportId] ?
-        allEvents[formattedDate] [sportId].push(event) :
-        allEvents[formattedDate] [sportId] = [event];
+    this.setState({
+      sportsList: sports,
+      sportsEvents: formatEvents(events, extractFormattedDate)
     });
-
-    console.log('events', allEvents);
-    console.log('events 4', allEvents['2019-05-12'][4]);
-
-    this.setState({sportsList: sports, sportsEvents: allEvents });
   };
 
   toggleBetModal = () => {
     const { modalOpen } = this.state;
     this.setState({ modalOpen : !modalOpen });
     this.props.proposeBet({});
-
-  };
-
-  extractFormattedDate = (date) => {
-    const newDate = new Date(date);
-    const dayOfMonth = (newDate.getDate()).toString().length == 1 ? `0${newDate.getDate()}`: newDate.getDate();
-    const month = (newDate.getMonth() + 1).toString().length == 1 ? `0${newDate.getMonth() + 1}`: newDate.getMonth() + 1;
-    console.log('newDate.getMonth() + 1', newDate.getMonth() + 1);
-    console.log('month', month);
-    return `${newDate.getFullYear()}-${month}-${dayOfMonth}`;
   };
 
   handleChange = (event,value) => {
@@ -61,7 +43,8 @@ class Home extends React.Component {
   };
 
   handleChangeDate = (date, value) => {
-    this.setState({selectedDate: this.extractFormattedDate(date)})
+    console.log('date1', date);
+    this.setState({selectedDate: extractFormattedDate(date)})
   };
 
   render() {
@@ -69,41 +52,41 @@ class Home extends React.Component {
     return (
       <div style={{backgroundColor: 'red'}}>
         <Provider value={{handleToggleModal: this.toggleBetModal}}>
-          <SportsBar
-            data-testid="sports-bar"
-            tabIndex={value}
-            sportsList={sportsList}
-            handleChange={this.handleChange}
-            selectedDate={selectedDate}
-            sportsEvents={sportsEvents}
-            onChangeDate={this.handleChangeDate}
-           />
-           <Dialog
-            open={modalOpen}
-            onClose={this.toggleBetModal}
-            aria-labelledby="form-dialog-title"
-            >
-            <DialogTitle id="form-dialog-title">Invite A Friend To Bet</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                Enter Address of Friend
-              </DialogContentText>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Address"
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.toggleBetModal} color="primary">
-                Cancel
-              </Button>
-              <Button onClick={this.toggleBetModal} color="primary">
-                Propose Bet
-              </Button>
-            </DialogActions>
-          </Dialog>
+            <SportsBar
+              data-testid="sports-bar"
+              tabIndex={value}
+              sportsList={sportsList}
+              handleChange={this.handleChange}
+              selectedDate={selectedDate}
+              sportsEvents={sportsEvents}
+              onChangeDate={this.handleChangeDate}
+             />
+             <Dialog
+              open={modalOpen}
+              onClose={this.toggleBetModal}
+              aria-labelledby="form-dialog-title"
+              >
+              <DialogTitle id="form-dialog-title">Invite A Friend To Bet</DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                  Enter Address of Friend
+                </DialogContentText>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="name"
+                  label="Address"
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={this.toggleBetModal} color="primary">
+                  Cancel
+                </Button>
+                <Button onClick={this.toggleBetModal} color="primary">
+                  Propose Bet
+                </Button>
+              </DialogActions>
+            </Dialog>
         </Provider>
       </div>
     );
@@ -122,5 +105,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
-//export default Home;
+export default connect(mapStateToProps, mapDispatchToProps) (menuWrapper(Home));
