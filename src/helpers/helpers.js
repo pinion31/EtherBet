@@ -1,7 +1,7 @@
-export const formatEvents = (unformattedEvents, extractFormattedDate) => {
+export const formatEvents = ({events}=[], extractFormattedDate) => {
   const allEvents = {};
-  const events = Array.from(unformattedEvents);
-  events.forEach(event => {
+  const eventsCopy = Array.from(events);
+  eventsCopy.forEach(event => {
     const {event_date: eventDate, sport_id: sportId } = event;
     const formattedDate =  extractFormattedDate(eventDate);
     if (!allEvents[formattedDate]) allEvents[formattedDate] = {};
@@ -9,7 +9,6 @@ export const formatEvents = (unformattedEvents, extractFormattedDate) => {
       allEvents[formattedDate] [sportId].push(event) :
       allEvents[formattedDate] [sportId] = [event];
   });
-  console.log('unformattedEvents', unformattedEvents);
   return allEvents;
 }
 
@@ -23,7 +22,7 @@ export const extractFormattedDate = (date) => {
 };
 
 // compiles events of diff types into one array
-export const compileEvents = (events) => {
+export const compileEvents = (events=[]) => {
   const compileEvents = [];
   Object.keys(events).forEach((key) => compileEvents.push(...events[key]));
   return compileEvents

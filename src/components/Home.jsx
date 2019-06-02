@@ -11,25 +11,19 @@ import { menuWrapper } from './functional/MenuBarWrapper.jsx';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
 import { proposeBet } from '../actions/UserActions';
+import { getSports } from '../actions/SportActions';
 import { Provider } from './ContextStore.js';
 import { formatEvents, extractFormattedDate } from '../helpers/helpers';
-import { sports } from '../../__tests__/responses/sports'; // temporary; replace with API call
-import { events } from '../../__tests__/responses/NBA_events_2019_05_12_Scheduled';
 
 class Home extends React.Component {
   state = {
     value:0,
-    sportsList: [],
-    sportsEvents: {},
     modalOpen: false,
     selectedDate: '',
   };
 
   componentDidMount = () => {
-    this.setState({
-      sportsList: sports,
-      sportsEvents: formatEvents(events, extractFormattedDate)
-    });
+    this.props.getSports();
   };
 
   toggleBetModal = () => {
@@ -48,14 +42,18 @@ class Home extends React.Component {
   };
 
   render() {
-    const { value, sportsList, sportsEvents, modalOpen, selectedDate } = this.state;
+    const { value, modalOpen, selectedDate } = this.state;
+    const { events, sports: sportsList } = this.props;
+    console.log('sportsList', sportsList);
+
+    const sportsEvents = formatEvents(events, extractFormattedDate);
     return (
       <div style={{backgroundColor: 'red'}}>
         <Provider value={{handleToggleModal: this.toggleBetModal}}>
             <SportsBar
               data-testid="sports-bar"
               tabIndex={value}
-              sportsList={sportsList}
+              sportsList={sportsList.sports || []}
               handleChange={this.handleChange}
               selectedDate={selectedDate}
               sportsEvents={sportsEvents}
@@ -93,15 +91,18 @@ class Home extends React.Component {
 }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({bets, events, sports}) {
   return {
-    bets: state.bets,
+    bets,
+    events,
+    sports,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     proposeBet,
+    getSports,
   }, dispatch);
 }
 

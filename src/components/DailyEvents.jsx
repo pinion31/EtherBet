@@ -3,24 +3,20 @@ import { menuWrapper } from './functional/MenuBarWrapper.jsx';
 import { formatEvents, extractFormattedDate, compileEvents } from '../helpers/helpers';
 import { Provider } from './ContextStore.js';
 import { proposeBet } from '../actions/UserActions';
+import { getEvents } from '../actions/EventActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { sports } from '../../__tests__/responses/sports'; // temporary; replace with API call
-import { events } from '../../__tests__/responses/NBA_events_2019_05_12_Scheduled';
 import SportsListing from './functional/SportsListing.jsx';
 
 class DailyEvents extends React.Component {
   state = {
-    sportsEvents: null,
     modalOpen: false,
     date: new Date('May 12, 2019 00:00:00').toString(),
   };
 
   componentDidMount = () => {
-    console.log('mounted');
-    this.setState({
-      sportsEvents: formatEvents(events, extractFormattedDate)
-    });
+    this.props.getEvents();
   };
 
   toggleBetModal = () => {
@@ -30,12 +26,12 @@ class DailyEvents extends React.Component {
   };
 
   render() {
-    const { sportsEvents, date } = this.state;
-    console.log('sportsEvents', sportsEvents);
+    const { date } = this.state;
+    const { events } = this.props;
     console.log('events', events);
-    //console.log('date', sportsEvents[extractFormattedDate(date)]);
+    const formattedEvents = formatEvents(events, extractFormattedDate);
     const compiledEvents =
-      sportsEvents ? compileEvents(sportsEvents[extractFormattedDate(date)]) : [];
+      formattedEvents ? compileEvents(formattedEvents[extractFormattedDate(date)]) : [];
 
       console.log('compiledEvents', compiledEvents);
     return (
@@ -49,15 +45,17 @@ class DailyEvents extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({bets, events}) {
   return {
-    bets: state.bets,
+    bets,
+    events,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     proposeBet,
+    getEvents,
   }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps) (menuWrapper(DailyEvents));
