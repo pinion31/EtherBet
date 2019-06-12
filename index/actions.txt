@@ -1,0 +1,12 @@
+List of actions:
+
+create bet with other player
+cancel bet with other player
+lock bet
+get bets for user
+##sign up page
+create user
+login user
+get event for sport for a certain day
+resolve all events and pay winner
+

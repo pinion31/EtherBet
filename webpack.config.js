@@ -21,11 +21,23 @@ const config = {
             }
         ]
     },
+    devServer: {
+        port: 8080,
+        contentBase: 'static',
+        proxy: {
+          '/': {
+            target: 'http://localhost:3000',
+          },
+        },
+    },
     plugins: [
      new HtmlWebPackPlugin({
        template: "./public/index.html",
        filename: "./index.html"
      })
-    ]
+    ],
+    node: {
+        fs: "empty"
+    }
 };
 module.exports = config;

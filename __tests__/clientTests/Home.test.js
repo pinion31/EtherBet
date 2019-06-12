@@ -1,5 +1,5 @@
 import React from 'react'
-import Home from '../src/components/Home.jsx';
+import Home from '../../src/components/Home.jsx';
 import  { render } from 'react-testing-library';
 
 test('it loads and displays events', () => {

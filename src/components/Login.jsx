@@ -32,7 +32,7 @@ class Login extends React.Component {
           </Button>
         </div>
         <div>
-          <Button onClick={() => {}} color="primary">
+          <Button onClick={() => this.props.history.push('/sign-up')} color="primary">
             Create Account
           </Button>
         </div>

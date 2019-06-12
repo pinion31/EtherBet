@@ -1,0 +1,35 @@
+{
+  "bets": [
+    {
+     "id": "12344",
+     "sportId": "4",
+     "name": "Golden State vs. Toronto Raptors",
+     "dateOfEvent": "2019-05-09T02:35:00Z",
+     "teamOne": "GoldenState",
+     "teamTwo": "Toronto",
+     "created": "2019-05-08T02:35:00Z",
+     "status": "RESOLVED",
+     "betCreator": "13",
+     "betCreatorHandicap": "-10",
+     "betReceiver": "189",
+     "betReceiverHandicap": "+10",
+     "winner": "13",
+     "wager": "10"
+    },
+    {
+     "id": "12345",
+     "sportId": "1",
+     "name": "Dallas Cowboys vs. New York Giants",
+     "dateOfEvent": "2019-12-09T02:35:00Z",
+     "teamOne": "Dallas",
+     "teamTwo": "New York",
+     "created": "2019-09-08T02:35:00Z",
+     "status": "ACCEPTED",
+     "betCreator": "13",
+     "betCreatorHandicap": "-10",
+     "betReceiver": "189",
+     "betReceiverHandicap": "+10",
+     "winner": "13",
+     "wager": "10"
+    }]
+}

@@ -10,3 +10,5 @@ router.get('retrieve-bets', (req, res) => {
   const { date } = req.body;
   res.end();
 })
+
+module.exports = router;

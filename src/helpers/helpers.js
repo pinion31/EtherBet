@@ -28,3 +28,15 @@ export const compileEvents = (events=[]) => {
   return compileEvents
 };
 
+export const validateFieldsAreNotBlank = (data, errorCb) => {
+  const validate = Object.keys(data).every(key => data[key].length > 0);
+  if (!validate) errorCb();
+  return validate;
+}
+
+export const validateFieldsMatch = (field1, field2, errorCb) => {
+  const match = field1 === field2;
+  if (!match) errorCb();
+  return match;
+};
+

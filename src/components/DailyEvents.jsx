@@ -2,7 +2,7 @@ import React from 'react';
 import { menuWrapper } from './functional/MenuBarWrapper.jsx';
 import { formatEvents, extractFormattedDate, compileEvents } from '../helpers/helpers';
 import { Provider } from './ContextStore.js';
-import { proposeBet } from '../actions/UserActions';
+import { proposeBet } from '../actions/betActions';
 import { getEvents } from '../actions/EventActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

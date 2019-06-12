@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import { menuWrapper } from './functional/MenuBarWrapper.jsx';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
-import { proposeBet } from '../actions/UserActions';
+import { proposeBet } from '../actions/BetActions';
 import { getSports } from '../actions/SportActions';
 import { Provider } from './ContextStore.js';
 import { formatEvents, extractFormattedDate } from '../helpers/helpers';
