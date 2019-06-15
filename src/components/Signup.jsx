@@ -36,12 +36,10 @@ class Signup extends React.Component {
       this.props.createUser(this.state)
         .then(({status}) => {
           if (status == 200) {
-            return this.props.history.push('/home');
+            return this.props.history.push('/todays-events');
           }
           throw new Error('Error Saving User');
-        }).catch((e) => {
-          this.setState({errorMessage: e.message});
-        });
+        }).catch((e) => this.setState({errorMessage: e.message}));
     }
   };
 

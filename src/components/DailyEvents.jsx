@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { sports } from '../../__tests__/responses/sports'; // temporary; replace with API call
 import SportsListing from './functional/SportsListing.jsx';
+import CreateBetModal  from './functional/CreateBetModal.jsx';
 
 class DailyEvents extends React.Component {
   state = {
@@ -26,7 +27,7 @@ class DailyEvents extends React.Component {
   };
 
   render() {
-    const { date } = this.state;
+    const { date, modalOpen } = this.state;
     const { events } = this.props;
     console.log('events', events);
     const formattedEvents = formatEvents(events, extractFormattedDate);
@@ -39,6 +40,11 @@ class DailyEvents extends React.Component {
         <Provider value={{handleToggleModal: this.toggleBetModal}}>
           <h3>Today's Events</h3>
           {<SportsListing events={compiledEvents ? compiledEvents : [] } />}
+          <CreateBetModal
+            modalOpen={modalOpen}
+            toggleBetModal={this.toggleBetModal}
+            sendBet={() => console.log('bet sent')}
+          /> 
         </Provider>
       </div>
     );

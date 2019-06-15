@@ -1,13 +1,7 @@
 import React from 'React';
 import SportsBar from './functional/SportsBar.jsx';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import { menuWrapper } from './functional/MenuBarWrapper.jsx';
+import CreateBetModal  from './functional/CreateBetModal.jsx';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
 import { proposeBet } from '../actions/BetActions';
@@ -44,7 +38,6 @@ class Home extends React.Component {
   render() {
     const { value, modalOpen, selectedDate } = this.state;
     const { events, sports: sportsList } = this.props;
-    console.log('sportsList', sportsList);
 
     const sportsEvents = formatEvents(events, extractFormattedDate);
     return (
@@ -59,7 +52,12 @@ class Home extends React.Component {
               sportsEvents={sportsEvents}
               onChangeDate={this.handleChangeDate}
              />
-             <Dialog
+             <CreateBetModal
+                modalOpen={modalOpen}
+                toggleBetModal={this.toggleBetModal}
+                sendBet={() => console.log('bet sent')}
+              /> 
+             {/*<Dialog
               open={modalOpen}
               onClose={this.toggleBetModal}
               aria-labelledby="form-dialog-title"
@@ -84,7 +82,7 @@ class Home extends React.Component {
                   Propose Bet
                 </Button>
               </DialogActions>
-            </Dialog>
+             </Dialog>*/}
         </Provider>
       </div>
     );
