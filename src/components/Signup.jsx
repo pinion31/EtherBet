@@ -1,6 +1,9 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
+import { bindActionCreators } from 'redux';
+import { createUser } from '../actions/UserActions';
 import { validateFieldsAreNotBlank, validateFieldsMatch } from '../helpers/helpers';
 
 class Signup extends React.Component {
@@ -30,20 +33,16 @@ class Signup extends React.Component {
 
   submitUser = () => {
     if (this.verifyUser()) {
-      fetch('/users/create-user', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.state), 
-      })
-      .then((res) => res.json())
-      .then((result) => {
-
-        console.log('done2', result);
-      });
+      this.props.createUser(this.state)
+        .then(({status}) => {
+          if (status == 200) {
+            return this.props.history.push('/home');
+          }
+          throw new Error('Error Saving User');
+        }).catch((e) => {
+          this.setState({errorMessage: e.message});
+        });
     }
-
   };
 
   render() {
@@ -101,4 +100,10 @@ class Signup extends React.Component {
 
 }
 
-export default Signup;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    createUser
+  }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(Signup);

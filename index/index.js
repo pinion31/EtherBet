@@ -10,7 +10,7 @@ const users = require('./routes/users');
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../dist')));
-console.log('loading6');
+console.log(new Date(Date.now()));
 
 
 app.use('/events', events);
