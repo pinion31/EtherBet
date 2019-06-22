@@ -15,7 +15,9 @@
     "linebreak-style":["off"],
     "consistent-return":["off"],
     "react/prop-types":["off"],
-    "eqeqeq":["off"]
+    "eqeqeq":["off"],
+    "import/extensions":["off"],
+    "react/destructuring-assignment":["off"]
   },
   "parser": "babel-eslint",
   "parserOptions": {

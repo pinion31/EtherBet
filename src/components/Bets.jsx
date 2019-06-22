@@ -1,9 +1,9 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { menuWrapper } from './functional/MenuBarWrapper';
+import menuWrapper from './functional/MenuBarWrapper.jsx';
 import { getBets } from '../actions/BetActions';
-import BetCard from './functional/BetCard';
+import BetCard from './functional/BetCard.jsx';
 
 class Bets extends React.Component {
   state = {

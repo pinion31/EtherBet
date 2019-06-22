@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { PROPOSE_BET, GET_BETS } from '../constants/actionTypes';
 
 export const betReducer = (state = { bet: [] }, { type, payload }) => {
