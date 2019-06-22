@@ -1,14 +1,10 @@
 const express = require('express');
-const router = express.Router();
 const Bet = require('../models/Bet');
 const User = require('../models/User');
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
-//const $or = Op.or;
-//const $eq = Op.eq;
 
+const router = express.Router();
 router.post('/propose-bet', (req, res) => {
-  const { 
+  const {
     receiver,
     wager,
     teamSelectedToWin,
@@ -20,44 +16,45 @@ router.post('/propose-bet', (req, res) => {
     teamTwo,
   } = req.body;
 
-  User.findOne({ where: {login: receiver}})
-    .then(receiverFound => {
+  User.findOne({ where: { login: receiver } })
+    .then((receiverFound) => {
       if (receiverFound) {
         Bet.create({
-          sportId: Number.parseInt(sportId),
+          sportId: Number.parseInt(sportId, 10),
           eventId,
           teamSelectedToWin,
           dateOfEvent: eventDate,
           teamOne,
           teamTwo,
           status: 'OFFER PENDING',
-          betCreator: Number.parseInt(senderId),
+          betCreator: Number.parseInt(senderId, 10),
           betCreatorHandicap: 0,
           betReceiver: receiverFound.dataValues.id,
           betReceiverLogin: receiver,
           betReceiverHandicap: 0,
           actualWinner: '',
           wager: Number.parseFloat(wager),
-        }).then(betResult => {
+        }).then((betResult) => {
           if (betResult) {
-            return res.status(200).send({status: '200'});
-          } else {
-            return res.status(200).send({error: 'Error creating Bet'});
+            return res.status(200).send({ status: '200' });
           }
+          return res.status(200).send({ error: 'Error creating Bet' });
         });
       } else {
-        return res.status(200).send({error: 'User not found'});
+        return res.status(200).send({ error: 'User not found' });
       }
     });
 });
 
 router.post('/get-bets', (req, res) => {
   const { userId } = req.body;
-  const userIdInt = Number.parseInt(userId)
-  Bet.findAll({where: {$or: [{'betCreator': { $eq: userIdInt}}, {'betReceiver': { $eq: userIdInt}}] }})
-    .then(bets => {
-      res.status(200).json(bets);
-    });
+  const userIdInt = Number.parseInt(userId, 10);
+  Bet.findAll({
+    where:
+        { $or: [{ betCreator: { $eq: userIdInt } }, { betReceiver: { $eq: userIdInt } }] },
+  }).then((bets) => {
+    res.status(200).json(bets);
+  });
 });
 
 module.exports = router;

@@ -1,9 +1,9 @@
 import React from 'react';
-import { menuWrapper } from './functional/MenuBarWrapper.jsx';
-import { getBets } from '../actions/betActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import BetCard from './functional/BetCard.jsx';
+import { menuWrapper } from './functional/MenuBarWrapper';
+import { getBets } from '../actions/BetActions';
+import BetCard from './functional/BetCard';
 
 class Bets extends React.Component {
   state = {
@@ -12,51 +12,49 @@ class Bets extends React.Component {
   }
 
   componentDidMount = () => {
+    // eslint-disable-next-line react/destructuring-assignment
     this.props.getBets(this.props.user.id, (bets) => {
       const { betsCreated, betsReceived } = this.sortBets(bets);
-      console.log('betsCreated did mount', betsCreated)
       this.setState({ betsCreated, betsReceived });
     });
   };
 
   sortBets = (bets) => {
-    const betsCreated = []
+    const betsCreated = [];
     const betsReceived = [];
-    const { id } = this.props.user; 
-    
-    bets.forEach(bet => {
+    const { user: { id } } = this.props;
+
+    bets.forEach((bet) => {
       if (bet.betCreator == id) betsCreated.push(bet);
       if (bet.betReceiver == id) betsReceived.push(bet);
     });
-    console.log('betsCreated', betsCreated)
+    console.log('betsCreated', betsCreated);
     return { betsCreated, betsReceived };
-
   };
 
   render() {
     const { betsReceived, betsCreated } = this.state;
-    console.log('betsCreated state', betsCreated)
+    console.log('betsCreated state', betsCreated);
     return (
       <div>
         <h2> Bets Created </h2>
         {
-          betsCreated.map(bet => <BetCard bet={bet}/>)
+          betsCreated.map(bet => <BetCard bet={bet} key={bet.id} />)
         }
         <h2> Bets Received </h2>
         {
-          betsReceived.map(bet => <BetCard bet={bet}/>)
+          betsReceived.map(bet => <BetCard bet={bet} key={bet.id} />)
         }
       </div>
     );
   }
-
 }
 
-function mapStateToProps({bets, user}) {
+function mapStateToProps({ bets, user }) {
   return {
     bets,
     user,
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

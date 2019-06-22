@@ -12,34 +12,40 @@ class Signup extends React.Component {
     password1: '',
     password2: '',
     address: '',
-    errorMessage:'',
+    errorMessage: '',
   }
 
-  handleChange = (event, value) => {
+  handleChange = (event) => {
     this.setState({
-      [event.target.id] : event.target.value,
+      [event.target.id]: event.target.value,
       errorMessage: '',
     });
   }
 
   verifyUser = () => {
-    const { username, password1, password2, address } = this.state;
-    const user = { username, password1, password2, address };
+    const {
+      username, password1, password2, address,
+    } = this.state;
+    const user = {
+      username, password1, password2, address,
+    };
     return (
-      validateFieldsAreNotBlank(user, () => this.setState({ errorMessage: 'Please complete all fields.'})) &&
-      validateFieldsMatch(password1, password2, () => this.setState({ errorMessage: 'Passwords do not match.'}))
+      validateFieldsAreNotBlank(user, () => this.setState({ errorMessage: 'Please complete all fields.' }))
+      && validateFieldsMatch(password1, password2, () => this.setState({ errorMessage: 'Passwords do not match.' }))
     );
   };
 
   submitUser = () => {
     if (this.verifyUser()) {
+      // eslint-disable-next-line react/destructuring-assignment
       this.props.createUser(this.state)
-        .then(({status}) => {
+        .then(({ status }) => {
           if (status == 200) {
+            // eslint-disable-next-line react/destructuring-assignment
             return this.props.history.push('/todays-events');
           }
           throw new Error('Error Saving User');
-        }).catch((e) => this.setState({errorMessage: e.message}));
+        }).catch(e => this.setState({ errorMessage: e.message }));
     }
   };
 
@@ -95,12 +101,11 @@ class Signup extends React.Component {
       </div>
     );
   }
-
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    createUser
+    createUser,
   }, dispatch);
 }
 
