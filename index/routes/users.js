@@ -17,4 +17,14 @@ router.post('/create-user', (req, res) => {
   });
 });
 
+router.post('/get-user', (req, res) => {
+  const { username, password } = req.body;
+  User.findOne({id:18})
+    .then(user => {
+      console.log('user', user);
+      res.status(200).json(user);
+    });
+});
+
+
 module.exports = router;

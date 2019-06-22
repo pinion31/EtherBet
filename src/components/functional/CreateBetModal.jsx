@@ -17,47 +17,52 @@ import { proposeBet } from '../../actions/betActions';
 
 class CreateBetModal extends React.Component {
   state = {
-    senderId: '',
     receiverLogin: '',
     wager: '0',
     teamSelectedToWin: 'Select Winner',
+    errorMessage: '',
   }
 
   handleChange = (event) => {
-    console.log('event.target', event.target);
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value,
+      errorMessage: '',
+    });
   };
   
   packBet = () => {
-    const { events,selectedEvent } = this.props;
+    const { events,selectedEvent, user } = this.props;
     const {event_date, sport_id, event_id, teams} = events[selectedEvent];
     const {name: teamOne} = teams[0];
     const {name: teamTwo} = teams[1];
-    const { receiverLogin, wager, teamSelectedToWin, senderId } = this.state;
+    const { receiverLogin, wager, teamSelectedToWin } = this.state;
+
     return {
       receiver: receiverLogin,
       wager,
       teamSelectedToWin,
-      senderId,
+      senderId: user.id,
       eventDate: event_date,
       sportId: sport_id,
       eventId: event_id,
       teamOne,
       teamTwo,
+      betCreator: user.id,
     };
   };
 
   sendBet = () => {
-    this.props.toggleBetModal();
-    this.props.proposeBet(this.packBet());
-
+    this.props.proposeBet(this.packBet(), ({error}) => {
+      if (error) {
+        return this.setState({errorMessage: error});
+      }
+      this.props.toggleBetModal();
+    });
   }
   render() {
     const {modalOpen, toggleBetModal, events, selectedEvent } = this.props;
-    const {teamSelectedToWin} = this.state;
+    const {teamSelectedToWin, errorMessage} = this.state;
 
-    console.log('event shape', events[selectedEvent]);
-    console.log('state', this.state);
     return (
       <React.Fragment>
       <Dialog
@@ -112,6 +117,7 @@ class CreateBetModal extends React.Component {
             Propose Bet
           </Button>
         </DialogActions>
+        <h5>{errorMessage}</h5>
       </Dialog>
     </React.Fragment>);
   }
@@ -120,6 +126,7 @@ class CreateBetModal extends React.Component {
 function mapStateToProps({bets, events, user}) {
   return {
     bets,
+    user,
   }
 }
 

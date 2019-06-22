@@ -38,11 +38,18 @@ const Bet = sequelize.define('bet', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    betReceiverLogin: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     betReceiverHandicap: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    winner: {
+    actualWinner: {
+        type: Sequelize.STRING,
+    },
+    teamSelectedToWin: {
         type: Sequelize.STRING,
     },
     wager: {

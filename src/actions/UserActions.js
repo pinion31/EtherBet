@@ -13,15 +13,17 @@ export const createUser = user => (
   }
 );
 
-export const getUser = address => (
+export const getUser = (username, password) => (
   (dispatch) => {
     console.log('test');
-    //dispatch({type: GET_BETS, payload: bets});
-    /*axios.post('/user/proposeBet', address)
+    //dispatch({type: GET_USER, payload: {user:'chris'}});
+    return axios.post('/users/get-user', {username, password})
       .then((res) => {
-        dispatch({type: 'PROPOSE_BET', payload: res.data});
+        console.log('res', res);
+        dispatch({type: GET_USER, payload: res.data});
+        return {status: 200};
       }).catch((err) => {
-        throw err;
-      });*/
+        return {status: 500};
+      });
   }
 );
