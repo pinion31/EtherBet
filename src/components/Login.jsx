@@ -4,9 +4,13 @@ import Button from '@material-ui/core/Button';
 
 class Login extends React.Component {
   state = {
-
+    username: '',
+    password: '',
   }
 
+  handleChange = (event) => {
+    this.setState([event.target.id]: event.target.value);
+  };
   render() {
     return (
       <div>

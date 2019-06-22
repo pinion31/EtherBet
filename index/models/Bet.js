@@ -6,7 +6,7 @@ const Bet = sequelize.define('bet', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    name: {
+    eventId: {
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -27,15 +27,15 @@ const Bet = sequelize.define('bet', {
         allowNull: false
     },
     betCreator: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.INTEGER,
+        allowNull: false,
     },
     betCreatorHandicap: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
     betReceiver: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
     },
     betReceiverHandicap: {
@@ -44,14 +44,14 @@ const Bet = sequelize.define('bet', {
     },
     winner: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     wager: {
         type: Sequelize.FLOAT,
         allowNull: false
     }
 }, {
-        // options
+        sequelize, 
+        modelName: 'bet'
     });
 
 module.exports = Bet;

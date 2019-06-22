@@ -16,8 +16,6 @@ export const extractFormattedDate = (date) => {
     const newDate = new Date(date);
     const dayOfMonth = (newDate.getDate()).toString().length == 1 ? `0${newDate.getDate()}`: newDate.getDate();
     const month = (newDate.getMonth() + 1).toString().length == 1 ? `0${newDate.getMonth() + 1}`: newDate.getMonth() + 1;
-    console.log('newDate.getMonth() + 1', newDate.getMonth() + 1);
-    console.log('month', month);
     return `${newDate.getFullYear()}-${month}-${dayOfMonth}`;
 };
 

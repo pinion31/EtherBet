@@ -34,7 +34,7 @@ const InlineTeam = ({index, event}) => (
   </div>
 );
 
-const SportsEvent = ({event}) => (
+const SportsEvent = ({event, index}) => (
   <div style={{margin: 10, padding: 10}}>
     <Consumer>
      { ({handleToggleModal}) =>
@@ -43,7 +43,7 @@ const SportsEvent = ({event}) => (
         <div style={{margin: 10, padding: 10}}>
           <InlineTeam index={0} event={event} />
           <InlineTeam index={1} event={event} />
-          <Button onClick={handleToggleModal}style={{margin: 10, padding: 10}} variant="contained" color="primary">
+          <Button onClick={() => handleToggleModal(index)} style={{margin: 10, padding: 10}} variant="contained" color="primary">
             Create Bet
           </Button>
         </div>

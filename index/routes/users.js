@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 
-
 router.post('/create-user', (req, res) => {
   const { username, password1, address } = req.body;
   bcrypt.genSalt(10, (err, salt) => {

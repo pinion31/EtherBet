@@ -7,7 +7,7 @@ const SportsListing = ({events, handleBet}) => {
     {
       events ?
       events.map((event, index) => {
-        return <SportsEvent event={event} key={index} handleBet={handleBet} />
+        return <SportsEvent event={event} key={index} handleBet={handleBet} index={index} />
       }) : "No Events Scheduled For Today"
     }
   </div>

@@ -14,27 +14,44 @@ class DailyEvents extends React.Component {
   state = {
     modalOpen: false,
     date: new Date('May 12, 2019 00:00:00').toString(),
+    receiverLogin: '',
+    selectedEventKey: '',
   };
 
   componentDidMount = () => {
     this.props.getEvents();
   };
 
-  toggleBetModal = () => {
-    const { modalOpen } = this.state;
-    this.setState({ modalOpen : !modalOpen });
-    this.props.proposeBet({});
+  selectEventToBet = (key) => {
+    this.setState({})
+
+  };
+  toggleBetModal = (key) => {
+    const { modalOpen, receiverLogin } = this.state;
+    console.log('key', key);
+    /*if (modalOpen) {
+      this.props.proposeBet(this.props.user.id || 'chris', receiverLogin);
+        .then((res) => {
+          console.log('bet complete');
+        });
+  };*/
+    this.setState({
+      modalOpen : !modalOpen,
+      selectedEventKey: !modalOpen ? key : -1,
+    });
+  };
+
+  handleChange = (event) => {
+    this.setState({ receiverLogin: event.target.value });
   };
 
   render() {
-    const { date, modalOpen } = this.state;
+    const { date, modalOpen, selectedEventKey } = this.state;
     const { events } = this.props;
     console.log('events', events);
     const formattedEvents = formatEvents(events, extractFormattedDate);
     const compiledEvents =
       formattedEvents ? compileEvents(formattedEvents[extractFormattedDate(date)]) : [];
-
-      console.log('compiledEvents', compiledEvents);
     return (
       <div>
         <Provider value={{handleToggleModal: this.toggleBetModal}}>
@@ -43,7 +60,9 @@ class DailyEvents extends React.Component {
           <CreateBetModal
             modalOpen={modalOpen}
             toggleBetModal={this.toggleBetModal}
-            sendBet={() => console.log('bet sent')}
+            handleChange={this.handleChange}
+            selectedEvent={selectedEventKey}
+            events={compiledEvents}
           /> 
         </Provider>
       </div>
@@ -51,8 +70,9 @@ class DailyEvents extends React.Component {
   }
 }
 
-function mapStateToProps({bets, events}) {
+function mapStateToProps({bets, events, user}) {
   return {
+    user,
     bets,
     events,
   }
