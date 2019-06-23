@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import menuWrapper from './functional/MenuBarWrapper.jsx';
+import { menuWrapper } from './functional/MenuBarWrapper.jsx';
 import { getBets } from '../actions/BetActions';
 import BetCard from './functional/BetCard.jsx';
 
