@@ -4,27 +4,45 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
 import { getUser } from '../actions/UserActions';
+import { validateFieldsAreNotBlank } from '../helpers/helpers';
 
 class Login extends React.Component {
   state = {
     username: '',
     password: '',
+    errorMessage: '',
   }
 
   handleChange = (event) => {
-    this.setState({[event.target.id]: event.target.value});
+    this.setState({
+      [event.target.id]: event.target.value,
+      errorMessage: '',
+    });
+  };
+
+  verifyLogin = () => {
+    const {
+      username, password,
+    } = this.state;
+
+    return (
+      validateFieldsAreNotBlank({ username, password }, () => this.setState({ errorMessage: 'Please complete all fields.' }))
+    );
   };
 
   loginUser = () => {
-    this.props.getUser()
-      .then(({status}) => {
-        if(status == 200) {
-          this.props.history.push('/todays-events');
-        }
-      });
+    if (this.verifyLogin()) {
+      this.props.getUser()
+        .then(({ status }) => {
+          if (status == 200) {
+            this.props.history.push('/todays-events');
+          }
+        });
+    }
   };
 
   render() {
+    const { errorMessage } = this.state;
     return (
       <div>
         <div>
@@ -45,6 +63,7 @@ class Login extends React.Component {
             onChange={this.handleChange}
           />
         </div>
+        <h5>{errorMessage}</h5>
         <div>
           <Button onClick={this.loginUser} color="primary">
             Login
@@ -58,13 +77,12 @@ class Login extends React.Component {
       </div>
     );
   }
-
 }
 
-function mapStateToProps({user}) {
+function mapStateToProps({ user }) {
   return {
-    user
-  }
+    user,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
