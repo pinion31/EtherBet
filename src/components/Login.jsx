@@ -35,8 +35,9 @@ class Login extends React.Component {
       this.props.getUser()
         .then(({ status }) => {
           if (status == 200) {
-            this.props.history.push('/todays-events');
+            return this.props.history.push('/todays-events');
           }
+          this.setState({ errorMessage: 'Log in Error' });
         });
     }
   };

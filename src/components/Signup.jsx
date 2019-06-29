@@ -44,8 +44,8 @@ class Signup extends React.Component {
             // eslint-disable-next-line react/destructuring-assignment
             return this.props.history.push('/todays-events');
           }
-          throw new Error('Error Saving User');
-        }).catch(e => this.setState({ errorMessage: e.message }));
+          this.setState({ errorMessage: 'There was an error creating your account.' });
+        });
     }
   };
 
