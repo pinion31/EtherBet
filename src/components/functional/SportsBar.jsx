@@ -17,27 +17,20 @@ import SportsListing from './SportsListing.jsx';
 const SportsBar = ({
   tabIndex, handleChange, sportsList, sportsEvents, onChangeDate, selectedDate,
 }) => (
-   <div>
+  <div>
     <AppBar position="static">
-      {/* <TextField
-        id="date"
-        type="date"
-        defaultValue={"2019-05-09"}
-        onChange={onChangeDate}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      /> */}
       <DayPickerInput
         style={{ color: 'black' }}
+        id="date-picker"
         formatDate={formatDate}
         onDayChange={onChangeDate}
+        data-testid="date-picker"
         parseDate={parseDate}
         placeholder={`${formatDate(new Date())}`}
       />
       <Tabs value={tabIndex} onChange={handleChange}>
         {
-          sportsList.map(({ sport_id: sportId, sport_name: sportName }) => (
+          sportsList && sportsList.map(({ sport_id: sportId, sport_name: sportName }) => (
             <Tab label={sportName} key={sportId} />
           ))
         }

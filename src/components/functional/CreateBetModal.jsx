@@ -76,9 +76,8 @@ class CreateBetModal extends React.Component {
         <Dialog
           open={modalOpen}
           onClose={toggleBetModal}
-          aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Invite A Friend To Bet</DialogTitle>
+          <DialogTitle>Invite A Friend To Bet</DialogTitle>
           <DialogContent>
             <DialogContentText>
             Bet:
