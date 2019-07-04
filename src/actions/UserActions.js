@@ -13,6 +13,6 @@ export const getUser = (username, password) => (
   dispatch => axios.post('/users/get-user', { username, password })
     .then((res) => {
       dispatch({ type: GET_USER, payload: res.data });
-      return { status: res.status };
-    }).catch(() => ({ status: 500 }))
+      if (res.status == 200) return ({ status: res.status, error: res.data.error });
+    }).catch(() => ({ status: 500, error: 'Error logging in user.' }))
 );

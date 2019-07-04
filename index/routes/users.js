@@ -19,11 +19,11 @@ router.post('/create-user', (req, res) => {
 });
 
 router.post('/get-user', (req, res) => {
-  // const { username, password } = req.body;
-  User.findOne({ id: 18 })
+  const { username, password } = req.body;
+  User.findOne({ where: { login: username } })
     .then((user) => {
-      console.log('user', user);
-      res.status(200).json(user);
+      if (user) return res.status(200).json(user);
+      return res.status(200).json({ error: 'Invalid username/password' });
     });
 });
 

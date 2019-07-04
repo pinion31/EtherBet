@@ -32,12 +32,14 @@ class Login extends React.Component {
 
   loginUser = () => {
     if (this.verifyLogin()) {
-      this.props.getUser()
-        .then(({ status }) => {
+      const { username, password } = this.state;
+      this.props.getUser(username, password)
+        .then(({ status, error }) => {
           if (status == 200) {
+            if (error) return this.setState({ errorMessage: error });
             return this.props.history.push('/todays-events');
           }
-          this.setState({ errorMessage: 'Log in Error' });
+          this.setState({ errorMessage: error });
         });
     }
   };

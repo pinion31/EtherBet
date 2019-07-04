@@ -63,7 +63,7 @@ test('it logs in user', async () => {
     </ReduxWrapper>,
   );
 
-  const resp = { status: 200 };
+  const resp = { status: 200, data: {} };
   axios.post.mockResolvedValue(resp);
 
   const LoginButton = getAllByText('Login');
@@ -95,7 +95,7 @@ test('it display error if error logging in', async () => {
   );
 
   const resp = { status: 500 };
-  axios.post.mockResolvedValue(resp);
+  axios.post.mockRejectedValue(resp);
 
   const LoginButton = getAllByText('Login');
   const usernameNode = getByLabelText('Username');
@@ -109,7 +109,37 @@ test('it display error if error logging in', async () => {
   await flushPromise();
 
   expect(fakeHistory.push).toHaveBeenCalledTimes(0);
-  expect(getByText('Log in Error')).toBeDefined();
+  expect(getByText('Error logging in user.')).toBeDefined();
+});
+
+test('it displays error if incorrect login', async () => {
+  const fakeHistory = {
+    push: jest.fn(),
+  };
+  const {
+    getAllByText, getByLabelText, getByText,
+  } = render(
+    <ReduxWrapper>
+      <Login history={fakeHistory} />
+    </ReduxWrapper>,
+  );
+
+  const resp = { status: 200, data: { error: 'Invalid username/password' } };
+  axios.post.mockResolvedValue(resp);
+
+  const LoginButton = getAllByText('Login');
+  const usernameNode = getByLabelText('Username');
+  const passwordNode = getByLabelText('Password');
+
+  fireEvent.change(usernameNode, { target: { value: 'invalid user' } });
+  fireEvent.change(passwordNode, { target: { value: 'Mini' } });
+
+
+  LoginButton[0].click();
+  await flushPromise();
+
+  expect(fakeHistory.push).toHaveBeenCalledTimes(0);
+  expect(getByText('Invalid username/password')).toBeDefined();
 });
 
 test('it handles 500 error', async () => {
@@ -139,7 +169,7 @@ test('it handles 500 error', async () => {
   await flushPromise();
 
   expect(fakeHistory.push).toHaveBeenCalledTimes(0);
-  expect(getByText('Log in Error')).toBeDefined();
+  expect(getByText('Error logging in user.')).toBeDefined();
 });
 
 test('it redirects to sign up page', async () => {
