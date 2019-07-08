@@ -9,6 +9,7 @@ router.post('/propose-bet', (req, res) => {
     wager,
     teamSelectedToWin,
     senderId,
+    senderLogin,
     eventDate,
     sportId,
     eventId,
@@ -29,6 +30,7 @@ router.post('/propose-bet', (req, res) => {
           status: 'OFFER PENDING',
           betCreator: Number.parseInt(senderId, 10),
           betCreatorHandicap: 0,
+          betCreatorLogin: senderLogin,
           betReceiver: receiverFound.dataValues.id,
           betReceiverLogin: receiver,
           betReceiverHandicap: 0,
@@ -55,6 +57,17 @@ router.post('/get-bets', (req, res) => {
   }).then((bets) => {
     res.status(200).json(bets);
   });
+});
+
+router.post('/set-bet-status', (req, res) => {
+  const { betId, newStatus } = req.body;
+  const betIdInt = Number.parseInt(betId, 10);
+  Bet.findOne({ where: { id: betIdInt } })
+    .then((bet) => {
+      bet.status = newStatus;
+      bet.save();
+      res.status(200).json({ status: newStatus });
+    });
 });
 
 module.exports = router;

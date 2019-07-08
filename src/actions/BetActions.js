@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_BETS, PROPOSE_BET } from '../constants/actionTypes';
+import { GET_BETS, PROPOSE_BET, SET_STATUS } from '../constants/actionTypes';
 
 export const proposeBet = (bet, cb) => (
   (dispatch) => {
@@ -22,6 +22,18 @@ export const getBets = (userId, cb) => (
       .then((res) => {
         cb(res.data);
         dispatch({ type: GET_BETS, payload: res.data });
+      }).catch((err) => {
+        throw err;
+      });
+  }
+);
+
+export const setBetStatus = (newStatus, betId, cb) => (
+  (dispatch) => {
+    axios.post('/bets/set-bet-status', { newStatus, betId })
+      .then((res) => {
+        cb(res.data);
+        dispatch({ type: SET_STATUS, payload: res.data });
       }).catch((err) => {
         throw err;
       });

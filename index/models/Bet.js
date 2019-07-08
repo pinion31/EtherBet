@@ -30,6 +30,10 @@ const Bet = sequelize.define('bet', {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
+  betCreatorLogin: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   betCreatorHandicap: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -55,6 +59,14 @@ const Bet = sequelize.define('bet', {
   wager: {
     type: Sequelize.FLOAT,
     allowNull: false,
+  },
+  archived: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
+  hidden: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
   },
 }, {
   sequelize,

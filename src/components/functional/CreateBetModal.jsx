@@ -45,6 +45,7 @@ class CreateBetModal extends React.Component {
       wager,
       teamSelectedToWin,
       senderId: user.id,
+      senderLogin: user.login,
       eventDate: event_date,
       sportId: sport_id,
       eventId: event_id,
