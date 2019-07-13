@@ -151,3 +151,11 @@ test('it retains current state when adding a new bet', async () => {
   expect(toggleBetModal).toHaveBeenCalledTimes(2);
   expect(betsCopy).toEqual([mockBet, mockBet2]);
 });
+
+test('it displays error message when creating bet for invalid user', async () => {
+
+});
+
+test('it displays error message when a user tries to create a bet for himself', async () => {
+
+});

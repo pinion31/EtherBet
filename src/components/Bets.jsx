@@ -28,7 +28,7 @@ class Bets extends React.Component {
       if (bet.betReceiver == id && bet.status == 'OFFER PENDING') return betsOffered.push(bet);
       if (bet.betReceiver == id) return betsReceived.push(bet);
     });
-    console.log('betsCreated', betsCreated);
+
     return { betsCreated, betsReceived, betsOffered };
   };
 
@@ -50,7 +50,7 @@ class Bets extends React.Component {
 
   render() {
     const { betsReceived, betsCreated, betsOffered } = this.state;
-    console.log('betsCreated state', betsCreated);
+
     return (
       <div>
         <h2>Bets You Have Been Offered </h2>

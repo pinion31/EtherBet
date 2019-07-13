@@ -22,10 +22,6 @@ class DailyEvents extends React.Component {
     this.props.getBets(this.props.user.id);
   };
 
-  // selectEventToBet = () => {
-  //   this.setState({});
-  // };
-
   toggleBetModal = (key) => {
     const { modalOpen } = this.state;
     this.setState({
@@ -38,12 +34,12 @@ class DailyEvents extends React.Component {
     const { date, modalOpen, selectedEventKey } = this.state;
     const { events } = this.props;
     const formattedEvents = formatEvents(events, extractFormattedDate);
-    const compiledEvents = formattedEvents ? compileEvents(formattedEvents[extractFormattedDate(date)]) : [];
+    const compiledEvents = Object.keys(formattedEvents).length ? compileEvents(formattedEvents[extractFormattedDate(date)]) : [];
     return (
       <div>
         <Provider value={{ handleToggleModal: this.toggleBetModal }}>
           <h3>{'Today\'s Events'}</h3>
-          {<SportsListing events={compiledEvents || []} />}
+          {<SportsListing events={compiledEvents} />}
           <CreateBetModal
             modalOpen={modalOpen}
             toggleBetModal={this.toggleBetModal}
