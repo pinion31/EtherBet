@@ -38,7 +38,7 @@ router.post('/propose-bet', (req, res) => {
           wager: Number.parseFloat(wager),
         }).then((betResult) => {
           if (betResult) {
-            return res.status(200).send({ status: '200' });
+            return res.status(200).json(betResult);
           }
           return res.status(200).send({ error: 'Error creating Bet' });
         });

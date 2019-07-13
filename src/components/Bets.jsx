@@ -28,7 +28,7 @@ class Bets extends React.Component {
     const { user: { id } } = this.props;
 
     bets.forEach((bet) => {
-      if (bet.betCreator == id) betsCreated.push(bet);
+      if (bet.betCreator == id) return betsCreated.push(bet);
       if (bet.betReceiver == id && bet.status == 'OFFER PENDING') return betsOffered.push(bet);
       if (bet.betReceiver == id) return betsReceived.push(bet);
     });

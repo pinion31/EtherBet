@@ -32,7 +32,7 @@ test('it loads and displays daily events elements', () => {
 
 test('it displays create bet modal when create bet is clicked', async () => {
   const {
-    getByText, getByLabelText, queryAllByText, getAllByText,
+    getByText, getByLabelText, queryAllByText, getAllByText, getByPlaceholderText,
   } = render(
     <ReduxWrapper>
       <DailyEvents />
@@ -48,6 +48,6 @@ test('it displays create bet modal when create bet is clicked', async () => {
   expect(getByText('Friend to offer bet:')).toBeDefined();
   expect(getByText('Cancel')).toBeDefined();
   expect(getByText('Propose Bet')).toBeDefined();
-  expect(getByText('Amount in Wei')).toBeDefined();
-  expect(getByText('Login of Friend')).toBeDefined();
+  expect(getByPlaceholderText('Amount in Wei')).toBeDefined();
+  expect(getByPlaceholderText('Login of Friend')).toBeDefined();
 });

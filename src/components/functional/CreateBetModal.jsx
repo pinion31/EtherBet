@@ -103,11 +103,12 @@ class CreateBetModal extends React.Component {
             </DialogContentText>
             <TextField
               onChange={this.handleChange}
+              data-testid="wager"
               autoFocus
               type="number"
               margin="dense"
               name="wager"
-              label="Amount in Wei"
+              placeholder="Amount in Wei"
             />
             <DialogContentText>
             Friend to offer bet:
@@ -117,7 +118,7 @@ class CreateBetModal extends React.Component {
               autoFocus
               margin="dense"
               name="receiverLogin"
-              label="Login of Friend"
+              placeholder="Login of Friend"
             />
           </DialogContent>
           <DialogActions>
