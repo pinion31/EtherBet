@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { menuWrapper } from './functional/MenuBarWrapper.jsx';
-import { getBets, setBetStatus } from '../actions/BetActions';
+import { setBetStatus } from '../actions/BetActions';
 import BetCard from './functional/BetCard.jsx';
 
 class Bets extends React.Component {
@@ -13,12 +13,8 @@ class Bets extends React.Component {
   }
 
   componentDidMount = () => {
-    // eslint-disable-next-line react/destructuring-assignment
-    this.props.getBets(this.props.user.id, (bets) => {
-      console.log('bets', bets);
-      const { betsCreated, betsReceived, betsOffered } = this.sortBets(bets);
-      this.setState({ betsCreated, betsReceived, betsOffered });
-    });
+    const { betsCreated, betsReceived, betsOffered } = this.sortBets(this.props.bets);
+    this.setState({ betsCreated, betsReceived, betsOffered });
   };
 
   sortBets = (bets) => {
@@ -93,7 +89,6 @@ function mapStateToProps({ bets, user }) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    getBets,
     setBetStatus,
   }, dispatch);
 }

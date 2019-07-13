@@ -16,11 +16,10 @@ export const proposeBet = (bet, cb) => (
   }
 );
 
-export const getBets = (userId, cb) => (
+export const getBets = userId => (
   (dispatch) => {
     axios.post('/bets/get-bets', { userId })
       .then((res) => {
-        cb(res.data);
         dispatch({ type: GET_BETS, payload: res.data });
       }).catch((err) => {
         throw err;
