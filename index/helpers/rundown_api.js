@@ -9,7 +9,7 @@ export function getEventforDateforSport(date, sportId) {
       'User-Agent': 'Request-Promise',
       'Content-Type': 'application/json',
       'X-RapidAPI-Host': 'therundown-therundown-v1.p.rapidapi.com',
-      'X-RapidAPI-Key': '58f0ca5ec9msh1d6f6be51322c89p1043efjsnb45b8e052889',
+      'X-RapidAPI-Key': process.env.RAPID_API_KEY,
     },
     json: true, // Automatically parses the JSON string in the response
   };
@@ -18,4 +18,6 @@ export function getEventforDateforSport(date, sportId) {
   return request(options);
 }
 
-export function getEventsforFutureDays(arrayOfSportIds)
+export function getEventsforFutureDays(arrayOfSportIds) {
+
+}
