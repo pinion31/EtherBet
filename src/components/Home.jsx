@@ -38,7 +38,7 @@ class Home extends React.Component {
   render() {
     const { value, modalOpen, selectedDate } = this.state;
     const { events, sports: sportsList } = this.props;
-
+    console.log('sportsListy', sportsList);
     const sportsEvents = formatEvents(events, extractFormattedDate);
     return (
       <div style={{ backgroundColor: 'red' }}>

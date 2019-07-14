@@ -30,7 +30,7 @@ const SportsBar = ({
       />
       <Tabs value={tabIndex} onChange={handleChange}>
         {
-          sportsList && sportsList.map(({ sport_id: sportId, sport_name: sportName }) => (
+          sportsList && sportsList.map(({ sportId, sportName }) => (
             <Tab label={sportName} key={sportId} />
           ))
         }

@@ -1,25 +1,25 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, cleanup } from 'react-testing-library';
 import { formatDate } from 'react-day-picker/moment';
 import { ReduxWrapper } from '../../src/components/ReduxWrapper';
 import SportsBar from '../../src/components/functional/SportsBar.jsx';
-import sports from '../responses/sports.json';
-import sportsEvents from '../responses/sportsEvents.json';
+import sportsEvents from '../responses/formattedSportsFromDB.json';
 
 afterEach(cleanup);
-
 const flushPromise = () => new Promise((resolve) => {
   setTimeout(resolve, 0);
 });
 
-test('it loads and displays sports bar', () => {
+test('it loads and displays sports bar', async () => {
   const {
-    getByText, queryAllByText, getAllByTex, getByPlaceholderText,
+    getByText, getByPlaceholderText,
   } = render(
     <ReduxWrapper>
-      <SportsBar sportsList={sports.sports} tabIndex={0} sportsEvents={sportsEvents} />
+      <SportsBar sportsList={sportsEvents} tabIndex={0} sportsEvents={sportsEvents} />
     </ReduxWrapper>,
   );
+
+  await flushPromise();
 
   expect(getByPlaceholderText(`${formatDate(new Date())}`)).toBeDefined();
   expect(getByText('NCAA Football')).toBeDefined();
