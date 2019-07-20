@@ -39,7 +39,7 @@ const Event = sequelize.define('event', {
     allowNull: false,
   },
   venueLocation: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
   },
   teamOneId: {

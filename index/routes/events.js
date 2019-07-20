@@ -1,7 +1,7 @@
 import express from 'express';
 import Event from '../models/Event';
 import Sport from '../models/Sport';
-import { getEventforDateforSport, getSportsFromDB } from '../helpers/rundown_api';
+import { pullEventAndSave, getSportsFromDB } from '../helpers/rundown_api';
 
 const router = express.Router();
 
@@ -11,13 +11,18 @@ router.get('/get-sports', (req, res) => {
     .catch(() => res.status(200).send({ error: 'Error Receiving Sports' }));
 });
 
-router.get('event-from-service-by-sport-by-date', (req, res) => {
+router.get('/event-from-service-by-sport-by-date', (req, res) => {
   const { date } = req.body;
   res.end();
 });
 
-router.get('event-day', (req, res) => {
-  const { date } = req.body;
-  res.end();
+router.post('/event-day', (req, res) => {
+  const { date, sportId } = req.body;
+  pullEventAndSave(date, sportId)
+    .then((events) => {
+      console.log('done');
+      res.status(200).json(events);
+    });
 });
+
 module.exports = router;

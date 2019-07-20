@@ -2,6 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import request from 'request-promise-native';
 import Sport from '../models/Sport';
+import Event from '../models/Event';
 
 export function getEventforDateforSport(date, sportId) {
   const options = {
@@ -16,7 +17,7 @@ export function getEventforDateforSport(date, sportId) {
   };
 
   // return all events for this sport for this date
-  return request(options);
+  return request(options).then(({ events }) => events);
 }
 
 // format event json for front-end
@@ -58,8 +59,68 @@ export function formatEvent({
   };
 }
 
+export function saveEventToDB(event) {
+  const {
+    sportId,
+    eventId,
+    eventDate,
+    eventStatus,
+    scoreAway,
+    scoreHome,
+    winnerAway,
+    winnerHome,
+    venueName,
+    venueLocation,
+    teamOneId,
+    teamOneName,
+    teamOneIsAway,
+    teamOneIsHome,
+    teamOneHandicap,
+    teamTwoId,
+    teamTwoName,
+    teamTwoIsAway,
+    teamTwoIsHome,
+    teamTwoHandicap,
+  } = event;
+
+  Event.findOne({ where: { eventId } })
+    .then((existingEvent) => {
+      if (existingEvent) {
+        return existingEvent.update(event);
+      }
+      return Event.create({
+        sportId,
+        eventId,
+        eventDate,
+        eventStatus,
+        scoreAway,
+        scoreHome,
+        winnerAway,
+        winnerHome,
+        venueName,
+        venueLocation,
+        teamOneId,
+        teamOneName,
+        teamOneIsAway,
+        teamOneIsHome,
+        teamOneHandicap,
+        teamTwoId,
+        teamTwoName,
+        teamTwoIsAway,
+        teamTwoIsHome,
+        teamTwoHandicap,
+        betCount: 0,
+      });
+    });
+}
 export function getSportsFromDB() {
   return Sport.findAll({});
+}
+
+export function pullEventAndSave(date, sportId) {
+  return getEventforDateforSport(date, sportId)
+    .then(data => data.map(formatEvent))
+    .then(formattedEvents => Promise.all(formattedEvents.map(saveEventToDB)));
 }
 
 export function getEventsforFutureDays(arrayOfSportIds, numOfDays) {
