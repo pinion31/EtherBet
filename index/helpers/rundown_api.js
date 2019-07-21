@@ -4,6 +4,12 @@ import request from 'request-promise-native';
 import Sport from '../models/Sport';
 import Event from '../models/Event';
 
+Date.prototype.addDays = function (days) {
+  const date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+};
+
 export function getEventforDateforSport(date, sportId) {
   const options = {
     uri: `https://therundown-therundown-v1.p.rapidapi.com/sports/${sportId}/events/${date}?include=scores`,
@@ -114,7 +120,7 @@ export function saveEventToDB(event) {
     });
 }
 export function getSportsFromDB() {
-  return Sport.findAll({});
+  return Sport.findAll({ raw: true });
 }
 
 export function pullEventAndSave(date, sportId) {
@@ -123,11 +129,20 @@ export function pullEventAndSave(date, sportId) {
     .then(formattedEvents => Promise.all(formattedEvents.map(saveEventToDB)));
 }
 
-export function getEventsforFutureDays(arrayOfSportIds, numOfDays) {
-  const allSports = {};
-
-  // getSportsFromDB()
-  //   .then(sports => {
-  //     sports.
-  //   })
+// TODO: add error handling
+export function getEventsforFutureDays(numOfDays) {
+  return getSportsFromDB()
+    .then((sports) => {
+      let allSportsPromises = [];
+      sports.forEach(({ sportId }) => {
+        const todaysDate = new Date(Date.now());
+        const promisesForThisSport = [];
+        for (let i = 0; i < numOfDays; i++) {
+          const currentDateToRetrieve = todaysDate.addDays(i);
+          promisesForThisSport.push(pullEventAndSave(currentDateToRetrieve, sportId));
+        }
+        allSportsPromises = [...allSportsPromises, ...promisesForThisSport];
+      });
+      return Promise.all(allSportsPromises);
+    });
 }

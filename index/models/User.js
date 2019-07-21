@@ -14,6 +14,10 @@ const User = sequelize.define('user', {
     type: Sequelize.ARRAY(Sequelize.TEXT),
     allowNull: false,
   },
+  etherAmount: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
 }, {
   sequelize,
   modelName: 'user',
