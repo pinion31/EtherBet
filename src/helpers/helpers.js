@@ -1,9 +1,11 @@
+import moment from 'moment';
+
 /* eslint-disable no-unused-expressions */
-export const formatEvents = ({ events } = [], extractFormattedDate) => {
+export const formatEvents = (events = [], extractFormattedDate) => {
   const allEvents = {};
   const eventsCopy = Array.from(events);
   eventsCopy.forEach((event) => {
-    const { event_date: eventDate, sport_id: sportId } = event;
+    const { eventDate, sportId } = event;
     const formattedDate = extractFormattedDate(eventDate);
     if (!allEvents[formattedDate]) allEvents[formattedDate] = {};
     allEvents[formattedDate][sportId]
@@ -13,7 +15,13 @@ export const formatEvents = ({ events } = [], extractFormattedDate) => {
   return allEvents;
 };
 
-export const extractFormattedDate = (date) => {
+export const filterEventsNotToday = events => events.filter(({ eventDate }) => {
+  const dateNow = new Date(Date.now()).toISOString().slice(0, 10);
+  const eventDateToCompare = eventDate.slice(0, 10);
+  return moment(eventDate).isBefore(moment().endOf('day'));
+});
+
+export const extractFormattedDate = (date) =>
   const newDate = new Date(date);
   const dayOfMonth = (newDate.getDate()).toString().length == 1 ? `0${newDate.getDate()}` : newDate.getDate();
   const month = (newDate.getMonth() + 1).toString().length == 1 ? `0${newDate.getMonth() + 1}` : newDate.getMonth() + 1;
@@ -38,3 +46,4 @@ export const validateFieldsMatch = (field1, field2, errorCb) => {
   if (!match) errorCb();
   return match;
 };
+

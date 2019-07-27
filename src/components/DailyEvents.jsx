@@ -2,7 +2,9 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { menuWrapper } from './functional/MenuBarWrapper.jsx';
-import { formatEvents, extractFormattedDate, compileEvents } from '../helpers/helpers';
+import {
+  formatEvents, extractFormattedDate, compileEvents, filterEventsNotToday,
+} from '../helpers/helpers';
 import { Provider } from './ContextStore.js';
 import { proposeBet, getBets } from '../actions/BetActions';
 import { getEvents } from '../actions/EventActions';
@@ -12,7 +14,7 @@ import CreateBetModal from './functional/CreateBetModal.jsx';
 class DailyEvents extends React.Component {
   state = {
     modalOpen: false,
-    date: new Date('May 12, 2019 00:00:00').toString(),
+    date: new Date(Date.now()).toString(),
     selectedEventKey: '',
   };
 
@@ -32,8 +34,10 @@ class DailyEvents extends React.Component {
 
   render() {
     const { date, modalOpen, selectedEventKey } = this.state;
+
     const { events } = this.props;
-    const formattedEvents = formatEvents(events, extractFormattedDate);
+    const filteredEvents = filterEventsNotToday(events);
+    const formattedEvents = formatEvents(filteredEvents, extractFormattedDate);
     const compiledEvents = Object.keys(formattedEvents).length ? compileEvents(formattedEvents[extractFormattedDate(date)]) : [];
     return (
       <div>
@@ -53,6 +57,7 @@ class DailyEvents extends React.Component {
 }
 
 function mapStateToProps({ bets, events, user }) {
+  console.log('state events', events);
   return {
     user,
     bets,

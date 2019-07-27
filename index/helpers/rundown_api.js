@@ -21,7 +21,7 @@ export function getEventforDateforSport(date, sportId) {
     },
     json: true, // Automatically parses the JSON string in the response
   };
-
+  console.log('options', options);
   // return all events for this sport for this date
   return request(options).then(({ events }) => events);
 }
@@ -138,7 +138,7 @@ export function getEventsforFutureDays(numOfDays) {
         const todaysDate = new Date(Date.now());
         const promisesForThisSport = [];
         for (let i = 0; i < numOfDays; i++) {
-          const currentDateToRetrieve = todaysDate.addDays(i);
+          const currentDateToRetrieve = todaysDate.addDays(i).toISOString().substring(0, 10);
           promisesForThisSport.push(pullEventAndSave(currentDateToRetrieve, sportId));
         }
         allSportsPromises = [...allSportsPromises, ...promisesForThisSport];
