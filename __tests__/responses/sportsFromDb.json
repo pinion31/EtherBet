@@ -1,0 +1,83 @@
+[
+  {
+    "id": 2,
+    "sportId": 5,
+    "sportName": "NCAA Men's Basketball",
+    "enabled": "True",
+    "lastQueryDate": "",
+    "createdAt": "2019-07-14 16:27:24.1-05",
+    "updatedAt": "2019-07-14 16:27:24.1-05"
+  },
+  {
+    "id": 6,
+    "sportId": 6,
+    "sportName": "NHL",
+    "enabled": "True",
+    "lastQueryDate": "",
+    "createdAt": "2019-07-14 16:27:24.1-05",
+    "updatedAt": "2019-07-14 16:27:24.1-05"
+  },
+  {
+    "id": 3,
+    "sportId": 4,
+    "sportName": "NBA",
+    "enabled": "True",
+    "lastQueryDate": "",
+    "createdAt": "2019-07-14 16:27:24.1-05",
+    "updatedAt": "2019-07-14 16:27:24.1-05"
+  },
+  {
+    "id": 8,
+    "sportId": 8,
+    "sportName": "WNBA",
+    "enabled": "True",
+    "lastQueryDate": "",
+    "createdAt": "2019-07-14 16:27:24.101-05",
+    "updatedAt": "2019-07-14 16:27:24.101-05"
+  },
+  {
+    "id": 4,
+    "sportId": 1,
+    "sportName": "NCAA Football",
+    "enabled": "True",
+    "lastQueryDate": "",
+    "createdAt": "2019-07-14 16:27:24.095-05",
+    "updatedAt": "2019-07-14 16:27:24.095-05"
+  },
+  {
+    "id": 9,
+    "sportId": 9,
+    "sportName": "CFL",
+    "enabled": "True",
+    "lastQueryDate": "",
+    "createdAt": "2019-07-14 16:27:24.101-05",
+    "updatedAt": "2019-07-14 16:27:24.101-05"
+  },
+  {
+    "id": 1,
+    "sportId": 2,
+    "sportName": "NFL",
+    "enabled": "True",
+    "lastQueryDate": "",
+    "createdAt": "2019-07-14 16:27:24.099-05",
+    "updatedAt": "2019-07-14 16:27:24.099-05"
+  },
+  {
+    "id": 5,
+    "sportId": 3,
+    "sportName": "MLB",
+    "enabled": "True",
+    "lastQueryDate": "",
+    "createdAt": "2019-07-14 16:27:24.099-05",
+    "updatedAt": "2019-07-14 16:27:24.099-05"
+  },
+  {
+    "id": 7,
+    "sportId": 7,
+    "sportName": "UFC/MMA",
+    "enabled": "True",
+    "lastQueryDate": "",
+    "createdAt": "2019-07-14 16:27:24.1-05",
+    "updatedAt": "2019-07-14 16:27:24.1-05"
+  }
+]

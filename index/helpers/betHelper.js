@@ -1,7 +1,7 @@
 import moment from 'moment';
 import User from '../models/User';
-import Event from '../models/Events';
-import Bet from '../models/Bets';
+import Event from '../models/Event';
+import Bet from '../models/Bet';
 
 // find all of events for last 2 days that have completed
 export const getFinishedEvents = () => Event.findAll({
@@ -10,19 +10,24 @@ export const getFinishedEvents = () => Event.findAll({
     eventStatus: 'STATUS_FINAL',
     eventDate: { $gt: moment().startOf('day').subtract(1, 'days').toDate(), $lt: moment().endOf('day').toDate() },
   },
-}).then(events => {
+}).then((events) => {
   const objectWithEvents = {};
-  for (let event of events) {
+  for (const event of events) {
     objectWithEvents[event.eventId] = event;
   }
   return objectWithEvents;
 });
 
-export const pullWinningTeam = bet => {
-  const { winnerHome } = bet;
+export const pullWinningTeam = (event) => {
+  const { winnerHome, teamTwoName, teamOneName } = event;
   const winnerKey = winnerHome ? 'IsHome' : 'IsAway';
-  return (bet[`teamOne${winnerKey}`] && teamOneName) ||
-  (bet[`teamTwo${winnerKey}`/] && teamTwoName);
+  return (event[`teamOne${winnerKey}`] && teamOneName)
+  || (event[`teamTwo${winnerKey}`] && teamTwoName);
+};
+export const settleBet = (bet, winner) => {
+  const { betCreator, betReceiver, wager } = bet;
+  if (winner == bet.teamSelectedToWin) return payBettor(betCreator, wager);
+  return payBettor(betReceiver, wager);
 };
 
 export const settleAllBets = async () => {
@@ -47,10 +52,3 @@ export const payBettor = (id, amount) => {
       throw Error('Error paying out bet.');
     });
 };
-
-export const settleBet = (bet, winner) => {
-  if (winner == bet.teamSelectedToWin) return payBettor(betCreator, wager);
-  return payBettor(betReceiver, wager);
-};
-
-
