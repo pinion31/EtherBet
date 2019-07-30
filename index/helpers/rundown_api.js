@@ -21,7 +21,6 @@ export function getEventforDateforSport(date, sportId) {
     },
     json: true, // Automatically parses the JSON string in the response
   };
-  console.log('options', options);
   // return all events for this sport for this date
   return request(options).then(({ events }) => events);
 }

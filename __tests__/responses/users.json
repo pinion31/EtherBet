@@ -3,7 +3,7 @@
     "id": 1,
     "login": "chris",
     "password": "$2a$10$zT.RBNpLAk48g2LhR48QOePH.1q3UCEZMv.7S7u28y3BG0Q.pNmKG",
-    "addresses": "[u'p']",
+    "addresses": ["testAddress", "addressOne"],
     "etherAmount": 1000,
     "createdAt": "2019-07-21 16:16:26.322-05",
     "updatedAt": "2019-07-21 16:16:26.322-05"
@@ -12,7 +12,7 @@
     "id": 2,
     "login": "lucy",
     "password": "$2a$10$wEMSQFTnnueobHCfo1aU/ufUP2wwBhLfM/I2iN.BfnSGjh4PsL7Iu",
-    "addresses": "[u'p']",
+    "addresses": ["addressOne", "addressTwo"],
     "etherAmount": 1000,
     "createdAt": "2019-07-21 16:16:51.096-05",
     "updatedAt": "2019-07-21 16:16:51.096-05"

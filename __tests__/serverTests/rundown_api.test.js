@@ -17,7 +17,7 @@ test('it formats event from API call correctly', () => {
 
 test('it calls Rundown API for event information', async () => {
   request.mockResolvedValue(scheduledEvents);
-  const eventsToCompare = clone(scheduledEvents);
+  const { events: eventsToCompare } = clone(scheduledEvents);
   const eventsFormatted = await getEventforDateforSport('2019-05-12', 4);
 
   const options = {

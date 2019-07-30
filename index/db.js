@@ -40,6 +40,7 @@ const operatorsAliases = {
 const sequelize = new Sequelize('Etherbet', 'postgres', 'postgres', {
   host: 'localhost',
   dialect: 'postgres',
+  logging: false,
   operatorsAliases,
   pool: {
     max: 5,

@@ -12,6 +12,7 @@ export const getFinishedEvents = () => Event.findAll({
   },
 }).then((events) => {
   const objectWithEvents = {};
+  // eslint-disable-next-line no-restricted-syntax
   for (const event of events) {
     objectWithEvents[event.eventId] = event;
   }
@@ -24,9 +25,21 @@ export const pullWinningTeam = (event) => {
   return (event[`teamOne${winnerKey}`] && teamOneName)
   || (event[`teamTwo${winnerKey}`] && teamTwoName);
 };
+
+export const payBettor = (id, amount) => User.findOne({ where: { id } })
+  .then((user) => {
+    if (user) {
+      const newAmount = user.etherAmount + amount;
+      // eslint-disable-next-line no-param-reassign
+      user.etherAmount = newAmount;
+      return user.save();
+    }
+    throw Error('Error paying out bet.');
+  });
+
 export const settleBet = (bet, winner) => {
   const { betCreator, betReceiver, wager } = bet;
-  if (winner == bet.teamSelectedToWin) return payBettor(betCreator, wager);
+  if (winner === bet.teamSelectedToWin) return payBettor(betCreator, wager);
   return payBettor(betReceiver, wager);
 };
 
@@ -38,17 +51,5 @@ export const settleAllBets = async () => {
         const winner = pullWinningTeam(finishedEvents[bet.eventId]);
         settleBet(bet, winner);
       });
-    });
-};
-
-export const payBettor = (id, amount) => {
-  User.findOne({ where: { id } })
-    .then((user) => {
-      if (user) {
-        const newAmount = user.etherAmount + amount;
-        user.etherAmount = newAmount;
-        return user.save();
-      }
-      throw Error('Error paying out bet.');
     });
 };
