@@ -1,1 +1,22 @@
-{"archived":false,"hidden":false,"id":8,"sportId":4,"eventId":"5c25642185ec4bd28e56e3e975e65c71","teamSelectedToWin":"Portland Trail Blazers","dateOfEvent":"2019-05-12T19:30:00.000Z","teamOne":"Portland Trail Blazers","teamTwo":"Denver Nuggets","status":"OFFER PENDING","betCreator":18,"betCreatorHandicap":0,"betCreatorLogin":"chris","betReceiver":19,"betReceiverLogin":"lucy","betReceiverHandicap":0,"actualWinner":"","wager":10,"updatedAt":"2019-07-12T19:28:55.717Z","createdAt":"2019-07-12T19:28:55.717Z"}
+{
+  "archived": false,
+  "hidden": false,
+  "id": 8,
+  "sportId": 4,
+  "eventId": "5c25642185ec4bd28e56e3e975e65c71",
+  "teamSelectedToWin": "Portland Trail Blazers",
+  "dateOfEvent": "2019-05-12T19:30:00.000Z",
+  "teamOne": "Portland Trail Blazers",
+  "teamTwo": "Denver Nuggets",
+  "status": "OFFER PENDING",
+  "betCreator": 18,
+  "betCreatorHandicap": 0,
+  "betCreatorLogin": "chris",
+  "betReceiver": 19,
+  "betReceiverLogin": "lucy",
+  "betReceiverHandicap": 0,
+  "actualWinner": "",
+  "wager": 10,
+  "updatedAt": "2019-07-12T19:28:55.717Z",
+  "createdAt": "2019-07-12T19:28:55.717Z"
+}

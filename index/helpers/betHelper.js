@@ -44,12 +44,10 @@ export const settleBet = (bet, winner) => {
 };
 
 export const settleAllBets = async () => {
-  const finishedEvents = await getFinishedEvents;
-  Bet.findAll({ raw: true, where: { status: 'ACCEPTED' } })
-    .then((unsettledBets) => {
-      unsettledBets.forEach((bet) => {
-        const winner = pullWinningTeam(finishedEvents[bet.eventId]);
-        settleBet(bet, winner);
-      });
-    });
+  const finishedEvents = await getFinishedEvents();
+  return Bet.findAll({ raw: true, where: { status: 'ACCEPTED' } })
+    .then(unsettledBets => Promise.all(unsettledBets.map((bet) => {
+      const winner = pullWinningTeam(finishedEvents[bet.eventId]);
+      return settleBet(bet, winner);
+    })));
 };

@@ -21,7 +21,7 @@ export const filterEventsNotToday = events => events.filter(({ eventDate }) => {
   return moment(eventDate).isBefore(moment().endOf('day'));
 });
 
-export const extractFormattedDate = (date) =>
+export const extractFormattedDate = (date) => {
   const newDate = new Date(date);
   const dayOfMonth = (newDate.getDate()).toString().length == 1 ? `0${newDate.getDate()}` : newDate.getDate();
   const month = (newDate.getMonth() + 1).toString().length == 1 ? `0${newDate.getMonth() + 1}` : newDate.getMonth() + 1;
@@ -46,4 +46,3 @@ export const validateFieldsMatch = (field1, field2, errorCb) => {
   if (!match) errorCb();
   return match;
 };
-
