@@ -1,8 +1,9 @@
 import {
-  pullWinningTeam, getFinishedEvents, payBettor, settleBet, settleAllBets,
+  pullWinningTeam, getFinishedEvents, payBettor, settleBet, settleAllBets, deletePreviousEvents,
 } from '../../index/helpers/betHelper';
 import finishedEvent from '../responses/finishedEvent.json';
 import getFinishedEventsResults from '../responses/getFinishedEventsResults.json';
+import eventsWithPreviousEventsDeleted from '../responses/eventsWithPreviousEventsDeleted.json';
 import events from '../responses/events.json';
 import users from '../responses/users.json';
 import sampleBets from '../responses/moreSampleBets.json';
@@ -53,6 +54,21 @@ test('it should pay a bettor 1000 eth', async (done) => {
   User.findOne({ raw: true, where: { id: 1 } })
     .then(({ etherAmount }) => {
       expect(etherAmount).toBe(2000);
+      done();
+    });
+});
+
+test('it should delete previous events', async (done) => {
+  await deletePreviousEvents();
+  Event.findAll({ raw: true })
+    .then((events) => {
+      const formattedEvents = events.map((event, key) => {
+        event.createdAt = eventsWithPreviousEventsDeleted[key].createdAt;
+        event.eventDate = eventsWithPreviousEventsDeleted[key].eventDate;
+        event.updatedAt = eventsWithPreviousEventsDeleted[key].updatedAt;
+        return event;
+      });
+      expect(formattedEvents).toEqual(eventsWithPreviousEventsDeleted);
       done();
     });
 });

@@ -51,3 +51,17 @@ export const settleAllBets = async () => {
       return settleBet(bet, winner);
     })));
 };
+
+export const deletePreviousEvents = () => Event.findAll({
+  where: {
+    eventStatus: 'STATUS_FINAL',
+    eventDate: { $lt: moment().startOf('day').toDate() },
+  },
+}).then((events) => {
+  const allDeletedEvents = [];
+  if (events) {
+    // functional opportunity to replace function with push function, maybe?
+    events.forEach(event => allDeletedEvents.push(event.destroy()));
+  }
+  return Promise.all(allDeletedEvents);
+});
