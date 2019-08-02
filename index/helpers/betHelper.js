@@ -34,8 +34,8 @@ export const payBettor = (id, amount) => User.findOne({ where: { id } })
       user.etherAmount = newAmount;
       return user.save();
     }
-    throw Error('Error paying out bet.');
-  });
+    throw Error('Payee not found.');
+  }).catch(e => e);
 
 export const settleBet = (bet, winner) => {
   const { betCreator, betReceiver, wager } = bet;

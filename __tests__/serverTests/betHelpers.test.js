@@ -57,6 +57,12 @@ test('it should pay a bettor 1000 eth', async (done) => {
     });
 });
 
+test('it should throw error for invalid user', async (done) => {
+  const { message } = await payBettor(3, 1000);
+  expect(message).toBe('Payee not found.');
+  done();
+});
+
 test('it should settle bet', (done) => {
   const [, bet] = sampleBets;
   settleBet(bet, 'Toronto Raptors')
@@ -72,6 +78,7 @@ test('it should settle and payout all bets', async (done) => {
   User.findAll({ raw: true })
     .then((usersInDB) => {
       const [chris, lucy] = usersInDB;
+      expect(lucy.etherAmount).toBe(1300);
       expect(chris.etherAmount).toBe(1010);
       done();
     });
