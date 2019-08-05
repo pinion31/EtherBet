@@ -88,11 +88,9 @@ export function saveEventToDB(event) {
     teamTwoHandicap,
   } = event;
 
-  Event.findOne({ where: { eventId } })
+  return Event.findOne({ where: { eventId } })
     .then((existingEvent) => {
-      if (existingEvent) {
-        return existingEvent.update(event);
-      }
+      if (existingEvent) return existingEvent.update(event);
       return Event.create({
         sportId,
         eventId,
@@ -128,14 +126,27 @@ export function pullEventAndSave(date, sportId) {
     .then(formattedEvents => Promise.all(formattedEvents.map(saveEventToDB)));
 }
 
+export const updateSportQueryDate = id => Sport.findOne({ where: { id } })
+  .then((sport) => {
+    if (sport) {
+      // eslint-disable-next-line no-param-reassign
+      sport.lastQueryDate = new Date(Date.now());
+      sport.save();
+    }
+    throw Error('Sport does not exist');
+  }).catch(e => e.message);
+
 // TODO: add error handling
 export function getEventsforFutureDays(numOfDays) {
   return getSportsFromDB()
     .then((sports) => {
       let allSportsPromises = [];
-      sports.forEach(({ sportId }) => {
+      sports.forEach(({ sportId, enabled }) => {
+        if (!enabled) return; // only pull sports that are enabled
+        updateSportQueryDate(sportId);
         const todaysDate = new Date(Date.now());
         const promisesForThisSport = [];
+        // eslint-disable-next-line no-plusplus
         for (let i = 0; i < numOfDays; i++) {
           const currentDateToRetrieve = todaysDate.addDays(i).toISOString().substring(0, 10);
           promisesForThisSport.push(pullEventAndSave(currentDateToRetrieve, sportId));
