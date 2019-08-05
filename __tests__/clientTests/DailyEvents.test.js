@@ -5,6 +5,9 @@ import { ReduxWrapper, store, resetStore } from '../../src/components/ReduxWrapp
 import DailyEvents from '../../src/components/DailyEvents.jsx';
 import mockBet from '../responses/mockBet';
 import mockBet2 from '../responses/mockBet2';
+import events from '../responses/events';
+
+Date.now = jest.fn(() => new Date(Date.UTC(2019, 6, 21, 8)).valueOf());
 
 afterEach(() => {
   cleanup();
@@ -17,34 +20,32 @@ const flushPromise = () => new Promise((resolve) => {
   setTimeout(resolve, 0);
 });
 
-test('it loads and displays daily events elements', () => {
+test('it loads and displays daily events elements', async () => {
+  axios.get.mockResolvedValueOnce({ data: [events[4], events[6]] }); // this must be before render call
   const resp = { data: [mockBet, mockBet2] };
-  axios.post.mockResolvedValue(resp); // this must be before render call
-
+  axios.post.mockResolvedValueOnce(resp);
   const { getByText, queryAllByText, getAllByText } = render(
     <ReduxWrapper>
       <DailyEvents />
     </ReduxWrapper>,
   );
 
-  // temporarily has returns hardcoded
+  await flushPromise();
   expect(queryAllByText('Today\'s Events').length).toBe(2);
-  expect(getByText('Portland Trail Blazers')).toBeDefined();
-  expect(getByText('(53-29)')).toBeDefined();
-  expect(getByText('@Denver Nuggets')).toBeDefined();
-  expect(getByText('(54-28)')).toBeDefined();
-  expect(getByText('Philadelphia 76ers')).toBeDefined();
-  expect(getByText('(51-31)')).toBeDefined();
-  expect(getByText('@Toronto Raptors')).toBeDefined();
-  expect(getByText('(58-24)')).toBeDefined();
+  expect(getByText('Washington Nationals')).toBeDefined();
+  expect(getByText('@Atlanta Braves')).toBeDefined();
+  expect(getByText('New York Mets')).toBeDefined();
+  expect(getByText('@San Francisco Giants')).toBeDefined();
   expect(getAllByText('Away').length).toEqual(2);
   expect(getAllByText('Home').length).toEqual(2);
-  expect(getAllByText('0').length).toEqual(4);
+  expect(getAllByText('0').length).toEqual(2);
+  expect(getAllByText('2').length).toEqual(2);
 });
 
 test('it displays create bet modal when create bet is clicked', async () => {
+  axios.get.mockResolvedValueOnce({ data: [events[4], events[6]] }); // this must be before render call
   const resp = { data: [mockBet, mockBet2] };
-  axios.post.mockResolvedValue(resp); // this must be before render call
+  axios.post.mockResolvedValueOnce(resp);
 
   const {
     getByText, getByLabelText, queryAllByText, getAllByText, getByPlaceholderText,
@@ -53,6 +54,12 @@ test('it displays create bet modal when create bet is clicked', async () => {
       <DailyEvents />
     </ReduxWrapper>,
   );
+
+  await flushPromise();
+  expect(getByText('Washington Nationals')).toBeDefined();
+  expect(getByText('@Atlanta Braves')).toBeDefined();
+  expect(getByText('New York Mets')).toBeDefined();
+  expect(getByText('@San Francisco Giants')).toBeDefined();
 
   const CreateBetButton = getAllByText('Create Bet');
   CreateBetButton[0].click();
@@ -68,8 +75,9 @@ test('it displays create bet modal when create bet is clicked', async () => {
 });
 
 test('it retrieves a users current bets', async () => {
+  axios.get.mockResolvedValueOnce({ data: [events[4], events[6]] }); // this must be before render call
   const resp = { data: [mockBet, mockBet2] };
-  axios.post.mockResolvedValue(resp); // this must be before render call
+  axios.post.mockResolvedValueOnce(resp);
 
   const {
     getByText, getByLabelText, queryAllByText, getAllByText, getByPlaceholderText,

@@ -93,9 +93,23 @@ class CreateBetModal extends React.Component {
             >
               {
                 events && events[selectedEvent]
-                  && events[selectedEvent].teams.map(
-                    team => <MenuItem key={team.team_id} value={team.name}>{team.name}</MenuItem>,
+                  && (
+                  <div>
+                    <MenuItem
+                      key={events[selectedEvent].teamOneId}
+                      value={events[selectedEvent].teamOneName}
+                    >
+                      {events[selectedEvent].teamOneName}
+                    </MenuItem>
+                    <MenuItem
+                      key={events[selectedEvent].teamTwoId}
+                      value={events[selectedEvent].teamTwoName}
+                    >
+                      {events[selectedEvent].teamTwoName}
+                    </MenuItem>
+                  </div>
                   )
+
               }
             </Select>
             <DialogContentText>

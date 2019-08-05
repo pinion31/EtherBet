@@ -57,7 +57,6 @@ class DailyEvents extends React.Component {
 }
 
 function mapStateToProps({ bets, events, user }) {
-  console.log('state events', events);
   return {
     user,
     bets,

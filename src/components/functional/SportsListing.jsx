@@ -1,17 +1,14 @@
 import React from 'React';
 import SportsEvent from './SportsEvent.jsx';
 
-const SportsListing = ({ events, handleBet }) => {
-  console.log('todays events', events);
-  return (
-    <div>
-      {
+const SportsListing = ({ events, handleBet }) => (
+  <div>
+    {
       events
         ? events.map((event, index) => <SportsEvent event={event} key={index} handleBet={handleBet} index={index} />) : 'No Events Scheduled For Today'
     }
-    </div>
+  </div>
 
-  );
-};
+);
 
 export default SportsListing;
