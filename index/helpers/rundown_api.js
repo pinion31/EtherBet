@@ -122,6 +122,7 @@ export function getSportsFromDB() {
 
 export function pullEventAndSave(date, sportId) {
   return getEventforDateforSport(date, sportId)
+    .then(data => data.filter(({ score }) => score.event_status === 'STATUS_SCHEDULED'))
     .then(data => data.map(formatEvent))
     .then(formattedEvents => Promise.all(formattedEvents.map(saveEventToDB)));
 }

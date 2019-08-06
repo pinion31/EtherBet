@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import {
   pullWinningTeam, getFinishedEvents, payBettor, settleBet, settleAllBets, deletePreviousEvents,
 } from '../../index/helpers/betHelper';
@@ -14,14 +15,27 @@ import Bet from '../../index/models/Bet';
 
 Date.now = jest.fn(() => new Date(Date.UTC(2019, 6, 22, 4)).valueOf());
 
+const flushPromise = (time = 0) => new Promise((resolve) => {
+  setTimeout(resolve, time);
+});
+
 beforeEach((done) => {
   User.destroy({ truncate: true, cascade: false })
     .then(() => Event.destroy({ truncate: true, cascade: false }))
     .then(() => Bet.destroy({ truncate: true, cascade: false }))
+    .then(async () => await flushPromise(5))
     .then(() => Promise.all(events.map(event => Event.create(event))))
     .then(() => Promise.all(users.map(user => User.create(user))))
     .then(() => Promise.all(betsToSettle.map(bet => Bet.create(bet))))
-    .then(() => done());
+    .then(async () => { await flushPromise(); return done(); })
+    .catch(async (e) => {
+      await Event.sync();
+      await Promise.all(events.map(event => Event.create(event)));
+      await Bet.sync();
+      await Promise.all(betsToSettle.map(bet => Bet.create(bet)));
+      done();
+      console.log('Try again. Error setting up DB in betHelpers.test.js.', e);
+    });
 });
 
 test('it should determine winner from event', () => {
@@ -66,6 +80,7 @@ test('it should delete previous events', async (done) => {
         event.createdAt = eventsWithPreviousEventsDeleted[key].createdAt;
         event.eventDate = eventsWithPreviousEventsDeleted[key].eventDate;
         event.updatedAt = eventsWithPreviousEventsDeleted[key].updatedAt;
+        event.id = eventsWithPreviousEventsDeleted[key].id;
         return event;
       });
       expect(formattedEvents).toEqual(eventsWithPreviousEventsDeleted);
@@ -90,6 +105,7 @@ test('it should settle bet', (done) => {
 });
 
 test('it should settle and payout all bets', async (done) => {
+  await flushPromise();
   await settleAllBets();
   User.findAll({ raw: true })
     .then((usersInDB) => {
