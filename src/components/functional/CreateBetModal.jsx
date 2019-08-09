@@ -34,28 +34,31 @@ class CreateBetModal extends React.Component {
     const { events, selectedEvent, user } = this.props;
     const {
       // eslint-disable-next-line camelcase
-      event_date, sport_id, event_id, teams,
+      eventDate, sportId, eventId, teamOneName, teamTwoName,
     } = events[selectedEvent];
-    const { name: teamOne } = teams[0];
-    const { name: teamTwo } = teams[1];
     const { receiverLogin, wager, teamSelectedToWin } = this.state;
-
+    console.log(eventDate, sportId, eventId, teamOneName, teamTwoName);
     return {
       receiver: receiverLogin,
       wager,
       teamSelectedToWin,
       senderId: user.id,
       senderLogin: user.login,
-      eventDate: event_date,
-      sportId: sport_id,
-      eventId: event_id,
-      teamOne,
-      teamTwo,
+      eventDate,
+      sportId,
+      eventId,
+      teamOne: teamOneName,
+      teamTwo: teamTwoName,
       betCreator: user.id,
     };
   };
 
+  checkUserEtherAgainstWager = () => this.props.user.etherAmount > this.state.wager
+
   sendBet = () => {
+    if (!this.checkUserEtherAgainstWager()) {
+      return this.setState({ errorMessage: 'You do not have enough funds for this wager.' });
+    }
     // eslint-disable-next-line react/destructuring-assignment
     this.props.proposeBet(this.packBet(), ({ error }) => {
       if (error) {
@@ -71,7 +74,6 @@ class CreateBetModal extends React.Component {
       modalOpen, toggleBetModal, events, selectedEvent,
     } = this.props;
     const { teamSelectedToWin, errorMessage } = this.state;
-
     return (
       <React.Fragment>
         <Dialog
@@ -93,23 +95,16 @@ class CreateBetModal extends React.Component {
             >
               {
                 events && events[selectedEvent]
-                  && (
-                  <div>
+                && ['One', 'Two'].map(
+                  number => (
                     <MenuItem
-                      key={events[selectedEvent].teamOneId}
-                      value={events[selectedEvent].teamOneName}
+                      key={events[selectedEvent][`team${number}Id`]}
+                      value={events[selectedEvent][`team${number}Name`]}
                     >
-                      {events[selectedEvent].teamOneName}
+                      {events[selectedEvent][`team${number}Name`]}
                     </MenuItem>
-                    <MenuItem
-                      key={events[selectedEvent].teamTwoId}
-                      value={events[selectedEvent].teamTwoName}
-                    >
-                      {events[selectedEvent].teamTwoName}
-                    </MenuItem>
-                  </div>
-                  )
-
+                  ),
+                )
               }
             </Select>
             <DialogContentText>
