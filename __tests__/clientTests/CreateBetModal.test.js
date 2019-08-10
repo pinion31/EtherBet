@@ -72,6 +72,7 @@ test('it creates bet when propose bet is selected', async () => {
 
   const resp = { data: mockBet };
   axios.post.mockResolvedValue(resp);
+  store.dispatch({ type: 'CREATE_USER', payload: { etherAmount: 1000 } });
 
   const {
     getAllByText, getByPlaceholderText, getByDisplayValue,
@@ -113,7 +114,7 @@ test('it retains current state when adding a new bet', async () => {
   const resp2 = { data: mockBet2 };
   axios.post.mockResolvedValueOnce(resp);
   axios.post.mockResolvedValueOnce(resp2);
-
+  store.dispatch({ type: 'CREATE_USER', payload: { etherAmount: 1000 } });
 
   const {
     getAllByText, getByPlaceholderText, getByDisplayValue,
@@ -158,4 +159,77 @@ test('it displays error message when creating bet for invalid user', async () =>
 
 test('it displays error message when a user tries to create a bet for himself', async () => {
 
+});
+
+test('it handles random error when creating a bet', async () => {
+  const toggleBetModal = jest.fn();
+  const resp = { data: mockBet };
+  axios.post.mockResolvedValue(resp);
+  axios.post.mockResolvedValueOnce({ data: { error: 'randomError' } });
+  store.dispatch({ type: 'CREATE_USER', payload: { etherAmount: 1000 } });
+
+  const {
+    getAllByText, getByPlaceholderText, getByDisplayValue, getByText,
+  } = render(
+    <ReduxWrapper>
+      <CreateBetModal
+        modalOpen
+        toggleBetModal={toggleBetModal}
+        handleChange={() => {}}
+        selectedEvent={0}
+        events={compiledEvents}
+
+      />
+    </ReduxWrapper>,
+  );
+
+  const teamSelectNode = getByDisplayValue('Select Winner');
+  const amountNode = getByPlaceholderText('Amount in Wei');
+  const friendNode = getByPlaceholderText('Login of Friend');
+
+  fireEvent.change(teamSelectNode, { target: { value: 'Portland Trail Blazers' } });
+  fireEvent.change(amountNode, { target: { value: 10 } });
+  fireEvent.change(friendNode, { target: { value: 'lucy' } });
+
+  const createBetButton = getAllByText('Propose Bet');
+  createBetButton[0].click();
+  await flushPromise();
+  expect(getByText('randomError')).toBeDefined();
+  expect(toggleBetModal).toHaveBeenCalledTimes(0);
+});
+
+test('it displays error message when a user tries to create a bet without having enought ether', async () => {
+  const toggleBetModal = jest.fn();
+
+  const resp = { data: mockBet };
+  axios.post.mockResolvedValue(resp);
+  store.dispatch({ type: 'CREATE_USER', payload: { etherAmount: 0 } });
+
+  const {
+    getAllByText, getByPlaceholderText, getByDisplayValue, getByText,
+  } = render(
+    <ReduxWrapper>
+      <CreateBetModal
+        modalOpen
+        toggleBetModal={toggleBetModal}
+        handleChange={() => {}}
+        selectedEvent={0}
+        events={compiledEvents}
+      />
+    </ReduxWrapper>,
+  );
+
+  const teamSelectNode = getByDisplayValue('Select Winner');
+  const amountNode = getByPlaceholderText('Amount in Wei');
+  const friendNode = getByPlaceholderText('Login of Friend');
+
+  fireEvent.change(teamSelectNode, { target: { value: 'Portland Trail Blazers' } });
+  fireEvent.change(amountNode, { target: { value: 10 } });
+  fireEvent.change(friendNode, { target: { value: 'lucy' } });
+
+  const createBetButton = getAllByText('Propose Bet');
+  createBetButton[0].click();
+  await flushPromise();
+  expect(getByText('You do not have enough funds for this wager.')).toBeDefined();
+  expect(toggleBetModal).toHaveBeenCalledTimes(0);
 });

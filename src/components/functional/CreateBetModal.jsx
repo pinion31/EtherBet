@@ -37,7 +37,6 @@ class CreateBetModal extends React.Component {
       eventDate, sportId, eventId, teamOneName, teamTwoName,
     } = events[selectedEvent];
     const { receiverLogin, wager, teamSelectedToWin } = this.state;
-    console.log(eventDate, sportId, eventId, teamOneName, teamTwoName);
     return {
       receiver: receiverLogin,
       wager,
@@ -96,9 +95,9 @@ class CreateBetModal extends React.Component {
               {
                 events && events[selectedEvent]
                 && ['One', 'Two'].map(
-                  number => (
+                  (number, key) => (
                     <MenuItem
-                      key={events[selectedEvent][`team${number}Id`]}
+                      key={key}
                       value={events[selectedEvent][`team${number}Name`]}
                     >
                       {events[selectedEvent][`team${number}Name`]}
