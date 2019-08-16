@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, cleanup } from 'react-testing-library';
 import { ReduxWrapper } from '../../src/components/ReduxWrapper';
 import BetCard from '../../src/components/functional/BetCard.jsx';
 import bet from '../responses/mockBet';
@@ -10,8 +10,8 @@ const flushPromise = () => new Promise((resolve) => {
   setTimeout(resolve, 0);
 });
 
-test('it loads and displays sports bar', async () => {
-  const { getByText, queryAllByText, getAllByText } = render(
+test('it loads and displays Bet Card', async () => {
+  const { getByText, queryAllByText } = render(
     <ReduxWrapper>
       <BetCard
         bet={bet}
@@ -35,4 +35,52 @@ test('it loads and displays sports bar', async () => {
 
   expect(queryAllByText('Accept Bet').length).toBe(1);
   expect(queryAllByText('Reject Bet').length).toBe(1);
+});
+
+test('it should call accept function when accept button is clicked', async () => {
+  const accept = jest.fn();
+
+  const { getAllByText } = render(
+    <ReduxWrapper>
+      <BetCard
+        bet={bet}
+        key={bet.id}
+        type="OFFER"
+        index={0}
+        acceptBet={accept}
+        opponent={bet.betCreatorLogin}
+      />
+    </ReduxWrapper>,
+  );
+
+  await flushPromise();
+
+  const acceptBetButton = getAllByText('Accept Bet');
+  acceptBetButton[0].click();
+  await flushPromise();
+  expect(accept).toHaveBeenCalledTimes(1);
+});
+
+test('it should call accept function when reject button is clicked', async () => {
+  const reject = jest.fn();
+
+  const { getAllByText } = render(
+    <ReduxWrapper>
+      <BetCard
+        bet={bet}
+        key={bet.id}
+        type="OFFER"
+        index={0}
+        acceptBet={reject}
+        opponent={bet.betCreatorLogin}
+      />
+    </ReduxWrapper>,
+  );
+
+  await flushPromise();
+
+  const acceptBetButton = getAllByText('Reject Bet');
+  acceptBetButton[0].click();
+  await flushPromise();
+  expect(reject).toHaveBeenCalledTimes(1);
 });
