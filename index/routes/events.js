@@ -23,6 +23,12 @@ router.get('/events-for-today', (req, res) => {
     .then(events => res.status(200).json(events));
 });
 
+router.post('/events-for-day', (req, res) => {
+  const { eventDate } = req.body;
+  Event.findAll({ where: { eventDate: { $gt: moment(eventDate).startOf('day').subtract(1, 'days').toDate(), $lt: moment(eventDate).endOf('day').toDate() } } })
+    .then(events => res.status(200).json(events));
+});
+
 // // temporary for testing
 // router.post('/event-day', (req, res) => {
 //   const { date, sportId } = req.body;

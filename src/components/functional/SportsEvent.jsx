@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import { Consumer } from '../ContextStore';
 
+// temp
+// Date.now = () => new Date(Date.UTC(2019, 6, 21, 0)).valueOf();
+
 const InlineTeam = ({ index, event }) => (
   <div>
     <span>
@@ -50,7 +53,7 @@ const SportsEvent = ({ event, index }) => (
               { <h5 style={{ color: 'black' }}>{`${moment(event.eventDate).format('LLLL')} CT`}</h5>}
               { checkIfEventStarted(event)
                 && (
-                <Button onClick={() => handleToggleModal(index)} style={{ margin: 10, padding: 10 }} variant="contained" color="primary">
+                <Button onClick={() => handleToggleModal(index, event)} style={{ margin: 10, padding: 10 }} variant="contained" color="primary">
               Create Bet
                 </Button>
                 )

@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
-
 app.use('/events', events);
 app.use('/bets', bets);
 app.use('/users', users);

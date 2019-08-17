@@ -5,6 +5,7 @@ import SportsBar from './functional/SportsBar.jsx';
 import { menuWrapper } from './functional/MenuBarWrapper.jsx';
 import CreateBetModal from './functional/CreateBetModal.jsx';
 import { proposeBet } from '../actions/BetActions';
+import { getEventsForDay } from '../actions/eventActions';
 import { getSports } from '../actions/SportActions';
 import { Provider } from './ContextStore.js';
 import { formatEvents, extractFormattedDate } from '../helpers/helpers';
@@ -14,31 +15,39 @@ class Home extends React.Component {
     value: 0,
     modalOpen: false,
     selectedDate: '',
+    selectedEventKey: '',
   };
 
   componentDidMount = () => {
     this.props.getSports();
   };
 
-  toggleBetModal = () => {
+  toggleBetModal = (key, event) => {
     const { modalOpen } = this.state;
-    this.setState({ modalOpen: !modalOpen });
-    this.props.proposeBet({});
+    this.setState({
+      modalOpen: !modalOpen,
+      selectedEventKey: !modalOpen ? key : -1,
+    });
   };
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
+  handleChange = (event, value) => this.setState({ value });
 
   handleChangeDate = (date, value) => {
-    console.log('date1', date);
-    this.setState({ selectedDate: extractFormattedDate(date) });
+    const formattedDate = extractFormattedDate(date);
+    this.props.getEventsForDay(formattedDate)
+      .then(({ status }) => {
+        if (status == 200) {
+          this.setState({ selectedDate: extractFormattedDate(date) });
+        }
+      });
   };
 
   render() {
-    const { value, modalOpen, selectedDate } = this.state;
+    const {
+      value, modalOpen, selectedDate, selectedEventKey,
+    } = this.state;
+
     const { events, sports: sportsList } = this.props;
-    console.log('sportsListy', sportsList);
     const sportsEvents = formatEvents(events, extractFormattedDate);
     return (
       <div style={{ backgroundColor: 'red' }}>
@@ -55,7 +64,8 @@ class Home extends React.Component {
           <CreateBetModal
             modalOpen={modalOpen}
             toggleBetModal={this.toggleBetModal}
-            sendBet={() => console.log('bet sent')}
+            selectedEvent={selectedEventKey}
+            events={selectedDate ? sportsEvents[selectedDate][value + 1] : []}
           />
         </Provider>
       </div>
@@ -75,6 +85,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     proposeBet,
     getSports,
+    getEventsForDay,
   }, dispatch);
 }
 
