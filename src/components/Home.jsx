@@ -65,7 +65,7 @@ class Home extends React.Component {
             modalOpen={modalOpen}
             toggleBetModal={this.toggleBetModal}
             selectedEvent={selectedEventKey}
-            events={selectedDate ? sportsEvents[selectedDate][value + 1] : []}
+            events={selectedDate && sportsEvents[selectedDate] ? sportsEvents[selectedDate][value + 1] : []}
           />
         </Provider>
       </div>

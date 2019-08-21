@@ -2,17 +2,14 @@ import React from 'React';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import TextField from '@material-ui/core/TextField';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
+// import 'react-day-picker/lib/style.css';
 
 import MomentLocaleUtils, {
   formatDate,
   parseDate,
 } from 'react-day-picker/moment';
 import SportsListing from './SportsListing.jsx';
-
-// import 'moment/locale/it';
 
 const SportsBar = ({
   tabIndex, handleChange, sportsList, sportsEvents, onChangeDate, selectedDate,
@@ -22,11 +19,12 @@ const SportsBar = ({
       <DayPickerInput
         style={{ color: 'black' }}
         id="date-picker"
+        inputProps={{ 'data-testid': 'date-picker' }}
         formatDate={formatDate}
         onDayChange={onChangeDate}
         data-testid="date-picker"
         parseDate={parseDate}
-        placeholder={`${formatDate(new Date())}`}
+        placeholder={`${formatDate(new Date(Date.now()))}`}
       />
       <Tabs value={tabIndex} onChange={handleChange}>
         {
