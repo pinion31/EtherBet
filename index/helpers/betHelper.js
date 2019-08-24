@@ -2,6 +2,7 @@ import moment from 'moment';
 import User from '../models/User';
 import Event from '../models/Event';
 import Bet from '../models/Bet';
+import logger from '../logger';
 
 // find all of events for last 2 days that have completed
 export const getFinishedEvents = () => Event.findAll({
@@ -16,6 +17,7 @@ export const getFinishedEvents = () => Event.findAll({
   for (const event of events) {
     objectWithEvents[event.eventId] = event;
   }
+  logger.info(`Getting Finished Events:${JSON.stringify(objectWithEvents)}`);
   return objectWithEvents;
 });
 
@@ -32,6 +34,7 @@ export const payBettor = (id, amount) => User.findOne({ where: { id } })
       const newAmount = user.etherAmount + amount;
       // eslint-disable-next-line no-param-reassign
       user.etherAmount = newAmount;
+      logger.info(`Paying ${amount} to ${user.login}. New Amount is ${newAmount}`);
       return user.save();
     }
     throw Error('Payee not found.');
@@ -39,6 +42,7 @@ export const payBettor = (id, amount) => User.findOne({ where: { id } })
 
 export const settleBet = (bet, winner) => {
   const { betCreator, betReceiver, wager } = bet;
+  logger.info(`Settling Bet: ${JSON.stringify(bet)}`);
   if (winner === bet.teamSelectedToWin) return payBettor(betCreator, wager);
   return payBettor(betReceiver, wager);
 };
@@ -61,6 +65,7 @@ export const deletePreviousEvents = () => Event.findAll({
   const allDeletedEvents = [];
   if (events) {
     // functional opportunity to replace function with push function, maybe?
+    logger.info(`Deleting Events: ${JSON.stringify(events)}`);
     events.forEach(event => allDeletedEvents.push(event.destroy()));
   }
   return Promise.all(allDeletedEvents);

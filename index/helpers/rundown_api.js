@@ -3,6 +3,7 @@
 import request from 'request-promise-native';
 import Sport from '../models/Sport';
 import Event from '../models/Event';
+import logger from '../logger';
 
 Date.prototype.addDays = function (days) {
   const date = new Date(this.valueOf());
@@ -22,7 +23,10 @@ export function getEventforDateforSport(date, sportId) {
     json: true, // Automatically parses the JSON string in the response
   };
   // return all events for this sport for this date
-  return request(options).then(({ events }) => events);
+  return request(options).then(({ events }) => {
+    logger.info(`Raw Event Retrieval from Rundown API: ${JSON.stringify(events)}`);
+    return events;
+  });
 }
 
 // format event json for front-end

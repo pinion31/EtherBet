@@ -7,6 +7,7 @@ const logger = createLogger({
       format: 'YYYY-MM-DD HH:mm:ss',
     }),
     format.errors({ stack: true }),
+    format.prettyPrint(),
     format.splat(),
     format.json(),
   ),
@@ -30,39 +31,9 @@ if (process.env.NODE_ENV !== 'production') {
     format: format.combine(
       format.colorize(),
       format.simple(),
+      format.prettyPrint(),
     ),
   }));
 }
-
-// ***************
-// Allows for JSON logging
-// ***************
-
-// logger.log({
-//   level: 'info',
-//   message: 'Pass an object and this works',
-//   additional: 'properties',
-//   are: 'passed along',
-// });
-
-// logger.info({
-//   message: 'Use a helper method if you want',
-//   additional: 'properties',
-//   are: 'passed along',
-// });
-
-// // ***************
-// // Allows for parameter-based logging
-// // ***************
-
-// logger.log('info', 'Pass a message and this works', {
-//   additional: 'properties',
-//   are: 'passed along',
-// });
-
-// logger.info('Use a helper method if you want', {
-//   additional: 'properties',
-//   are: 'passed along',
-// });
 
 module.exports = logger;

@@ -1,6 +1,7 @@
 const express = require('express');
 const Bet = require('../models/Bet');
 const User = require('../models/User');
+const logger = require('../logger');
 
 const router = express.Router();
 router.post('/propose-bet', (req, res) => {
@@ -38,11 +39,14 @@ router.post('/propose-bet', (req, res) => {
           wager: Number.parseFloat(wager),
         }).then((betResult) => {
           if (betResult) {
+            logger.info(`Created Bet: ${JSON.stringify(betResult)}`);
             return res.status(200).json(betResult);
           }
+          logger.info(`Error creating Bet - Sender: ${senderLogin} Receiver: ${receiverFound}`);
           return res.status(200).send({ error: 'Error creating Bet' });
         });
       } else {
+        logger.info(`User not found - Receiver: ${receiver}`);
         return res.status(200).send({ error: 'User not found' });
       }
     });
@@ -55,6 +59,7 @@ router.post('/get-bets', (req, res) => {
     where:
         { $or: [{ betCreator: { $eq: userIdInt } }, { betReceiver: { $eq: userIdInt } }] },
   }).then((bets) => {
+    logger.info(`Getting Bets For ${userId}: ${JSON.stringify(bets)}`);
     res.status(200).json(bets);
   });
 });
@@ -65,6 +70,7 @@ router.post('/set-bet-status', (req, res) => {
   Bet.findOne({ where: { id: betIdInt } })
     .then((bet) => {
       bet.status = newStatus;
+      logger.info(`Setting Bet Status for ${betId}: ${JSON.stringify(bet)}`);
       bet.save();
       res.status(200).json({ status: newStatus });
     });
