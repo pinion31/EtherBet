@@ -99,3 +99,136 @@ test('it loads correct events for date for sport with id of 2', async (done) => 
   expect(queryAllByText('Add record of team').length).toBe(2);
   done();
 });
+
+test('it loads correct events for date for sport with id of 3', async (done) => {
+  store.dispatch({ type: 'GET_SPORTS', payload: sports });
+  await flushPromise();
+  const {
+    queryAllByText, debug,
+  } = render(
+    <ReduxWrapper>
+      <Provider value={{ handleToggleModal: () => {} }}>
+        <SportsBar
+          sportsList={sportsEvents}
+          tabIndex={2}
+          sportsEvents={events}
+          selectedDate="2019-07-21"
+        />
+      </Provider>
+    </ReduxWrapper>,
+  );
+  await flushPromise();
+  expect(queryAllByText('Atlanta Dream').length).toBe(1);
+  expect(queryAllByText('@Washington Mystics').length).toBe(1);
+  expect(queryAllByText('Sunday, July 21, 2019 2:00 PM CT').length).toBe(1);
+  expect(queryAllByText('Home').length).toBe(1);
+  expect(queryAllByText('Away').length).toBe(1);
+  expect(queryAllByText('65').length).toBe(1);
+  expect(queryAllByText('93').length).toBe(1);
+  expect(queryAllByText('Add record of team').length).toBe(2);
+  done();
+});
+
+test('it loads correct events for date for sport with id of 4', async (done) => {
+  store.dispatch({ type: 'GET_SPORTS', payload: sports });
+  await flushPromise();
+  const {
+    queryAllByText, debug,
+  } = render(
+    <ReduxWrapper>
+      <Provider value={{ handleToggleModal: () => {} }}>
+        <SportsBar
+          sportsList={sportsEvents}
+          tabIndex={3}
+          sportsEvents={events}
+          selectedDate="2019-07-21"
+        />
+      </Provider>
+    </ReduxWrapper>,
+  );
+  await flushPromise();
+  expect(queryAllByText('Washington Nationals').length).toBe(1);
+  expect(queryAllByText('@Atlanta Braves').length).toBe(1);
+  expect(queryAllByText('Sunday, July 21, 2019 6:05 PM CT').length).toBe(1);
+  expect(queryAllByText('Home').length).toBe(1);
+  expect(queryAllByText('Away').length).toBe(1);
+  expect(queryAllByText('0').length).toBe(2);
+  expect(queryAllByText('Add record of team').length).toBe(2);
+  done();
+});
+
+test('it loads correct events for date for sport with id of 5', async (done) => {
+  store.dispatch({ type: 'GET_SPORTS', payload: sports });
+  await flushPromise();
+  const {
+    queryAllByText, debug,
+  } = render(
+    <ReduxWrapper>
+      <Provider value={{ handleToggleModal: () => {} }}>
+        <SportsBar
+          sportsList={sportsEvents}
+          tabIndex={4}
+          sportsEvents={events}
+          selectedDate="2019-07-21"
+        />
+      </Provider>
+    </ReduxWrapper>,
+  );
+  await flushPromise();
+  expect(queryAllByText('New York Mets').length).toBe(1);
+  expect(queryAllByText('@San Francisco Giants').length).toBe(1);
+  expect(queryAllByText('Sunday, July 21, 2019 3:05 PM CT').length).toBe(1);
+  expect(queryAllByText('Home').length).toBe(1);
+  expect(queryAllByText('Away').length).toBe(1);
+  expect(queryAllByText('2').length).toBe(2);
+  expect(queryAllByText('Add record of team').length).toBe(2);
+  done();
+});
+
+test('it loads correct events for date for sport with id of 6', async (done) => {
+  store.dispatch({ type: 'GET_SPORTS', payload: sports });
+  await flushPromise();
+  const {
+    queryAllByText, debug,
+  } = render(
+    <ReduxWrapper>
+      <Provider value={{ handleToggleModal: () => {} }}>
+        <SportsBar
+          sportsList={sportsEvents}
+          tabIndex={5}
+          sportsEvents={events}
+          selectedDate="2019-07-21"
+        />
+      </Provider>
+    </ReduxWrapper>,
+  );
+  await flushPromise();
+  expect(queryAllByText('Home').length).toBe(0);
+  expect(queryAllByText('Away').length).toBe(0);
+  expect(queryAllByText('Add record of team').length).toBe(0);
+  done();
+});
+
+test('it loads correct events for date for sport with id of 7', async (done) => {
+  store.dispatch({ type: 'GET_SPORTS', payload: sports });
+  await flushPromise();
+  const {
+    queryAllByText, debug,
+  } = render(
+    <ReduxWrapper>
+      <Provider value={{ handleToggleModal: () => {} }}>
+        <SportsBar
+          sportsList={sportsEvents}
+          tabIndex={6}
+          sportsEvents={events}
+          selectedDate="2019-07-21"
+        />
+      </Provider>
+    </ReduxWrapper>,
+  );
+  await flushPromise();
+  expect(queryAllByText('Home').length).toBe(0);
+  expect(queryAllByText('Away').length).toBe(0);
+  expect(queryAllByText('Add record of team').length).toBe(0);
+  done();
+});
