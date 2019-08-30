@@ -1,10 +1,29 @@
 import React from 'react';
+import injectSheet from 'react-jss';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
 import { createUser } from '../actions/UserActions';
 import { validateFieldsAreNotBlank, validateFieldsMatch } from '../helpers/helpers';
+import LoginBar from './functional/LoginBar.jsx';
+
+const styles = {
+  inputField: {
+    margin: '0 10px',
+  },
+  signupParent: {
+    marginTop: '20%',
+    alignSelf: 'center',
+    color: 'black',
+  },
+  errorMessageStyle: {
+    width: '100%',
+    float: 'right',
+    margin: '0 10%',
+    height: '23px',
+  },
+};
 
 class Signup extends React.Component {
   state = {
@@ -51,54 +70,57 @@ class Signup extends React.Component {
 
   render() {
     const { errorMessage } = this.state;
+    const { classes: { inputField, errorMessageStyle, signupParent } } = this.props;
     return (
-      <div>
-        <div>
-          <TextField
-            autoFocus
-            name="username"
-            margin="dense"
-            id="username"
-            label="Username"
-            onChange={this.handleChange}
-          />
+      <LoginBar>
+        <div className={signupParent}>
+          <div>
+            <TextField
+              autoFocus
+              name="username"
+              margin="dense"
+              id="username"
+              label="Username"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="password1"
+              label="Password"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="password2"
+              label="Confirm Password"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="address"
+              label="Ether Address"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <p>{errorMessage}</p>
+          </div>
+          <div>
+            <Button onClick={this.submitUser} color="primary">
+              Sign up
+            </Button>
+          </div>
         </div>
-        <div>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="password1"
-            label="Password"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="password2"
-            label="Confirm Password"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="address"
-            label="Ether Address"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div>
-          <p>{errorMessage}</p>
-        </div>
-        <div>
-          <Button onClick={this.submitUser} color="primary">
-            Sign up
-          </Button>
-        </div>
-      </div>
+      </LoginBar>
     );
   }
 }
@@ -109,4 +131,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default injectSheet(styles)(connect(null, mapDispatchToProps)(Signup));
