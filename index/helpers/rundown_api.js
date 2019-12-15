@@ -22,11 +22,12 @@ export function getEventforDateforSport(date, sportId) {
     },
     json: true, // Automatically parses the JSON string in the response
   };
+  logger.info(`Sending request for sport id ${sportId} for ${date}`);
   // return all events for this sport for this date
   return request(options).then(({ events }) => {
     logger.info(`Raw Event Retrieval from Rundown API: ${JSON.stringify(events)}`);
     return events;
-  });
+  }).catch(e => logger.error(`Error retrieving sport events: ${e}`));
 }
 
 // format event json for front-end
@@ -128,7 +129,8 @@ export function pullEventAndSave(date, sportId) {
   return getEventforDateforSport(date, sportId)
     .then(data => data.filter(({ score }) => score.event_status === 'STATUS_SCHEDULED'))
     .then(data => data.map(formatEvent))
-    .then(formattedEvents => Promise.all(formattedEvents.map(saveEventToDB)));
+    .then(formattedEvents => Promise.all(formattedEvents.map(saveEventToDB)))
+    .catch(e => logger.error(`Error pulling events: ${e}`));
 }
 
 export const updateSportQueryDate = id => Sport.findOne({ where: { id } })
@@ -153,6 +155,7 @@ export function getEventsforFutureDays(numOfDays) {
         const promisesForThisSport = [];
         // eslint-disable-next-line no-plusplus
         for (let i = 0; i < numOfDays; i++) {
+          logger.info(`Pulling events for ${i} day(s) away`);
           const currentDateToRetrieve = todaysDate.addDays(i).toISOString().substring(0, 10);
           promisesForThisSport.push(pullEventAndSave(currentDateToRetrieve, sportId));
         }

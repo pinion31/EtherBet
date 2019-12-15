@@ -7,7 +7,7 @@ const events = require('./routes/events');
 const bets = require('./routes/bets');
 const users = require('./routes/users');
 const logger = require('./logger');
-const { startCronJob } = require('./helpers/cron')
+const { startCronJob } = require('./helpers/cron');
 
 app.use(bodyParser.json());
 
