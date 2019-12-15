@@ -8,7 +8,7 @@
     "dev:watch": "webpack-dev-server --hot --inline",
     "dev": "npm-run-all --parallel dev:*",
     "dev:nodemon": "nodemon --watch dist dist\\index",
-    "start": "node dist\\index",
+    "start": "node dist/index",
     "compile": "babel index --presets @babel/preset-env --out-dir dist",
     "dev:start-server": "babel index --presets @babel/preset-env --out-dir dist --source-maps --watch"
   },
@@ -27,9 +27,7 @@
   "homepage": "https://github.com/pinion31/EtherBet#readme",
   "dependencies": {
     "@date-io/date-fns": "^1.3.5",
-    "@material-ui/core": "^3.9.3",
-    "@material-ui/icons": "^4.0.0",
-    "@material-ui/pickers": "^3.0.0-beta.1",
+
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
