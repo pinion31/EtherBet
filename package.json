@@ -8,8 +8,9 @@
     "dev:watch": "webpack-dev-server --hot --inline",
     "dev": "npm-run-all --parallel dev:*",
     "dev:nodemon": "nodemon --watch dist dist\\index",
+    "compile": "SET NODE_ENV=production && webpack -p",
     "start": "node dist/index",
-    "compile": "babel index --presets @babel/preset-env --out-dir dist",
+    "compile-server": "babel index --presets @babel/preset-env --out-dir dist",
     "dev:start-server": "babel index --presets @babel/preset-env --out-dir dist --source-maps --watch"
   },
   "repository": {
