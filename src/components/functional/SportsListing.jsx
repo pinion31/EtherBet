@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import SportsEvent from './SportsEvent.jsx';
 
 const SportsListing = ({ events, handleBet }) => (

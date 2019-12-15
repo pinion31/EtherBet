@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
 import SportsBar from './functional/SportsBar.jsx';
