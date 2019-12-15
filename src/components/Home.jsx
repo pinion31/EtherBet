@@ -5,7 +5,7 @@ import SportsBar from './functional/SportsBar.jsx';
 import { menuWrapper } from './functional/MenuBarWrapper.jsx';
 import CreateBetModal from './functional/CreateBetModal.jsx';
 import { proposeBet } from '../actions/BetActions';
-import { getEventsForDay } from '../actions/eventActions';
+import { getEventsForDay } from '../actions/EventActions';
 import { getSports } from '../actions/SportActions';
 import { Provider } from './ContextStore.js';
 import { formatEvents, extractFormattedDate } from '../helpers/helpers';
