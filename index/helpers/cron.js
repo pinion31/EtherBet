@@ -5,7 +5,7 @@ import logger from '../logger';
 
 
 export const startCronJob = () => {
-  const task = cron.schedule('30 15 * * Sun', () => {
+  const task = cron.schedule(process.env.CRON_TIME, () => {
     getEventsforFutureDays(1);
     logger.info(`Starting cron job to pull sports events at ${new Date(Date.now())}`);
   }, {
