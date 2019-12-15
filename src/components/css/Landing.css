@@ -1,0 +1,156 @@
+.game-row {
+  height: 80px;
+  background: white;
+  _border: 2px solid #26272A;
+  display: flex;
+}
+
+.game-row > div {
+  _border: 1px solid #a2a6b3;
+  outline-color: #a2a6b3;
+  outline-style: auto;
+  flex: 1 0 20%;
+  text-align: center;
+}
+
+.game-row > div > div > p, .game-row > div > p {
+  margin: 0;
+  padding: 0 10px;
+}
+
+.game-row > div > div {
+  margin-top: 10px;
+}
+
+.game-row > div > button {
+  margin-top: 20px;
+}
+
+.game-row > div > p:first-child {
+  padding-top: 20px;
+}
+
+.game-row > div > p:last-child {
+  padding-bottom: 10px;
+}
+
+.game-row > div:nth-of-type(2) {
+  flex: 1 0 60%;
+  text-align: left;
+  display: flex;
+  justify-content:space-around;
+}
+
+.featured-menu-bar > h2 {
+  margin: 5px;
+  text-shadow: 2px 0px 15px #9a7107;
+}
+
+.featured-menu-bar {
+  text-align: center;
+  width: 100%;
+  background: #e8b010;
+  _background: linear-gradient(to bottom, #CE9708, #efff00, #CE9708);
+  height: 50px;
+  padding-bottom: 10px;
+}
+
+.feature-column {
+  flex: 1 0 60%;
+  background: white;
+}
+
+.featured {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.feature-images {
+  display: flex;
+  background: black;
+}
+
+.feature-images > img {
+  flex: 1 0 auto;
+  height: 400px;
+  margin: 0% 1%;
+}
+
+.feature-images > img:first-child {
+  margin-left: 0;
+}
+
+.feature-images > img:last-child {
+  margin-right: 0;
+}
+
+main > div {
+  _background: black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-heading {
+  color: white;
+  background: #53555b;
+  height: 60px;
+  padding: 12px 5px 10px 10px;
+  margin: 0;
+}
+
+.left-side-menu {
+  flex: 1 0 15%;
+  background: white; 
+}
+
+.right-side-menu {
+  flex: 1 0 25%;
+  background: white; 
+}
+
+.side-menu-text {
+  font-size: .75em;
+}
+.game-box {
+  _border: 2px solid #26272A;
+  outline-color: #a2a6b3;
+  outline-style: auto;
+}
+
+.game-box > div {
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.game-box p {
+  margin: 0;
+  padding: 0 3px 0px 5px;
+}
+
+.game-box > p {
+  margin-left: 5px;
+}
+
+.sport-bar {
+  background: #53555b;
+}
+
+.sport-bar > h3 {
+  margin: 10px 20px;
+}
+
+.article {
+  padding: 10px;
+
+  margin: 0;
+  _max-width: 10%;
+  outline-color: #a2a6b3;
+  outline-style: auto;
+}
+
+.article > h4 {
+  color: black;
+}
+
+

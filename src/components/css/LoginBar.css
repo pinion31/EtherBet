@@ -1,0 +1,27 @@
+.nav {
+  background: #26272A;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  color:white;
+  margin-left: 15px;
+  margin-bottom: 5px;
+  padding: 0px 10px 10px 7px;
+  border-radius: 15px;
+  font-size: 1.75em;
+  background: linear-gradient(to bottom, #CE9708, #efff00, #CE9708);
+}
+.logo > p {
+  font-family: 'Titillium Web', sans-serif;
+  padding: 10px;
+  position: relative;
+  bottom: 10px;
+}
+
+
+.nav > div > button {
+  margin: 0 10px;
+}

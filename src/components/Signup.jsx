@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { createUser } from '../actions/UserActions';
 import { validateFieldsAreNotBlank, validateFieldsMatch } from '../helpers/helpers';
 import LoginBar from './functional/LoginBar.jsx';
+import { smButton, flexInputContainer, errorMessageStyle } from './css/baseStyles.js';
 
 const styles = {
   inputField: {
@@ -15,14 +16,11 @@ const styles = {
   signupParent: {
     marginTop: '20%',
     alignSelf: 'center',
-    color: 'black',
+    color: 'white',
   },
-  errorMessageStyle: {
-    width: '100%',
-    float: 'right',
-    margin: '0 10%',
-    height: '23px',
-  },
+  smButton,
+  flexInputContainer,
+  errorMessageStyle,
 };
 
 class Signup extends React.Component {
@@ -70,13 +68,17 @@ class Signup extends React.Component {
 
   render() {
     const { errorMessage } = this.state;
-    const { classes: { inputField, errorMessageStyle, signupParent } } = this.props;
+    const {
+      classes: {
+        inputField, errorMessageStyle, signupParent, flexInputContainer, smButton,
+      },
+    } = this.props;
     return (
-      <LoginBar>
-        <div className={signupParent}>
-          <div>
-            <TextField
-              autoFocus
+      <LoginBar history={this.props.history}>
+        <form className={signupParent}>
+          <div className={flexInputContainer}>
+            <label htmlFor="username">Username</label>
+            <input
               name="username"
               margin="dense"
               id="username"
@@ -84,27 +86,30 @@ class Signup extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div>
-            <TextField
-              autoFocus
+          <div className={flexInputContainer}>
+            <label htmlFor="password1">Password</label>
+            <input
+              type="password"
               margin="dense"
               id="password1"
               label="Password"
               onChange={this.handleChange}
             />
           </div>
-          <div>
-            <TextField
-              autoFocus
+          <div className={flexInputContainer}>
+            <label htmlFor="password2">Confirm Password</label>
+            <input
+              type="password"
               margin="dense"
               id="password2"
               label="Confirm Password"
               onChange={this.handleChange}
             />
           </div>
-          <div>
-            <TextField
-              autoFocus
+          <div className={flexInputContainer}>
+            <label htmlFor="address">Ether Address</label>
+            <input
+              type="password"
               margin="dense"
               id="address"
               label="Ether Address"
@@ -115,11 +120,11 @@ class Signup extends React.Component {
             <p>{errorMessage}</p>
           </div>
           <div>
-            <Button onClick={this.submitUser} color="primary">
+            <Button onClick={this.submitUser} className={smButton}>
               Sign up
             </Button>
           </div>
-        </div>
+        </form>
       </LoginBar>
     );
   }

@@ -7,22 +7,21 @@ import injectSheet from 'react-jss';
 import { getUser } from '../actions/UserActions';
 import { validateFieldsAreNotBlank } from '../helpers/helpers';
 import LoginBar from './functional/LoginBar.jsx';
+import {
+  smButton, lgButton, errorMessageStyle, flexInputContainer, flexAlignHorizontal,
+} from './css/baseStyles.js';
 
 const styles = {
-  inputField: {
-    margin: '0 10px',
-  },
   loginParent: {
     marginTop: '20%',
     alignSelf: 'center',
-    color: 'black',
+    color: 'white',
   },
-  errorMessageStyle: {
-    width: '100%',
-    float: 'right',
-    margin: '0 10%',
-    height: '23px',
-  },
+  flexInputContainer,
+  flexAlignHorizontal,
+  errorMessageStyle,
+  lgButton,
+  smButton,
 };
 
 class Login extends React.Component {
@@ -65,22 +64,27 @@ class Login extends React.Component {
 
   render() {
     const { errorMessage } = this.state;
-    const { classes: { inputField, errorMessageStyle, loginParent } } = this.props;
+    const {
+      classes: {
+        errorMessageStyle, loginParent, flexInputContainer, smButton, lgButton, flexAlignHorizontal,
+      },
+    } = this.props;
     return (
-      <LoginBar>
-        <div className={loginParent}>
-          <div className={inputField}>
-            <TextField
-              autoFocus
+      <LoginBar history={this.props.history}>
+        <form className={loginParent}>
+          <div className={flexInputContainer}>
+            <label htmlFor="username">Username</label>
+            <input
+              name="username"
               margin="dense"
               id="username"
               label="Username"
               onChange={this.handleChange}
             />
           </div>
-          <div className={inputField}>
-            <TextField
-              autoFocus
+          <div className={flexInputContainer}>
+            <label htmlFor="Password">Password</label>
+            <input
               margin="dense"
               id="password"
               label="Password"
@@ -93,17 +97,19 @@ class Login extends React.Component {
           >
             <h5>{errorMessage}</h5>
           </div>
-          <div>
-            <Button onClick={this.loginUser} color="primary">
-              Login
-            </Button>
+          <div style={{ marginTop: 15 }}>
+            <div className={flexAlignHorizontal}>
+              <Button onClick={this.loginUser} color="primary" className={lgButton}>
+                Login
+              </Button>
+            </div>
+            <div className={flexAlignHorizontal}>
+              <Button onClick={() => this.props.history.push('/sign-up')} className={lgButton}>
+                Create Account
+              </Button>
+            </div>
           </div>
-          <div>
-            <Button onClick={() => this.props.history.push('/sign-up')} color="primary">
-              Create Account
-            </Button>
-          </div>
-        </div>
+        </form>
       </LoginBar>
     );
   }

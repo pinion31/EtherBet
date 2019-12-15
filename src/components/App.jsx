@@ -18,15 +18,15 @@ const store = createStore(rootReducer, middleware);
 
 const App = () => (
   <Provider store={store}>
-    <Router>
-      <Route exact path="/" component={Landing} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/sign-up" component={Signup} />
-      <Route exact path="/home" component={Home} />
-      <Route exact path="/todays-events" component={DailyEvents} />
-      <Route exact path="/your-bets" component={Bets} />
-      <Route exact path="/stats" component={Stats} />
-    </Router>
+      <Router>
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/sign-up" component={Signup} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/todays-events" component={DailyEvents} />
+        <Route exact path="/your-bets" component={Bets} />
+        <Route exact path="/stats" component={Stats} />
+      </Router>
   </Provider>
 );
 

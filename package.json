@@ -4,11 +4,12 @@
   "description": "A betting app",
   "main": "index.js",
   "scripts": {
-
     "test": "cross-env NODE_ENV=test && jest --watch --coverage --runInBand",
     "dev:watch": "webpack-dev-server --hot --inline",
     "dev": "npm-run-all --parallel dev:*",
     "dev:nodemon": "nodemon --watch dist dist\\index",
+    "start": "node dist\\index",
+    "compile": "babel index --presets @babel/preset-env --out-dir dist",
     "dev:start-server": "babel index --presets @babel/preset-env --out-dir dist --source-maps --watch"
   },
   "repository": {
@@ -34,6 +35,7 @@
     "body-parser": "^1.19.0",
     "css-loader": "^2.1.1",
     "date-fns": "^2.0.0-alpha.27",
+    "emotion": "^10.0.14",
     "express": "^4.16.4",
     "material-ui-pickers": "^2.2.4",
     "moment": "^2.24.0",
@@ -42,6 +44,8 @@
     "react": "^16.8.6",
     "react-day-picker": "^7.3.0",
     "react-dom": "^16.8.2",
+    "react-emotion": "^10.0.0",
+    "react-jss": "^8.6.1",
     "react-redux": "^5.0.5",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
@@ -75,6 +79,7 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
+    "file-loader": "^4.2.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.8.0",

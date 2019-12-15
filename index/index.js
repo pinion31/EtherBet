@@ -20,13 +20,12 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../index.html'));
 });
 
-if (process.env.NODE_ENV !== 'test') {
-  console.log('process.env.NODE_ENV', process.env.NODE_ENV);
-  app.listen(process.env.PORT || 3000, () => {
-    logger.info(`Starting app at ${new Date(Date.now())}`);
-    console.log('App started for your convenience');
-  });
-}
+// if (process.env.NODE_ENV !== 'test') {
+app.listen(process.env.PORT || 3000, () => {
+  logger.info(`Starting app at ${new Date(Date.now())}`);
+  console.log('App started for your convenience');
+});
+// }
 
 
 module.exports = app;
