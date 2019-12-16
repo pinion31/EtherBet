@@ -144,7 +144,7 @@ export const updateSportQueryDate = id => Sport.findOne({ where: { id } })
   }).catch(e => e.message);
 
 // TODO: add error handling
-export function getEventsforFutureDays(numOfDays) {
+export function getEventsforFutureDays(numOfDays, daysOffset) {
   return getSportsFromDB()
     .then((sports) => {
       let allSportsPromises = [];
@@ -155,8 +155,8 @@ export function getEventsforFutureDays(numOfDays) {
         const promisesForThisSport = [];
         // eslint-disable-next-line no-plusplus
         for (let i = 0; i < numOfDays; i++) {
-          logger.info(`Pulling events for ${i} day(s) away`);
-          const currentDateToRetrieve = todaysDate.addDays(i).toISOString().substring(0, 10);
+          logger.info(`Pulling events for ${i + daysOffset} day(s) away`);
+          const currentDateToRetrieve = todaysDate.addDays(i + daysOffset).toISOString().substring(0, 10);
           promisesForThisSport.push(pullEventAndSave(currentDateToRetrieve, sportId));
         }
         allSportsPromises = [...allSportsPromises, ...promisesForThisSport];
