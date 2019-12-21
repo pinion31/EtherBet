@@ -29,6 +29,11 @@ router.post('/events-for-day', (req, res) => {
     .then(events => res.status(200).json(events));
 });
 
+router.get('/events-for-subsequent-days', (req, res) => {
+  Event.findAll({ where: { eventDate: { $gt: moment(new Date(Date.now())).startOf('day').toDate() } } })
+    .then(events => res.status(200).json(events));
+});
+
 // // temporary for testing
 // router.post('/event-day', (req, res) => {
 //   const { date, sportId } = req.body;
