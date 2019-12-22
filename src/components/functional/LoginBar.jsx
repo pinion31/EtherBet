@@ -14,13 +14,14 @@ class LoginBar extends React.Component {
             <p>Etherbet</p>
           </div>
           <div>
-            <button type="submit">Join </button>
+            <button type="submit" onClick={() => this.props.history.push('/sign-up')}>Join </button>
             <button type="submit" onClick={() => this.props.history.push('/login')}>Login </button>
             <input />
             <input />
           </div>
         </nav>
         {this.props.children}
+        {/* <Footer /> */}
       </React.Fragment>
     );
   }

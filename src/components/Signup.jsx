@@ -1,27 +1,11 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import injectSheet from 'react-jss';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
 import { createUser } from '../actions/UserActions';
 import { validateFieldsAreNotBlank, validateFieldsMatch } from '../helpers/helpers';
 import LoginBar from './functional/LoginBar.jsx';
-import { smButton, flexInputContainer, errorMessageStyle } from './css/baseStyles.js';
-
-const styles = {
-  inputField: {
-    margin: '0 10px',
-  },
-  signupParent: {
-    marginTop: '20%',
-    alignSelf: 'center',
-    color: 'white',
-  },
-  smButton,
-  flexInputContainer,
-  errorMessageStyle,
-};
+import styles from './css/Signup.css';
 
 class Signup extends React.Component {
   state = {
@@ -68,63 +52,60 @@ class Signup extends React.Component {
 
   render() {
     const { errorMessage } = this.state;
-    const {
-      classes: {
-        inputField, errorMessageStyle, signupParent, flexInputContainer, smButton,
-      },
-    } = this.props;
     return (
       <LoginBar history={this.props.history}>
-        <form className={signupParent}>
-          <div className={flexInputContainer}>
-            <label htmlFor="username">Username</label>
-            <input
-              name="username"
-              margin="dense"
-              id="username"
-              label="Username"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className={flexInputContainer}>
-            <label htmlFor="password1">Password</label>
-            <input
-              type="password"
-              margin="dense"
-              id="password1"
-              label="Password"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className={flexInputContainer}>
-            <label htmlFor="password2">Confirm Password</label>
-            <input
-              type="password"
-              margin="dense"
-              id="password2"
-              label="Confirm Password"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className={flexInputContainer}>
-            <label htmlFor="address">Ether Address</label>
-            <input
-              type="password"
-              margin="dense"
-              id="address"
-              label="Ether Address"
-              onChange={this.handleChange}
-            />
+        <form className={styles.signupParent}>
+          <div className="flexInputContainerParent">
+            <div className="flexInputContainer">
+              <label htmlFor="username">Username</label>
+              <input
+                name="username"
+                margin="dense"
+                id="username"
+                label="Username"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="flexInputContainer">
+              <label htmlFor="password1">Password</label>
+              <input
+                type="password"
+                margin="dense"
+                id="password1"
+                label="Password"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="flexInputContainer">
+              <label htmlFor="password2">Confirm Password</label>
+              <input
+                type="password"
+                margin="dense"
+                id="password2"
+                label="Confirm Password"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="flexInputContainer">
+              <label htmlFor="address">Ether Address</label>
+              <input
+                type="password"
+                margin="dense"
+                id="address"
+                label="Ether Address"
+                onChange={this.handleChange}
+              />
+            </div>
           </div>
           <div>
             <p>{errorMessage}</p>
           </div>
-          <div>
-            <Button onClick={this.submitUser} className={smButton}>
-              Sign up
-            </Button>
-          </div>
         </form>
+        <div>
+          <button onClick={this.submitUser} className="smButton signUpButton">
+              Sign up
+          </button>
+        </div>
       </LoginBar>
     );
   }
@@ -136,4 +117,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default injectSheet(styles)(connect(null, mapDispatchToProps)(Signup));
+export default connect(null, mapDispatchToProps)(Signup);
