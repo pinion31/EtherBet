@@ -97,14 +97,14 @@ class Login extends React.Component {
           </div>
           <div style={{ marginTop: 15 }}>
             <div className={flexAlignHorizontal}>
-              <Button onClick={this.loginUser} color="primary" className={lgButton}>
+              <button onClick={this.loginUser} color="primary" className={lgButton}>
                 Login
-              </Button>
+              </button>
             </div>
             <div className={flexAlignHorizontal}>
-              <Button onClick={() => this.props.history.push('/sign-up')} className={lgButton}>
+              <button onClick={() => this.props.history.push('/sign-up')} className={lgButton}>
                 Create Account
-              </Button>
+              </button>
             </div>
           </div>
         </form>
