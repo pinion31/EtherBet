@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
 import React from 'react';
-import MenuBar from './MenuBar.jsx';
+import LoginBar from './LoginBar.jsx';
 
-export const menuWrapper = Children => props => <MenuBar><Children {...props} /></MenuBar>;
+export const menuWrapper = Children => props => <LoginBar><Children {...props} /></LoginBar>;

@@ -11,19 +11,7 @@ import { proposeBet, getBets } from '../actions/BetActions';
 import { getEvents } from '../actions/EventActions';
 import SportsListing from './functional/SportsListing.jsx';
 import CreateBetModal from './functional/CreateBetModal.jsx';
-import {
-  smButton, lgButton,
-} from './css/baseStyles.js';
 
-const styles = {
-  loginParent: {
-    marginTop: '20%',
-    alignSelf: 'center',
-    color: 'white',
-  },
-  lgButton,
-  smButton,
-};
 class DailyEvents extends React.Component {
   state = {
     modalOpen: false,
@@ -55,7 +43,7 @@ class DailyEvents extends React.Component {
     return (
       <div>
         <Provider value={{ handleToggleModal: this.toggleBetModal }}>
-          <h3>{'Today\'s Events'}</h3>
+          <h3 style={{ marginLeft: 20, fontSize: '2em', marginBottom: 0 }}>{'Today\'s Events'}</h3>
           {<SportsListing events={compiledEvents} />}
           <CreateBetModal
             modalOpen={modalOpen}
@@ -85,4 +73,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default injectSheet(styles)(connect(mapStateToProps, mapDispatchToProps)(menuWrapper(DailyEvents)));
+export default connect(mapStateToProps, mapDispatchToProps)(menuWrapper(DailyEvents));

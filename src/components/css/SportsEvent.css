@@ -1,0 +1,41 @@
+.teamRecord {
+  font-weight: bold;
+}
+
+.teamLocation  {
+  font-style: italic;
+}
+
+.teamScore {
+  font-weight: bold;
+  float: right;
+}
+
+.teamNames {
+  color: black;
+  margin: 2px 5px;
+  margin-top: -6px;
+}
+
+.teamInfo {
+  display: flex;
+}
+
+.teamInfo > p {
+  margin: 0 2px;
+  /* margin: 0; */
+}
+
+.eventDate {
+  color: black;
+  margin-top: 3px;
+  margin-left: 5px;
+}
+
+.eventCard {
+  background-color: white;
+  border-radius: 8px;
+  margin: 10px;
+  margin-right: 20px;
+  padding: 20px;
+}
