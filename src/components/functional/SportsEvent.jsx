@@ -1,44 +1,7 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import { Consumer } from '../ContextStore';
 import styles from '../css/SportsEvent.css';
-
-// temp
-// Date.now = () => new Date(Date.UTC(2019, 6, 21, 0)).valueOf();
-
-// const InlineTeam = ({ index, event }) => (
-//   <div>
-//     <span>
-//       <Typography variant="body1" component="h3" inline>
-//         {!index && `${event.teamOneName}`}
-//         {index == 1 && `@${event.teamTwoName}`}
-//       </Typography>
-//       <Typography variant="body1" component="p" inline style={{ fontWeight: 'bold' }}>
-//         {'Add record of team '}
-//       </Typography>
-//       <Typography variant="subtitle2" component="p" inline style={{ fontStyle: 'italic' }}>
-//         {!index && event.teamOneIsAway && 'Away'}
-//         {!index && event.teamOneIsHome && 'Home'}
-//         {index == 1 && event.teamTwoIsHome && 'Home'}
-//         {index == 1 && event.teamTwoIsAway && 'Away'}
-//       </Typography>
-//       <Typography
-//         variant="subtitle2"
-//         component="p"
-//         inline
-//         style={{ fontWeight: 'bold', float: 'right' }}
-//         align="right"
-//       >
-//         {!index && event.scoreAway}
-//         {index == 1 && event.scoreHome}
-//       </Typography>
-//     </span>
-//   </div>
-// );
 
 const InlineTeam = ({ index, event }) => (
   <div>
@@ -76,7 +39,7 @@ const SportsEvent = ({ event, index }) => (
           { <h5 className={styles.eventDate}>{`${moment(event.eventDate).format('LLLL')} CT`}</h5>}
           { checkIfEventStarted(event)
                 && (
-                <button className="smButton" onClick={() => handleToggleModal(index, event)}>
+                <button type="submit" className="smButton" onClick={() => handleToggleModal(index, event)}>
               Create Bet
                 </button>
                 )

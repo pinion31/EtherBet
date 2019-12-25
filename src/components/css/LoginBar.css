@@ -5,6 +5,25 @@
   justify-content: space-between;
 }
 
+.navLoggedIn {
+  background: #26272A;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+.loggedInBar > button {
+  margin-top: 15px;
+}
+.loggedInBar > h3 {
+  cursor: pointer;
+}
+
+.loggedInBar {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: space-around;
+}
+
 .logo {
   color:white;
   margin-left: 15px;
