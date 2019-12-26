@@ -50,7 +50,7 @@ class Home extends React.Component {
     const { events, sports: sportsList } = this.props;
     const sportsEvents = formatEvents(events, extractFormattedDate);
     return (
-      <div style={{ backgroundColor: 'red' }}>
+      <div style={{ backgroundColor: '#26272A' }}>
         <Provider value={{ handleToggleModal: this.toggleBetModal }}>
           <SportsBar
             data-testid="sports-bar"

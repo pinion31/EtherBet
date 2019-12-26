@@ -3,34 +3,20 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import injectSheet from 'react-jss';
-import 'react-day-picker/lib/style.css';
 import {
   formatDate,
   parseDate,
 } from 'react-day-picker/moment';
-import { greenSecondary0 } from '../../constants/colors';
+import { sportTabs, tabHolder, tabContainer, sportsBar } from '../css/SportsBar.css';
+
 
 import SportsListing from './SportsListing.jsx';
 
-const styles = {
-  sportTabs: {
-    backgroundColor: `${greenSecondary0} !important`,
-    borderTopRightRadius: '10px !important',
-    borderTopLeftRadius: '10px !important',
-    margin: '.5px !important',
-    width: '11%',
-  },
-  tabHolder: {
-    backgroundColor: 'gray',
-  },
-};
-
 const SportsBar = ({
-  tabIndex, handleChange, sportsList, sportsEvents, onChangeDate, selectedDate, classes: { sportTabs, tabHolder },
+  tabIndex, handleChange, sportsList, sportsEvents, onChangeDate, selectedDate,
 }) => (
   <div>
-    <AppBar position="static">
+    <AppBar position="static" className={sportsBar}>
       <DayPickerInput
         style={{ color: 'black' }}
         id="date-picker"
@@ -41,7 +27,7 @@ const SportsBar = ({
         parseDate={parseDate}
         placeholder={`${formatDate(new Date(Date.now()))}`}
       />
-      <Tabs value={tabIndex} onChange={handleChange}>
+      <Tabs className={tabContainer} value={tabIndex} onChange={handleChange} indicatorColor="black">
         {
           sportsList && sportsList.map(({ sportId, sportName }) => (
             <Tab className={sportTabs} label={sportName} key={sportId} />
@@ -62,4 +48,4 @@ const SportsBar = ({
   </div>
 );
 
-export default injectSheet(styles)(SportsBar);
+export default SportsBar;

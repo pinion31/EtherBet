@@ -4,7 +4,9 @@ import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid in
 import { bindActionCreators } from 'redux';
 import { getUser } from '../../actions/UserActions';
 import Footer from './Footer.jsx';
-import { nav, navLoggedIn, logo, loggedInBar } from '../css/LoginBar.css';
+import {
+  nav, navLoggedIn, logo, loggedInBar,
+} from '../css/LoginBar.css';
 import { validateFieldsAreNotBlank } from '../../helpers/helpers';
 
 class LoginBar extends React.Component {
@@ -53,40 +55,43 @@ class LoginBar extends React.Component {
     const { errorMessage } = this.state;
     const { user } = this.props;
     // check for user.id is temporary; replace for user session
-    console.log('props', this.props);
     return (
       <React.Fragment>
-        <nav className={user.id? navLoggedIn : nav}>
+        <nav className={user.id ? navLoggedIn : nav}>
           <div className={logo}>
             <p>Etherbet</p>
           </div>
           {
-            !user.id && <div>
-            <button type="submit" onClick={() => this.props.history.push('/sign-up')}>Sign Up</button>
-            <button type="submit" onClick={this.loginUser}> Login </button>
-            <input
-              name="username"
-              margin="dense"
-              id="username"
-              label="Username"
-              onChange={this.handleChange}
-            />
-            <input
-              name="password"
-              margin="dense"
-              id="password"
-              label="Password"
-              onChange={this.handleChange}
-            />
+            !user.id && (
+            <div>
+              <button type="submit" onClick={() => this.props.history.push('/sign-up')}>Sign Up</button>
+              <button type="submit" onClick={this.loginUser}> Login </button>
+              <input
+                name="username"
+                margin="dense"
+                id="username"
+                label="Username"
+                onChange={this.handleChange}
+              />
+              <input
+                name="password"
+                margin="dense"
+                id="password"
+                label="Password"
+                onChange={this.handleChange}
+              />
             </div>
+            )
           }
           {
-            user.id && <div className={loggedInBar}>
-            <h3 type="submit" onClick={() => this.props.history.push('/todays-events')}>{'Today\'s Events'}</h3>
-            <h3 type="submit" onClick={() => this.props.history.push('/home')}>Browse Events</h3>
-            <h3 type="submit" onClick={() => this.props.history.push('/your-bets')}>Your Bets</h3>
-            <button type="submit" onClick={this.logOutUser}> Log Out </button>
+            user.id && (
+            <div className={loggedInBar}>
+              <h3 type="submit" onClick={() => this.props.history.push('/todays-events')}>{'Today\'s Events'}</h3>
+              <h3 type="submit" onClick={() => this.props.history.push('/home')}>Browse Events</h3>
+              <h3 type="submit" onClick={() => this.props.history.push('/your-bets')}>Your Bets</h3>
+              <button type="submit" onClick={this.logOutUser}> Log Out </button>
             </div>
+            )
           }
           <div
             className="errorMessageStyle"

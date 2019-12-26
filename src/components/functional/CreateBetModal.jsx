@@ -19,7 +19,7 @@ class CreateBetModal extends React.Component {
   state = {
     receiverLogin: '',
     wager: '0',
-    teamSelectedToWin: 'Select Winner',
+    teamSelectedToWin: '',
     errorMessage: '',
   }
 
@@ -28,6 +28,10 @@ class CreateBetModal extends React.Component {
       [event.target.name]: event.target.value,
       errorMessage: '',
     });
+  };
+
+  toggleModalAndResetSelected = () => {
+    this.setState({ teamSelectedToWin: ''}, () => this.props.toggleBetModal());
   };
 
   packBet = () => {
@@ -85,7 +89,7 @@ class CreateBetModal extends React.Component {
             Bet:
             </DialogContentText>
             <Select
-              value={teamSelectedToWin}
+              value={ !teamSelectedToWin && events[selectedEvent] ? events[selectedEvent]['teamOneName']: teamSelectedToWin}
               onChange={this.handleChange}
               inputProps={{
                 name: 'teamSelectedToWin',
@@ -130,12 +134,12 @@ class CreateBetModal extends React.Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={toggleBetModal} color="primary">
+            <button className="smButton" onClick={this.toggleModalAndResetSelected} color="primary">
             Cancel
-            </Button>
-            <Button onClick={this.sendBet} color="primary">
+            </button>
+            <button className="smButton"  onClick={this.sendBet} color="primary">
             Propose Bet
-            </Button>
+            </button>
           </DialogActions>
           <h5>{errorMessage}</h5>
         </Dialog>

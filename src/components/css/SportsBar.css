@@ -1,0 +1,25 @@
+.sportTabs {
+  background-color: #CE9708 !important;
+  border-top-right-radius: 10px !important;
+  border-top-left-radius: 10px !important;
+  margin: .5px !important;
+  min-width: 0 !important;
+  width: 14.2%;
+}
+
+.tabContainer {
+  margin-right: 10px;
+}
+
+.tabHolder {
+  background-color: gray;
+  width: 100%;
+}
+
+.sportsBar > *  {
+  background-color: black;
+}
+
+.MuiTabs-indicator {
+  display: none;
+}
