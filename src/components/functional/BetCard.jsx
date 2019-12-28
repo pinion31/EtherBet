@@ -1,62 +1,35 @@
-import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import React, { Fragment } from 'react';
 import MomentLocaleUtils, {
   formatDate,
-  parseDate,
 } from 'react-day-picker/moment';
+import { betCard } from '../css/BetCard.css';
 
 const BetCard = ({
   bet, type, acceptBet, index, opponent,
 }) => (
-  <React.Fragment>
-    <Card elevation={1}>
-      <CardContent>
-        <div style={{ margin: 10, padding: 10, backgroundColor: 'gray' }}>
-          <Typography variant="body1" component="h3" inline={false} align="right">
-            {`Date of Event: ${formatDate(bet.dateOfEvent)}`}
-          </Typography>
-          <Typography variant="subtitle2" component="h3" inline={false}>
-            {`${bet.teamOne} vs ${bet.teamTwo}`}
-          </Typography>
-          <Typography variant="body1" component="h3" inline={false}>
-            {`Wager: ${bet.wager} eth`}
-          </Typography>
-          <Typography variant="body1" component="h3" inline={false}>
-            {`Betting Against: ${opponent}`}
-          </Typography>
-          <Typography variant="body1" component="h3" inline={false}>
-            {`Bet: ${bet.teamSelectedToWin} to win by 10pts`}
-          </Typography>
-          <Typography variant="body1" component="h3" inline={false}>
-            {`Status: ${bet.status}`}
-          </Typography>
-          {
-            type === 'OFFER' && (
-            <React.Fragment>
-              <Button onClick={() => acceptBet(index, 'ACCEPTED')} color="primary">
-            Accept Bet
-              </Button>
-              <Button onClick={() => acceptBet(index, 'REJECTED')} color="primary">
-            Reject Bet
-              </Button>
-            </React.Fragment>
-            )
-          }
-          <Typography
-            variant="body1"
-            component="h3"
-            inline={false}
-            align="right"
-          >
-           Odds
-          </Typography>
-        </div>
-      </CardContent>
-    </Card>
-  </React.Fragment>
+  <>
+    <div className={betCard}>
+      <h3>{`Date of Event: ${formatDate(bet.dateOfEvent)}`}</h3>
+      <h1>{`${bet.teamOne} vs ${bet.teamTwo}`}</h1+>
+      <h3>{`Wager: ${bet.wager} eth`}</h3>
+      <h3>{`Betting Against: ${opponent}`}</h3>
+      <h3>{`Bet: ${bet.teamSelectedToWin} to win by 10pts`}</h3>
+      <h3>{`Status: ${bet.status}`}</h3>
+      {
+        type === 'OFFER' && (
+        <>
+          <button type="submit" className="smButton" onClick={() => acceptBet(index, 'ACCEPTED')}>
+        Accept Bet
+          </button>
+          <button type="submit" className="smButton" onClick={() => acceptBet(index, 'REJECTED')}>
+        Reject Bet
+          </button>
+        </>
+        )
+      }
+      <h3>Odds</h3>
+    </div>
+  </>
 );
 
 export default BetCard;

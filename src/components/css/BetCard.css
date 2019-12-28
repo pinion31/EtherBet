@@ -1,0 +1,22 @@
+.betCard {
+  background-color: #e8b010;
+  background-color: white;
+  margin: 5px;
+  margin-right: 20px;
+  padding: 5px;
+  padding-left: 30px;
+  border-radius: 10px;
+}
+
+.betCard > h3 {
+  color: black;
+}
+
+.betCard > h3:first-child {
+  float: right;
+  margin-right: 20px;
+}
+
+.betCard > button {
+  margin: 0px 10px;
+}

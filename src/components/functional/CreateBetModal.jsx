@@ -11,7 +11,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import { proposeBet } from '../../actions/BetActions';
 
 
@@ -31,7 +30,7 @@ class CreateBetModal extends React.Component {
   };
 
   toggleModalAndResetSelected = () => {
-    this.setState({ teamSelectedToWin: ''}, () => this.props.toggleBetModal());
+    this.setState({ teamSelectedToWin: '' }, () => this.props.toggleBetModal());
   };
 
   packBet = () => {
@@ -89,7 +88,7 @@ class CreateBetModal extends React.Component {
             Bet:
             </DialogContentText>
             <Select
-              value={ !teamSelectedToWin && events[selectedEvent] ? events[selectedEvent]['teamOneName']: teamSelectedToWin}
+              value={!teamSelectedToWin && events && events[selectedEvent] ? events[selectedEvent].teamOneName : teamSelectedToWin}
               onChange={this.handleChange}
               inputProps={{
                 name: 'teamSelectedToWin',
@@ -137,7 +136,7 @@ class CreateBetModal extends React.Component {
             <button className="smButton" onClick={this.toggleModalAndResetSelected} color="primary">
             Cancel
             </button>
-            <button className="smButton"  onClick={this.sendBet} color="primary">
+            <button className="smButton" onClick={this.sendBet} color="primary">
             Propose Bet
             </button>
           </DialogActions>
