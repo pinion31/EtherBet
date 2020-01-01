@@ -101,12 +101,12 @@ main > div {
 
 .left-side-menu {
   flex: 1 0 15%;
-  background: white; 
+  background: white;
 }
 
 .right-side-menu {
   flex: 1 0 25%;
-  background: white; 
+  background: white;
 }
 
 .side-menu-text {

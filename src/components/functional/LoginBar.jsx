@@ -1,19 +1,26 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
 import { getUser } from '../../actions/UserActions';
+import LoginModal from './LoginModal.jsx';
 import Footer from './Footer.jsx';
+import CreateBetModal from './CreateBetModal.jsx';
+import {
+  formatEvents, extractFormattedDate, formatEventsById, validateFieldsAreNotBlank } from '../../helpers/helpers';
 import {
   nav, navLoggedIn, logo, loggedInBar,
 } from '../css/LoginBar.css';
-import { validateFieldsAreNotBlank } from '../../helpers/helpers';
+
 
 class LoginBar extends React.Component {
   state = {
     username: '',
     password: '',
     errorMessage: '',
+    loginModalErrorMessage: '',
   }
 
   handleChange = (event) => {
@@ -33,14 +40,15 @@ class LoginBar extends React.Component {
     );
   };
 
-  loginUser = () => {
+  loginUser = (isModal = false) => {
     if (this.verifyLogin()) {
       const { username, password } = this.state;
       this.props.getUser(username, password)
         .then(({ status, error }) => {
           if (status == 200) {
             if (error) return this.setState({ errorMessage: error });
-            return this.props.history.push('/todays-events');
+            console.log('is Modal', isModal);
+            return isModal ? this.props.history.push('/') : this.props.history.push('/todays-events');
           }
           this.setState({ errorMessage: error });
         });
@@ -52,11 +60,16 @@ class LoginBar extends React.Component {
   };
 
   render() {
-    const { errorMessage } = this.state;
-    const { user } = this.props;
+    const { errorMessage, loginModalErrorMessage } = this.state;
+    const { user, modalOpen, toggleLoginModal, events, selectedEventKey } = this.props;
+    // console.log('events before modifying', events);
+    const compiledEvents = formatEventsById(events || []);
+    // console.log('compiledEvents', compiledEvents);
+    // console.log('selectedEventKey LginBar', selectedEventKey);
+    //const compiledEvents = Object.keys(formattedEvents).length ? compileEvents(formattedEvents[extractFormattedDate(date)]) : [];
     // check for user.id is temporary; replace for user session
     return (
-      <React.Fragment>
+      <>
         <nav className={user.id ? navLoggedIn : nav}>
           <div className={logo}>
             <p>Etherbet</p>
@@ -65,7 +78,7 @@ class LoginBar extends React.Component {
             !user.id && (
             <div>
               <button type="submit" onClick={() => this.props.history.push('/sign-up')}>Sign Up</button>
-              <button type="submit" onClick={this.loginUser}> Login </button>
+              <button type="submit" onClick={() => this.loginUser()}> Login </button>
               <input
                 name="username"
                 margin="dense"
@@ -100,9 +113,28 @@ class LoginBar extends React.Component {
             <h5>{errorMessage}</h5>
           </div>
         </nav>
+        { modalOpen && !user.id && (
+          <LoginModal
+            modalOpen
+            toggleLoginModal={toggleLoginModal}
+            loginUser={this.loginUser}
+            errorMessage={loginModalErrorMessage}
+            handleChange={this.handleChange}
+          />
+        )
+        }
+        { modalOpen && user.id && (
+          <CreateBetModal
+            modalOpen
+            toggleBetModal={toggleLoginModal}
+            selectedEvent={selectedEventKey}
+            events={compiledEvents}
+          />
+        )
+        }
         {this.props.children}
         {/* <Footer /> */}
-      </React.Fragment>
+      </>
     );
   }
 }

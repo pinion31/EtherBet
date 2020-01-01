@@ -46,3 +46,11 @@ export const validateFieldsMatch = (field1, field2, errorCb) => {
   if (!match) errorCb();
   return match;
 };
+
+export const formatEventsById = (events) => {
+  const eventsFormattedById = {};
+  events.forEach((event) => {
+    eventsFormattedById[event.id] = { ...event };
+  });
+  return eventsFormattedById;
+};

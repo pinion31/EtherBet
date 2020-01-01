@@ -1,3 +1,4 @@
+/* eslint-disable no-extend-native */
 /* eslint-disable camelcase */
 /* eslint-disable import/prefer-default-export */
 import request from 'request-promise-native';
@@ -5,7 +6,7 @@ import Sport from '../models/Sport';
 import Event from '../models/Event';
 import logger from '../logger';
 
-Date.prototype.addDays = function (days) {
+Date.prototype.addDays = function dayAdder(days) {
   const date = new Date(this.valueOf());
   date.setDate(date.getDate() + days);
   return date;

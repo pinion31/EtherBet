@@ -75,6 +75,7 @@ class CreateBetModal extends React.Component {
     const {
       modalOpen, toggleBetModal, events, selectedEvent,
     } = this.props;
+    console.log('selectedEvent', selectedEvent);
     const { teamSelectedToWin, errorMessage } = this.state;
     return (
       <React.Fragment>

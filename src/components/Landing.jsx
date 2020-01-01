@@ -3,6 +3,8 @@ import moment from 'moment';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
 import LoginBar from './functional/LoginBar.jsx';
+import { getUser } from '../actions/UserActions';
+import { validateFieldsAreNotBlank } from '../helpers/helpers';
 import styles from './css/Landing.css';
 import { getEventsForDay, getEventsForUpcomingDays } from '../actions/EventActions';
 import { getSports } from '../actions/SportActions';
@@ -26,7 +28,7 @@ const formatDateForDisplay = (eventDate) => {
   return [...formattedDate.slice(0, -6), ' ', ...formattedDate.slice(-2)].join('');
 };
 
-const EventCard = ({ event: { teamOneName, teamTwoName, eventDate } }) => (
+const EventCard = ({ event: { teamOneName, teamTwoName, eventDate }, toggleLoginModal }) => (
   <div className={styles['game-row']}>
     <div>
       <p>{new Date(eventDate).toDateString().slice(0, -5)}</p>
@@ -38,7 +40,7 @@ const EventCard = ({ event: { teamOneName, teamTwoName, eventDate } }) => (
         <p>at</p>
         <p>{teamTwoName}</p>
       </div>
-      <button type="submit">Bet Now</button>
+      <button onClick={toggleLoginModal} type="submit">Bet Now</button>
     </div>
     <div>
       <p>-110</p>
@@ -49,6 +51,8 @@ const EventCard = ({ event: { teamOneName, teamTwoName, eventDate } }) => (
 
 class Landing extends React.Component {
   state = {
+    modalOpen: false,
+    selectedEventKey: '',
   }
 
   componentDidMount = () => {
@@ -56,10 +60,19 @@ class Landing extends React.Component {
     this.props.getEventsForUpcomingDays();
   };
 
+  toggleLoginModal = (key) => {
+    const { modalOpen } = this.state;
+    this.setState({
+      modalOpen: !modalOpen,
+      selectedEventKey: !modalOpen ? key : -1,
+    });
+  };
+
   render() {
     const { events, sports } = this.props;
+    const { modalOpen, selectedEventKey } = this.state;
     return (
-      <LoginBar history={this.props.history}>
+      <LoginBar events={events} selectedEventKey={selectedEventKey} history={this.props.history} modalOpen={modalOpen} toggleLoginModal={this.toggleLoginModal}>
         <main>
           <div>
             <div className={styles['left-side-menu']}>
@@ -88,7 +101,7 @@ class Landing extends React.Component {
                       <h3>{sportName}</h3>
                       {
                         events && events.map(event => event.sportId == sportId
-                          && <EventCard key={event.id} event={event} />)
+                          && <EventCard key={event.id} event={event} toggleLoginModal={() => this.toggleLoginModal(event.id)} />)
                       }
                     </div>
                   ))
@@ -115,8 +128,9 @@ class Landing extends React.Component {
   }
 }
 
-function mapStateToProps({ events, sports }) {
+function mapStateToProps({ events, sports, user }) {
   return {
+    user,
     events,
     sports,
   };
@@ -127,6 +141,7 @@ function mapDispatchToProps(dispatch) {
     getEventsForDay,
     getEventsForUpcomingDays,
     getSports,
+    getUser,
   }, dispatch);
 }
 
