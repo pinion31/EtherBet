@@ -4,7 +4,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
-import { getUser } from '../../actions/UserActions';
+import { getUser, logoutUser } from '../../actions/UserActions';
 import LoginModal from './LoginModal.jsx';
 import Footer from './Footer.jsx';
 import CreateBetModal from './CreateBetModal.jsx';
@@ -56,17 +56,15 @@ class LoginBar extends React.Component {
   };
 
   logOutUser = () => {
-    // log out user here
+    this.props.logoutUser();
+    this.props.history.push('/');
   };
 
   render() {
     const { errorMessage, loginModalErrorMessage } = this.state;
     const { user, modalOpen, toggleLoginModal, events, selectedEventKey } = this.props;
-    // console.log('events before modifying', events);
     const compiledEvents = formatEventsById(events || []);
-    // console.log('compiledEvents', compiledEvents);
-    // console.log('selectedEventKey LginBar', selectedEventKey);
-    //const compiledEvents = Object.keys(formattedEvents).length ? compileEvents(formattedEvents[extractFormattedDate(date)]) : [];
+
     // check for user.id is temporary; replace for user session
     return (
       <>
@@ -148,6 +146,7 @@ function mapStateToProps({ user }) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getUser,
+    logoutUser,
   }, dispatch);
 }
 

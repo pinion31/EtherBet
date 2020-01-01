@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_USER, CREATE_USER } from '../constants/actionTypes';
+import { GET_USER, CREATE_USER, LOGOUT_USER } from '../constants/actionTypes';
 
 export const createUser = user => (
   dispatch => axios.post('/users/create-user', user)
@@ -15,4 +15,8 @@ export const getUser = (username, password) => (
       dispatch({ type: GET_USER, payload: res.data });
       if (res.status == 200) return ({ status: res.status, error: res.data.error });
     }).catch(() => ({ status: 500, error: 'Error logging in user.' }))
+);
+
+export const logoutUser = () => (
+  dispatch => dispatch({ type: LOGOUT_USER, payload: {} })
 );
