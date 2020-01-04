@@ -4,12 +4,12 @@ import Event from '../models/Event';
 import Bet from '../models/Bet';
 import logger from '../logger';
 
-// find all of events for last 2 days that have completed
+// find all of events for last 6 days that have completed
 export const getFinishedEvents = () => Event.findAll({
   raw: true,
   where: {
     eventStatus: 'STATUS_FINAL',
-    eventDate: { $gt: moment().startOf('day').subtract(1, 'days').toDate(), $lt: moment().endOf('day').toDate() },
+    eventDate: { $gt: moment().startOf('day').subtract(5, 'days').toDate(), $lt: moment().endOf('day').toDate() },
   },
 }).then((events) => {
   const objectWithEvents = {};
@@ -23,7 +23,8 @@ export const getFinishedEvents = () => Event.findAll({
 
 export const pullWinningTeam = (event) => {
   const { winnerHome, teamTwoName, teamOneName } = event;
-  const winnerKey = winnerHome ? 'IsHome' : 'IsAway';
+  logger.info(`Pulling Winning Team for Game between ${teamOneName} and ${teamTwoName}`);
+  const winnerKey = parseInt(winnerHome, 10) ? 'IsHome' : 'IsAway';
   return (event[`teamOne${winnerKey}`] && teamOneName)
   || (event[`teamTwo${winnerKey}`] && teamTwoName);
 };
@@ -51,7 +52,9 @@ export const settleAllBets = async () => {
   const finishedEvents = await getFinishedEvents();
   return Bet.findAll({ raw: true, where: { status: 'ACCEPTED' } })
     .then(unsettledBets => Promise.all(unsettledBets.map((bet) => {
+      if (!finishedEvents[bet.eventId]) return Promise.resolve([]);
       const winner = pullWinningTeam(finishedEvents[bet.eventId]);
+      logger.info(`Winner is ${winner} for Bet: ${bet.eventId}`);
       return settleBet(bet, winner);
     })));
 };
