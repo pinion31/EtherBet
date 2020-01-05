@@ -27,7 +27,7 @@ router.post('/create-user', (req, res) => {
 
 router.post('/get-user', (req, res) => {
   const { username, password } = req.body;
-  User.findOne({ where: { login: username } })
+  User.findOne({ raw: true, where: { login: username } })
     .then((user) => {
       if (!user) {
         logger.info(`Invalid username/password: ${username}`);
@@ -37,7 +37,8 @@ router.post('/get-user', (req, res) => {
       bcrypt.compare(password, hashedPassword, (err, result) => {
         if (err) throw Error('Error validating user.');
         logger.info(`Login result: ${JSON.stringify(result)}`);
-        if (result) return res.status(200).json(user);
+        const filteredUser = { ...user, password: null };
+        if (result) return res.status(200).json(filteredUser);
         logger.info(`Invalid username/password: ${JSON.stringify(result)}`);
         return res.status(200).json({ error: 'Invalid username/password' });
       });
