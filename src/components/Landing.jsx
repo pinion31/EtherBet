@@ -28,6 +28,8 @@ const formatDateForDisplay = (eventDate) => {
   return [...formattedDate.slice(0, -6), ' ', ...formattedDate.slice(-2)].join('');
 };
 
+const checkIfEventStarted = eventDate => Date.now() < new Date(eventDate);
+
 const EventCard = ({ event: { teamOneName, teamTwoName, eventDate }, toggleLoginModal }) => (
   <div className={styles['game-row']}>
     <div>
@@ -40,7 +42,11 @@ const EventCard = ({ event: { teamOneName, teamTwoName, eventDate }, toggleLogin
         <p>at</p>
         <p>{teamTwoName}</p>
       </div>
-      <button onClick={toggleLoginModal} type="submit">Bet Now</button>
+      {
+        checkIfEventStarted(eventDate) && (
+          <button onClick={toggleLoginModal} type="submit">Bet Now</button>
+        )
+      }
     </div>
     <div>
       <p>-110</p>
