@@ -1,10 +1,7 @@
 const express = require('express');
-const session = require('express-session');
 const path = require('path');
-// const redis = require('redis');
-// const RedisStore = require('connect-redis')(session);
+const cookieParser = require('cookie-parser');
 
-// const client = redis.createClient();
 const app = express();
 const bodyParser = require('body-parser');
 const events = require('./routes/events');
@@ -14,12 +11,7 @@ const logger = require('./logger');
 const { startCronJob } = require('./helpers/cron');
 
 app.use(bodyParser.json());
-app.use(session({
-  secret: 'test',
-  // store: new redisStore({ host: 'localhost', port: 6379, client: client,ttl : 260}),
-  saveUninitialized: true,
-  resave: true,
-}));
+app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, '../dist')));
 // app.use('*', (req, res, next) => {

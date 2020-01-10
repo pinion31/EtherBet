@@ -47,7 +47,6 @@ class LoginBar extends React.Component {
         .then(({ status, error }) => {
           if (status == 200) {
             if (error) return this.setState({ errorMessage: error });
-            console.log('is Modal', isModal);
             return isModal ? this.props.history.push('/') : this.props.history.push('/todays-events');
           }
           this.setState({ errorMessage: error });
@@ -56,8 +55,13 @@ class LoginBar extends React.Component {
   };
 
   logOutUser = () => {
-    this.props.logoutUser();
-    this.props.history.push('/');
+    const { id } = this.props.user;
+    this.props.logoutUser(id).then(({ status }) => {
+      if (status == 200) {
+        return this.props.history.push('/');
+      }
+      return this.setState({ errorMessage: 'Error logging out user'});
+    });
   };
 
   render() {

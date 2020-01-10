@@ -2,8 +2,16 @@ const express = require('express');
 const Bet = require('../models/Bet');
 const User = require('../models/User');
 const logger = require('../logger');
+const { verifyToken } = require('../helpers/authHelper');
 
 const router = express.Router();
+
+router.use('*', (req, res, next) => {
+  verifyToken(req, res).then(() => {
+    next();
+  }).catch(() => res.status(403).send({ error: 'Missing or Invalid Token' }));
+});
+
 router.post('/propose-bet', (req, res) => {
   const {
     receiver,
@@ -53,15 +61,18 @@ router.post('/propose-bet', (req, res) => {
 });
 
 router.post('/get-bets', (req, res) => {
+  // verifyToken(res, req).then(() => {
+  console.log('getting bets', req);
   const { userId } = req.body;
   const userIdInt = Number.parseInt(userId, 10);
   Bet.findAll({
     where:
-        { $or: [{ betCreator: { $eq: userIdInt } }, { betReceiver: { $eq: userIdInt } }] },
+          { $or: [{ betCreator: { $eq: userIdInt } }, { betReceiver: { $eq: userIdInt } }] },
   }).then((bets) => {
     logger.info(`Getting Bets For ${userId}: ${JSON.stringify(bets)}`);
     res.status(200).json(bets);
   });
+  // });
 });
 
 router.post('/set-bet-status', (req, res) => {

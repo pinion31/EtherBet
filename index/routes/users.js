@@ -4,6 +4,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const logger = require('../logger');
+const { generateTokens, deleteToken } = require('../helpers/authHelper');
 
 router.post('/create-user', (req, res) => {
   const { username, password1, address } = req.body;
@@ -38,6 +39,17 @@ router.post('/get-user', (req, res) => {
         if (err) throw Error('Error validating user.');
         logger.info(`Login result: ${JSON.stringify(result)}`);
         const filteredUser = { ...user, password: null };
+        const { accessToken, refreshToken } = generateTokens(filteredUser.id);
+
+        // Set browser httpOnly cookies
+        res.cookie('access_token', accessToken, {
+          httpOnly: true,
+        });
+
+        res.cookie('refresh_token', refreshToken, {
+          httpOnly: true,
+        });
+
         if (result) return res.status(200).json(filteredUser);
         logger.info(`Invalid username/password: ${JSON.stringify(result)}`);
         return res.status(200).json({ error: 'Invalid username/password' });
@@ -48,5 +60,13 @@ router.post('/get-user', (req, res) => {
     });
 });
 
+router.post('/logout', (req, res) => {
+  const { id } = req.body;
+  logger.info(`User ${id} logged out at ${new Date(Date.now())}`);
+  deleteToken(id);
+  res.clearCookie('access_token');
+  res.clearCookie('refresh_token');
+  res.status(200).json({ status: 'Logged Out' });
+});
 
 module.exports = router;

@@ -17,6 +17,12 @@ export const getUser = (username, password) => (
     }).catch(() => ({ status: 500, error: 'Error logging in user.' }))
 );
 
-export const logoutUser = () => (
-  dispatch => dispatch({ type: LOGOUT_USER, payload: {} })
+export const logoutUser = id => (
+  dispatch => axios.post('/users/logout', { id })
+    .then((res) => {
+      dispatch({ type: LOGOUT_USER, payload: {} });
+      console.log('res.status', id);
+      console.log('res.status', res.status);
+      if (res.status == 200) return ({ status: res.status, error: res.data.error });
+    }).catch(() => ({ status: 500, error: 'Error logging out user.' }))
 );

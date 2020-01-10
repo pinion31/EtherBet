@@ -13,13 +13,13 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import { proposeBet } from '../../actions/BetActions';
 
-
 class CreateBetModal extends React.Component {
   state = {
     receiverLogin: '',
     wager: '0',
     teamSelectedToWin: '',
     errorMessage: '',
+    betCreated: false,
   }
 
   handleChange = (event) => {
@@ -67,7 +67,8 @@ class CreateBetModal extends React.Component {
         return this.setState({ errorMessage: error });
       }
       // eslint-disable-next-line react/destructuring-assignment
-      this.props.toggleBetModal();
+      this.setState({betCreated:true});
+      //this.props.toggleBetModal();
     });
   }
 
@@ -75,17 +76,18 @@ class CreateBetModal extends React.Component {
     const {
       modalOpen, toggleBetModal, events, selectedEvent,
     } = this.props;
-    console.log('selectedEvent', selectedEvent);
-    const { teamSelectedToWin, errorMessage } = this.state;
+    const { teamSelectedToWin, errorMessage, betCreated } = this.state;
     return (
-      <React.Fragment>
+      <>
         <Dialog
           open={modalOpen}
           onClose={toggleBetModal}
         >
-          <DialogTitle>Invite A Friend To Bet</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
+         { !betCreated && (
+          <>
+         <DialogTitle>Invite A Friend To Bet</DialogTitle>
+           <DialogContent>
+             <DialogContentText>
             Bet:
             </DialogContentText>
             <Select
@@ -134,16 +136,36 @@ class CreateBetModal extends React.Component {
             />
           </DialogContent>
           <DialogActions>
-            <button className="smButton" onClick={this.toggleModalAndResetSelected} color="primary">
+            <button type="submit" className="smButton" onClick={this.toggleModalAndResetSelected} color="primary">
             Cancel
             </button>
-            <button className="smButton" onClick={this.sendBet} color="primary">
+            <button type="submit" className="smButton" onClick={this.sendBet} color="primary">
             Propose Bet
             </button>
           </DialogActions>
-          <h5>{errorMessage}</h5>
+         <h5>{errorMessage}</h5>
+                            </>
+         )}
+         {
+           betCreated && (
+            <>
+            <DialogTitle>Bet Sent</DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                Bet Successfully Created!
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <button type="submit" className="smButton" onClick={this.props.toggleBetModal} color="primary">
+                Ok
+                </button>
+              </DialogActions>
+            <h5>{errorMessage}</h5>
+                           </>
+           )}
+         }
         </Dialog>
-      </React.Fragment>
+      </>
     );
   }
 }
