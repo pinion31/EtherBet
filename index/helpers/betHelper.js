@@ -50,13 +50,18 @@ export const settleBet = (bet, winner) => {
 
 export const settleAllBets = async () => {
   const finishedEvents = await getFinishedEvents();
-  return Bet.findAll({ raw: true, where: { status: 'ACCEPTED' } })
-    .then(unsettledBets => Promise.all(unsettledBets.map((bet) => {
-      if (!finishedEvents[bet.eventId]) return Promise.resolve([]);
-      const winner = pullWinningTeam(finishedEvents[bet.eventId]);
-      logger.info(`Winner is ${winner} for Bet: ${bet.eventId}`);
-      return settleBet(bet, winner);
-    })));
+  return Bet.findAll({ where: { status: 'ACCEPTED' } })
+    .then(unsettledBets => Promise.all(
+      JSON.parse(JSON.stringify(unsettledBets)).map((bet, index) => {
+        if (!finishedEvents[bet.eventId]) return Promise.resolve([]);
+        // eslint-disable-next-line no-param-reassign
+        unsettledBets[index].status = 'SETTLED';
+        unsettledBets[index].save();
+        const winner = pullWinningTeam(finishedEvents[bet.eventId]);
+        logger.info(`Winner is ${winner} for Bet: ${bet.eventId}`);
+        return settleBet(bet, winner);
+      }),
+    ));
 };
 
 export const deletePreviousEvents = () => Event.findAll({
