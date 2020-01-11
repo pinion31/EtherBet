@@ -7,5 +7,4 @@ client.auth(process.env.REDIS_PWD);
 
 client.on('connect', () => {
   logger.info('Redis DB Connected');
-  console.log('Redis Connected');
 });

@@ -7,13 +7,14 @@ import {
   formatDate,
   parseDate,
 } from 'react-day-picker/moment';
-import { sportTabs, tabHolder, tabContainer, sportsBar } from '../css/SportsBar.css';
-
+import {
+  sportTabs, tabHolder, tabContainer, sportsBar,
+} from '../css/SportsBar.css';
 
 import SportsListing from './SportsListing.jsx';
 
 const SportsBar = ({
-  tabIndex, handleChange, sportsList, sportsEvents, onChangeDate, selectedDate,
+  tabIndex, handleChange, sportsList, sportsEvents, onChangeDate, selectedDate, sportsMap,
 }) => (
   <div>
     <AppBar position="static" className={sportsBar}>
@@ -27,7 +28,7 @@ const SportsBar = ({
         parseDate={parseDate}
         placeholder={`${formatDate(new Date(Date.now()))}`}
       />
-      <Tabs className={tabContainer} value={tabIndex} onChange={handleChange} indicatorColor="black">
+      <Tabs className={tabContainer} value={tabIndex} onChange={handleChange}>
         {
           sportsList && sportsList.map(({ sportId, sportName }) => (
             <Tab className={sportTabs} label={sportName} key={sportId} />
@@ -36,14 +37,9 @@ const SportsBar = ({
       </Tabs>
     </AppBar>
     <div className={tabHolder}>
-      { tabIndex == 0
-        && <SportsListing events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][1] : []} /> }
-      { tabIndex == 1
-        && <SportsListing events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][2] : []} /> }
-      { tabIndex == 2 && <SportsListing events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][3] : []} /> }
-      { tabIndex == 3 && <SportsListing events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][4] : []} /> }
-      { tabIndex == 4 && <SportsListing events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][5] : []} /> }
-      { tabIndex == 5 && <SportsListing events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][6] : []} /> }
+      <SportsListing
+        events={sportsEvents[selectedDate] ? sportsEvents[selectedDate][sportsMap[tabIndex]] : []}
+      />
     </div>
   </div>
 );

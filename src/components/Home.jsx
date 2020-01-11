@@ -10,19 +10,32 @@ import { getSports } from '../actions/SportActions';
 import { Provider } from './ContextStore.js';
 import { formatEvents, extractFormattedDate } from '../helpers/helpers';
 
+let sportsMap = [];
 class Home extends React.Component {
   state = {
     value: 0,
     modalOpen: false,
-    selectedDate: '',
+    selectedDate: extractFormattedDate(new Date(Date.now())),
     selectedEventKey: '',
+  };
+
+  createSportIndexToIdMap = (sportsInput = [], sportsMapInput) => {
+    const mappedSports = Array.from(sportsMapInput);
+    if (sportsInput.length) {
+      sportsInput.forEach((sport, index) => {
+        mappedSports[index] = sport.sportId;
+      });
+    }
+    return mappedSports;
   };
 
   componentDidMount = () => {
     this.props.getSports();
+    const { sports: { sports } = [] } = this.props;
+    sportsMap = this.createSportIndexToIdMap(sports, sportsMap);
   };
 
-  toggleBetModal = (key, event) => {
+  toggleBetModal = (key) => {
     const { modalOpen } = this.state;
     this.setState({
       modalOpen: !modalOpen,
@@ -32,7 +45,7 @@ class Home extends React.Component {
 
   handleChange = (event, value) => this.setState({ value });
 
-  handleChangeDate = (date, value) => {
+  handleChangeDate = (date) => {
     const formattedDate = extractFormattedDate(date);
     this.props.getEventsForDay(formattedDate)
       .then(({ status }) => {
@@ -60,6 +73,7 @@ class Home extends React.Component {
             selectedDate={selectedDate}
             sportsEvents={sportsEvents}
             onChangeDate={this.handleChangeDate}
+            sportsMap={sportsMap}
           />
           <CreateBetModal
             modalOpen={modalOpen}

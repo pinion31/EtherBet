@@ -67,8 +67,8 @@ class CreateBetModal extends React.Component {
         return this.setState({ errorMessage: error });
       }
       // eslint-disable-next-line react/destructuring-assignment
-      this.setState({betCreated:true});
-      //this.props.toggleBetModal();
+      this.setState({ betCreated: true });
+      // this.props.toggleBetModal();
     });
   }
 
@@ -83,22 +83,22 @@ class CreateBetModal extends React.Component {
           open={modalOpen}
           onClose={toggleBetModal}
         >
-         { !betCreated && (
+          { !betCreated && (
           <>
-         <DialogTitle>Invite A Friend To Bet</DialogTitle>
-           <DialogContent>
-             <DialogContentText>
+            <DialogTitle>Invite A Friend To Bet</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
             Bet:
-            </DialogContentText>
-            <Select
-              value={!teamSelectedToWin && events && events[selectedEvent] ? events[selectedEvent].teamOneName : teamSelectedToWin}
-              onChange={this.handleChange}
-              inputProps={{
-                name: 'teamSelectedToWin',
-                id: 'teamSelectedToWin',
-              }}
-            >
-              {
+              </DialogContentText>
+              <Select
+                value={!teamSelectedToWin && events && events[selectedEvent] ? events[selectedEvent].teamOneName : teamSelectedToWin}
+                onChange={this.handleChange}
+                inputProps={{
+                  name: 'teamSelectedToWin',
+                  id: 'teamSelectedToWin',
+                }}
+              >
+                {
                 events && events[selectedEvent]
                 && ['One', 'Two'].map(
                   (number, key) => (
@@ -111,57 +111,57 @@ class CreateBetModal extends React.Component {
                   ),
                 )
               }
-            </Select>
-            <DialogContentText>
+              </Select>
+              <DialogContentText>
             Wagering:
-            </DialogContentText>
-            <TextField
-              onChange={this.handleChange}
-              data-testid="wager"
-              autoFocus
-              type="number"
-              margin="dense"
-              name="wager"
-              placeholder="Amount in Wei"
-            />
-            <DialogContentText>
+              </DialogContentText>
+              <TextField
+                onChange={this.handleChange}
+                data-testid="wager"
+                autoFocus
+                type="number"
+                margin="dense"
+                name="wager"
+                placeholder="Amount in Wei"
+              />
+              <DialogContentText>
             Friend to offer bet:
-            </DialogContentText>
-            <TextField
-              onChange={this.handleChange}
-              autoFocus
-              margin="dense"
-              name="receiverLogin"
-              placeholder="Login of Friend"
-            />
-          </DialogContent>
-          <DialogActions>
-            <button type="submit" className="smButton" onClick={this.toggleModalAndResetSelected} color="primary">
+              </DialogContentText>
+              <TextField
+                onChange={this.handleChange}
+                autoFocus
+                margin="dense"
+                name="receiverLogin"
+                placeholder="Login of Friend"
+              />
+            </DialogContent>
+            <DialogActions>
+              <button type="submit" className="smButton" onClick={this.toggleModalAndResetSelected} color="primary">
             Cancel
-            </button>
-            <button type="submit" className="smButton" onClick={this.sendBet} color="primary">
+              </button>
+              <button type="submit" className="smButton" onClick={this.sendBet} color="primary">
             Propose Bet
-            </button>
-          </DialogActions>
-         <h5>{errorMessage}</h5>
-                            </>
-         )}
-         {
-           betCreated && (
-            <>
-            <DialogTitle>Bet Sent</DialogTitle>
-              <DialogContent>
-                <DialogContentText>
-                Bet Successfully Created!
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <button type="submit" className="smButton" onClick={this.props.toggleBetModal} color="primary">
-                Ok
-                </button>
-              </DialogActions>
+              </button>
+            </DialogActions>
             <h5>{errorMessage}</h5>
-                           </>
+          </>
+          )}
+          {
+           betCreated && (
+           <>
+             <DialogTitle>Bet Sent</DialogTitle>
+             <DialogContent>
+               <DialogContentText>
+                Bet Successfully Created!
+               </DialogContentText>
+             </DialogContent>
+             <DialogActions>
+               <button type="submit" className="smButton" onClick={this.props.toggleBetModal} color="primary">
+                Ok
+               </button>
+             </DialogActions>
+             <h5>{errorMessage}</h5>
+           </>
            )}
          }
         </Dialog>

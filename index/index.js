@@ -14,11 +14,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, '../dist')));
-// app.use('*', (req, res, next) => {
-//   console.log('res.session', req.session);
-//   console.log('cookie check');
-//   next();
-// });
 
 app.use('/events', events);
 app.use('/bets', bets);

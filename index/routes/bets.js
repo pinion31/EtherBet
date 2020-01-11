@@ -61,8 +61,6 @@ router.post('/propose-bet', (req, res) => {
 });
 
 router.post('/get-bets', (req, res) => {
-  // verifyToken(res, req).then(() => {
-  console.log('getting bets', req);
   const { userId } = req.body;
   const userIdInt = Number.parseInt(userId, 10);
   Bet.findAll({
@@ -72,7 +70,6 @@ router.post('/get-bets', (req, res) => {
     logger.info(`Getting Bets For ${userId}: ${JSON.stringify(bets)}`);
     res.status(200).json(bets);
   });
-  // });
 });
 
 router.post('/set-bet-status', (req, res) => {

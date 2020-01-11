@@ -1,14 +1,26 @@
 import express from 'express';
 import moment from 'moment';
 import Event from '../models/Event';
+import { client } from '../helpers/redisClient';
 import { pullEventAndSave, getEventsforFutureDays, getSportsFromDB } from '../helpers/rundown_api';
+
+const logger = require('../logger');
 
 const router = express.Router();
 
 router.get('/get-sports', (req, res) => {
-  getSportsFromDB()
-    .then(result => res.status(200).json(result))
-    .catch(() => res.status(200).send({ error: 'Error Receiving Sports' }));
+  client.get('sports', (err, cachedSports) => {
+    if (err || !cachedSports) { // sports not cached then retrievd from dv
+      return getSportsFromDB()
+        .then((result) => {
+          logger.info(`Retrieving Sports from DB and setting cache: ${result}`);
+          client.set('sports', JSON.stringify(result));
+          return res.status(200).json(result);
+        }).catch(() => res.status(200).send({ error: 'Error Receiving Sports' }));
+    }
+    logger.info(`Retrieving Sports from Redis cache: ${cachedSports}`);
+    return res.status(200).json(JSON.parse(cachedSports));
+  });
 });
 
 // router.get('/event-from-service-by-sport-by-date', (req, res) => {
