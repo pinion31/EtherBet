@@ -6,10 +6,11 @@ import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid in
 import { bindActionCreators } from 'redux';
 import { getUser, logoutUser } from '../../actions/UserActions';
 import LoginModal from './LoginModal.jsx';
+import ErrorModal from './ErrorModal.jsx';
 import Footer from './Footer.jsx';
 import CreateBetModal from './CreateBetModal.jsx';
 import {
-  formatEvents, extractFormattedDate, formatEventsById, validateFieldsAreNotBlank } from '../../helpers/helpers';
+  formatEventsById, validateFieldsAreNotBlank } from '../../helpers/helpers';
 import {
   nav, navLoggedIn, logo, loggedInBar,
 } from '../css/LoginBar.css';
@@ -21,13 +22,18 @@ class LoginBar extends React.Component {
     password: '',
     errorMessage: '',
     loginModalErrorMessage: '',
+    errorModalOpen: false,
   }
 
   handleChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value,
-      errorMessage: '',
+      errorModalOpen: false,
     });
+  };
+
+  handleModalOpen = (isOpen, message) => {
+    this.setState({ errorModalOpen: isOpen, errorMessage: message });
   };
 
   verifyLogin = () => {
@@ -36,7 +42,7 @@ class LoginBar extends React.Component {
     } = this.state;
 
     return (
-      validateFieldsAreNotBlank({ username, password }, () => this.setState({ errorMessage: 'Please complete all fields.' }))
+      validateFieldsAreNotBlank({ username, password }, () => this.handleModalOpen(true, 'Please complete all fields.'))
     );
   };
 
@@ -46,10 +52,10 @@ class LoginBar extends React.Component {
       this.props.getUser(username, password)
         .then(({ status, error }) => {
           if (status == 200) {
-            if (error) return this.setState({ errorMessage: error });
+            if (error) return this.handleModalOpen(true, error);
             return isModal ? this.props.history.push('/') : this.props.history.push('/todays-events');
           }
-          this.setState({ errorMessage: error });
+          return this.handleModalOpen(true, error);
         });
     }
   };
@@ -60,12 +66,12 @@ class LoginBar extends React.Component {
       if (status == 200) {
         return this.props.history.push('/');
       }
-      return this.setState({ errorMessage: 'Error logging out user'});
+      return this.handleModalOpen(true, 'Error logging out user');
     });
   };
 
   render() {
-    const { errorMessage, loginModalErrorMessage } = this.state;
+    const { errorMessage, loginModalErrorMessage, errorModalOpen } = this.state;
     const { user, modalOpen, toggleLoginModal, events, selectedEventKey } = this.props;
     const compiledEvents = formatEventsById(events || []);
 
@@ -108,12 +114,6 @@ class LoginBar extends React.Component {
             </div>
             )
           }
-          <div
-            className="errorMessageStyle"
-            style={{ display: errorMessage ? 'block' : 'none' }}
-          >
-            <h5>{errorMessage}</h5>
-          </div>
         </nav>
         { modalOpen && !user.id && (
           <LoginModal
@@ -134,6 +134,7 @@ class LoginBar extends React.Component {
           />
         )
         }
+        <ErrorModal modalOpen={errorModalOpen} toggleModal={() => this.handleModalOpen(false, errorMessage)} message={errorMessage} />
         {this.props.children}
         {/* <Footer /> */}
       </>
