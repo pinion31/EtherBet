@@ -106,7 +106,7 @@ class Landing extends React.Component {
                     <div key={sportId} className={styles['sport-bar']}>
                       <h3>{sportName}</h3>
                       {
-                        events && events.map(event => event.sportId == sportId
+                        events && events.map(event => event.sportId == sportId && checkIfEventStarted(event.eventDate)
                           && <EventCard key={event.id} event={event} toggleLoginModal={() => this.toggleLoginModal(event.id)} />)
                       }
                     </div>
