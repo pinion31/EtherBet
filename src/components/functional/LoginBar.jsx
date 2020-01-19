@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
 import { getUser, logoutUser } from '../../actions/UserActions';
+// import LoginModal from './LoginModal.jsx';
 import LoginModal from './LoginModal.jsx';
 import ErrorModal from './ErrorModal.jsx';
 import Footer from './Footer.jsx';

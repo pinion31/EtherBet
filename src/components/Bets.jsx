@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { menuWrapper } from './functional/MenuBarWrapper.jsx';
 import { setBetStatus } from '../actions/BetActions';
-import BetCard from './functional/BetCard.jsx';
+
+const BetCard = React.lazy(() => import('./functional/BetCard.jsx'));
+
 
 class Bets extends React.Component {
   state = {
@@ -54,27 +57,36 @@ class Bets extends React.Component {
     return (
       <div>
         <h2>Bets You Have Been Offered </h2>
-        {
-          betsOffered.map((bet, index) => (
-            <BetCard
-              bet={bet}
-              key={bet.id}
-              type="OFFER"
-              index={index}
-              acceptBet={this.acceptBet}
-              opponent={bet.betCreatorLogin}
-            />
-          ))
-        }
+        <Suspense fallback={<CircularProgress />}>
+          {
+            betsOffered.map((bet, index) => (
+              <BetCard
+                bet={bet}
+                key={bet.id}
+                type="OFFER"
+                index={index}
+                acceptBet={this.acceptBet}
+                opponent={bet.betCreatorLogin}
+              />
+            ))
+          }
+        </Suspense>
         <h2> Bets You Have Accepted </h2>
-        {
-          betsReceived.map(bet => <BetCard bet={bet} opponent={bet.betCreatorLogin} key={bet.id} type="ACCEPT" />)
-        }
+        <Suspense fallback={<CircularProgress />}>
+          {
+            betsReceived.map(bet => (
+              <BetCard bet={bet} opponent={bet.betCreatorLogin} key={bet.id} type="ACCEPT" />
+            ))
+          }
+        </Suspense>
         <h2> Bets You Have Created </h2>
-        {
-          betsCreated.map(bet => <BetCard bet={bet} key={bet.id} opponent={bet.betReceiverLogin} type="CREATOR" />)
-        }
-
+        <Suspense fallback={<CircularProgress />}>
+          {
+            betsCreated.map(bet => (
+              <BetCard bet={bet} key={bet.id} opponent={bet.betReceiverLogin} type="CREATOR" />
+            ))
+          }
+        </Suspense>
       </div>
     );
   }

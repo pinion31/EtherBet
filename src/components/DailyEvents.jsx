@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import injectSheet from 'react-jss';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { menuWrapper } from './functional/MenuBarWrapper.jsx';
 import {
   formatEvents, extractFormattedDate, compileEvents, filterEventsNotToday,
@@ -9,8 +9,10 @@ import {
 import { Provider } from './ContextStore.js';
 import { proposeBet, getBets } from '../actions/BetActions';
 import { getEvents } from '../actions/EventActions';
-import SportsListing from './functional/SportsListing.jsx';
+
 import CreateBetModal from './functional/CreateBetModal.jsx';
+
+const SportsListing = React.lazy(() => import('./functional/SportsListing.jsx'));
 
 class DailyEvents extends React.Component {
   state = {
@@ -44,7 +46,9 @@ class DailyEvents extends React.Component {
       <div>
         <Provider value={{ handleToggleModal: this.toggleBetModal }}>
           <h3 style={{ marginLeft: 20, fontSize: '2em', marginBottom: 0 }}>{'Today\'s Events'}</h3>
-          {<SportsListing events={compiledEvents} />}
+          <Suspense fallback={<CircularProgress />}>
+            <SportsListing events={compiledEvents} />
+          </Suspense>
           <CreateBetModal
             modalOpen={modalOpen}
             toggleBetModal={this.toggleBetModal}

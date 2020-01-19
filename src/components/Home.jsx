@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
-import SportsBar from './functional/SportsBar.jsx';
 import { menuWrapper } from './functional/MenuBarWrapper.jsx';
 import CreateBetModal from './functional/CreateBetModal.jsx';
 import { proposeBet } from '../actions/BetActions';
@@ -9,6 +9,8 @@ import { getEventsForDay } from '../actions/EventActions';
 import { getSports } from '../actions/SportActions';
 import { Provider } from './ContextStore.js';
 import { formatEvents, extractFormattedDate } from '../helpers/helpers';
+
+const SportsBar = React.lazy(() => import('./functional/SportsBar.jsx'));
 
 let sportsMap = [];
 class Home extends React.Component {
@@ -65,16 +67,18 @@ class Home extends React.Component {
     return (
       <div style={{ backgroundColor: '#26272A' }}>
         <Provider value={{ handleToggleModal: this.toggleBetModal }}>
-          <SportsBar
-            data-testid="sports-bar"
-            tabIndex={value}
-            sportsList={sportsList.sports || []}
-            handleChange={this.handleChange}
-            selectedDate={selectedDate}
-            sportsEvents={sportsEvents}
-            onChangeDate={this.handleChangeDate}
-            sportsMap={sportsMap}
-          />
+          <Suspense fallback={<CircularProgress />}>
+            <SportsBar
+              data-testid="sports-bar"
+              tabIndex={value}
+              sportsList={sportsList.sports || []}
+              handleChange={this.handleChange}
+              selectedDate={selectedDate}
+              sportsEvents={sportsEvents}
+              onChangeDate={this.handleChangeDate}
+              sportsMap={sportsMap}
+            />
+          </Suspense>
           <CreateBetModal
             modalOpen={modalOpen}
             toggleBetModal={this.toggleBetModal}
