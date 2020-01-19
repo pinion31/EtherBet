@@ -12,7 +12,7 @@ import CreateBetModal from './CreateBetModal.jsx';
 import {
   formatEventsById, validateFieldsAreNotBlank } from '../../helpers/helpers';
 import {
-  nav, navLoggedIn, logo, loggedInBar,
+  nav, navLoggedIn, logo, loggedInBar, login, featureImages,
 } from '../css/LoginBar.css';
 
 
@@ -82,9 +82,12 @@ class LoginBar extends React.Component {
           <div className={logo}>
             <p>Etherbet</p>
           </div>
+          <div className={featureImages}>
+            <img alt="sport" src="http://placekitten.com/g/400/400" />
+          </div>
           {
             !user.id && (
-            <div>
+            <div className={login}>
               <button type="submit" onClick={() => this.props.history.push('/sign-up')}>Sign Up</button>
               <button type="submit" onClick={() => this.loginUser()}> Login </button>
               <input
