@@ -9,7 +9,9 @@ import {
 import { Provider } from './ContextStore.js';
 import { proposeBet, getBets } from '../actions/BetActions';
 import { getEvents } from '../actions/EventActions';
-
+import {
+  dailyEvents,
+} from './css/DailyEvents.css';
 import CreateBetModal from './functional/CreateBetModal.jsx';
 
 const SportsListing = React.lazy(() => import('./functional/SportsListing.jsx'));
@@ -43,7 +45,7 @@ class DailyEvents extends React.Component {
     const compiledEvents = Object.keys(formattedEvents).length ? compileEvents(formattedEvents[extractFormattedDate(date)]) : [];
 
     return (
-      <div>
+      <div className={dailyEvents}>
         <Provider value={{ handleToggleModal: this.toggleBetModal }}>
           <h3 style={{ marginLeft: 20, fontSize: '2em', marginBottom: 0 }}>{'Today\'s Events'}</h3>
           <Suspense fallback={<CircularProgress />}>

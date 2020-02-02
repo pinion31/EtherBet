@@ -1,16 +1,17 @@
-.nav {
+.nav, .navNoMargin {
   background: #26272A;
   height: 50px;
   display: flex;
   justify-content: space-between;
 }
 
-.navLoggedIn {
+.navLoggedIn, .navLoggedInNoMargin {
   background: #26272A;
   height: 50px;
   display: flex;
   justify-content: center;
 }
+
 .loggedInBar > button {
   margin-top: 15px;
 }
@@ -41,15 +42,13 @@
   bottom: 10px;
 }
 
-
-.nav > div > button {
+.nav > div > button, .navNoMargin > div > button {
   margin: 0 10px;
 }
 
 .featureImages {
   display: none;
 }
-
 
 @media only screen and (max-width:800px) {
   .logo {
@@ -66,39 +65,58 @@
     background: none;
   }
 
-  .nav > div > button {
+  .nav > div > button, .navNoMargin > div > button {
     width: 100%;
     height: 50px;
     font-size: 1.75em;
     margin: 2px 0;
   }
 
-  .nav > div > input {
+  .nav > div > input, .navNoMargin > div > input  {
     width: 90%;
     display: block;
     height: 40px;
     margin: 10px auto;
   }
 
-  .nav > div> input:first-child {
+  .nav > div> input:first-child, .navNoMargin > div> input:first-child {
     margin-left: 7%;
   }
 
   .nav {
     background: #26272A;
     height: 715px;
+    margin-bottom: 400px;
     display: block;
   }
 
+  .navNoMargin {
+    background: #26272A;
+    height: 715px;
+    _margin-bottom: 400px;
+    display: block;
+  }
   .navLoggedIn {
+    background: #26272A;
+    height: 150px;
+    display: block;
+    margin-bottom: 420px;
+  }
+
+  .navLoggedInNoMargin {
     background: #26272A;
     height: 150px;
     display: block;
   }
 
+  .loggedInBar {
+    display:none;
+  }
+
   .featureImages {
     display: block;
     text-align: center;
+    _margin-bottom: 420px;
   }
   /* .nav, .nav > div {
     display: block;

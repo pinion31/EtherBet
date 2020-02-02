@@ -13,8 +13,8 @@ import CreateBetModal from './CreateBetModal.jsx';
 import {
   formatEventsById, validateFieldsAreNotBlank } from '../../helpers/helpers';
 import {
-  nav, navLoggedIn, logo, loggedInBar, login, featureImages,
-} from '../css/LoginBar.css';
+  nav, navNoMargin, navLoggedIn, navLoggedInNoMargin, logo, loggedInBar, login, featureImages,
+} from '../css/LoginBar.css'; // TO DO: remove nav from CSS; might be dead code
 
 
 class LoginBar extends React.Component {
@@ -24,6 +24,7 @@ class LoginBar extends React.Component {
     errorMessage: '',
     loginModalErrorMessage: '',
     errorModalOpen: false,
+    onLandingPage: true,
   }
 
   handleChange = (event) => {
@@ -71,6 +72,16 @@ class LoginBar extends React.Component {
     });
   };
 
+  getNavClass = (user) =>  {
+    if (user.id) { // not logged in
+      if (this.props.location.pathname == '/') { // on landing page
+        return navLoggedIn;
+      }
+      return navLoggedInNoMargin;
+    }
+    return navNoMargin;
+  }
+
   render() {
     const { errorMessage, loginModalErrorMessage, errorModalOpen } = this.state;
     const { user, modalOpen, toggleLoginModal, events, selectedEventKey } = this.props;
@@ -79,13 +90,16 @@ class LoginBar extends React.Component {
     // check for user.id is temporary; replace for user session
     return (
       <>
-        <nav className={user.id ? navLoggedIn : nav}>
+        <nav className={this.getNavClass(user)}>
           <div className={logo}>
             <p>Etherbet</p>
           </div>
-          <div className={featureImages}>
-            <img alt="sport" src="http://placekitten.com/g/400/400" />
-          </div>
+          { this.props.location.pathname == '/' && (
+            <div className={featureImages}>
+              <img alt="sport" src="http://placekitten.com/g/400/400" />
+            </div>
+          )
+          }
           {
             !user.id && (
             <div className={login}>
