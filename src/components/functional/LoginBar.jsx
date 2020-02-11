@@ -2,6 +2,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import IconButton from '@material-ui/core/IconButton';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux'; // 5.0.5 version must be used to avoid invariant react hook error
 import { bindActionCreators } from 'redux';
 import { getUser, logoutUser } from '../../actions/UserActions';
@@ -13,7 +20,7 @@ import CreateBetModal from './CreateBetModal.jsx';
 import {
   formatEventsById, validateFieldsAreNotBlank } from '../../helpers/helpers';
 import {
-  nav, navNoMargin, navLoggedIn, navLoggedInNoMargin, logo, loggedInBar, login, featureImages,
+  nav, navNoMargin, navLoggedIn, navLoggedInNoMargin, logo, loggedInBar, login, featureImages,sideMenu,
 } from '../css/LoginBar.css'; // TO DO: remove nav from CSS; might be dead code
 
 
@@ -24,13 +31,22 @@ class LoginBar extends React.Component {
     errorMessage: '',
     loginModalErrorMessage: '',
     errorModalOpen: false,
-    onLandingPage: true,
+    showSideMenu: false,
   }
 
   handleChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value,
       errorModalOpen: false,
+    });
+  };
+
+  handleSideMenu = () => {
+    const { showSideMenu } = this.state;
+    console.log('change')
+    this.setState({
+      errorModalOpen: false,
+      showSideMenu: !showSideMenu,
     });
   };
 
@@ -82,8 +98,26 @@ class LoginBar extends React.Component {
     return navNoMargin;
   }
 
+  displaySideMenu = () => (
+    <div
+      className={''}
+      style={{backgroundColor: 'black'}}
+      role="presentation"
+      onClick={this.handleSideMenu}
+      onKeyDown={this.handleSideMenu}
+    >
+      <List style={{backgroundColor: 'red'}}>
+        <ChevronLeftIcon />
+        <ListItem onClick={() => this.props.history.push('/todays-events')}>{'Today\'s Events'}</ListItem>
+        <ListItem onClick={() => this.props.history.push('/home')}>Browse Events</ListItem>
+        <ListItem onClick={() => this.props.history.push('/your-bets')}>Your Bets</ListItem>
+        <ListItem onClick={this.logOutUser}>Log Out</ListItem>
+      </List>
+    </div>
+  );
+
   render() {
-    const { errorMessage, loginModalErrorMessage, errorModalOpen } = this.state;
+    const { errorMessage, loginModalErrorMessage, errorModalOpen, showSideMenu } = this.state;
     const { user, modalOpen, toggleLoginModal, events, selectedEventKey } = this.props;
     const compiledEvents = formatEventsById(events || []);
 
@@ -92,6 +126,11 @@ class LoginBar extends React.Component {
       <>
         <nav className={this.getNavClass(user)}>
           <div className={logo}>
+            <div className={sideMenu}>
+              <IconButton onClick={this.handleSideMenu}>
+                <MenuIcon />
+              </IconButton>
+            </div>
             <p>Etherbet</p>
           </div>
           { this.props.location.pathname == '/' && (
@@ -124,12 +163,23 @@ class LoginBar extends React.Component {
           }
           {
             user.id && (
-            <div className={loggedInBar}>
-              <h3 type="submit" onClick={() => this.props.history.push('/todays-events')}>{'Today\'s Events'}</h3>
-              <h3 type="submit" onClick={() => this.props.history.push('/home')}>Browse Events</h3>
-              <h3 type="submit" onClick={() => this.props.history.push('/your-bets')}>Your Bets</h3>
-              <button type="submit" onClick={this.logOutUser}> Log Out </button>
-            </div>
+            <>
+              <div>
+                <SwipeableDrawer
+                  open={showSideMenu}
+                  onClose={this.handleSideMenu}
+                  onOpen={this.handleSideMenu}
+                >
+                  {this.displaySideMenu()}
+                </SwipeableDrawer>
+              </div>
+              <div className={loggedInBar}>
+                <h3 type="submit" onClick={() => this.props.history.push('/todays-events')}>{'Today\'s Events'}</h3>
+                <h3 type="submit" onClick={() => this.props.history.push('/home')}>Browse Events</h3>
+                <h3 type="submit" onClick={() => this.props.history.push('/your-bets')}>Your Bets</h3>
+                <button type="submit" onClick={this.logOutUser}> Log Out </button>
+              </div>
+            </>
             )
           }
         </nav>

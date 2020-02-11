@@ -27,7 +27,7 @@ app.get('*', (req, res) => {
 app.listen(process.env.PORT || 3000, () => {
   logger.info(`Starting app at ${new Date(Date.now())}`);
   if (process.env.NODE_ENV === 'production') startCronJob();
-  console.log('App started for your convenience');
+  console.log('App started for your convenience.');
 });
 // }
 

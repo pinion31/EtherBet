@@ -12,6 +12,10 @@
   justify-content: center;
 }
 
+.sideMenu {
+  display: none;
+}
+
 .loggedInBar > button {
   margin-top: 15px;
 }
@@ -57,12 +61,18 @@
     color:white;
     margin: 0;
     margin-bottom: 45px;
+    margin-left: 15px;
     padding: 0;
     width: 46px;
     font-size: 4em;
     max-height: 45px;
     border-radius: 25px;
     background: none;
+    display: inline-flex;
+  }
+
+  .sideMenu {
+    display: block;
   }
 
   .nav > div > button, .navNoMargin > div > button {

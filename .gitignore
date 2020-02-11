@@ -63,3 +63,4 @@ typings/
 package-lock.json
 .cache
 dist/
+index/helpers/tester.js
