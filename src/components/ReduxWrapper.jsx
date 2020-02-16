@@ -2,11 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import rootReducer from '../reducers/rootReducer';
 
 const middleware = applyMiddleware(thunk);
-export let store = createStore(rootReducer, middleware);
+export const store = createStore(rootReducer, middleware);
 
 export const resetStore = () => store = createStore(rootReducer, middleware);
 

@@ -38,12 +38,12 @@ class LoginBar extends React.Component {
     this.setState({
       [event.target.id]: event.target.value,
       errorModalOpen: false,
+      errorMessage: '',
     });
   };
 
   handleSideMenu = () => {
     const { showSideMenu } = this.state;
-    console.log('change')
     this.setState({
       errorModalOpen: false,
       showSideMenu: !showSideMenu,
@@ -147,6 +147,7 @@ class LoginBar extends React.Component {
               <input
                 name="username"
                 margin="dense"
+                data-testid="username-bar"
                 id="username"
                 label="Username"
                 onChange={this.handleChange}
@@ -154,6 +155,7 @@ class LoginBar extends React.Component {
               <input
                 name="password"
                 margin="dense"
+                data-testid="password-bar"
                 id="password"
                 label="Password"
                 onChange={this.handleChange}

@@ -28,9 +28,9 @@ const formatDateForDisplay = (eventDate) => {
   return [...formattedDate.slice(0, -6), ' ', ...formattedDate.slice(-2)].join('');
 };
 
-const checkIfEventStarted = eventDate => Date.now() < new Date(eventDate);
+const checkEventStatus = (eventDate, eventStatus) => new Date(Date.now()) < new Date(eventDate) && eventStatus == 'STATUS_SCHEDULED';
 
-const EventCard = ({ event: { teamOneName, teamTwoName, eventDate }, toggleLoginModal }) => (
+const EventCard = ({ event: { teamOneName, teamTwoName, eventDate, eventStatus }, toggleLoginModal }) => (
   <div className={styles['game-row']}>
     <div>
       <p>{new Date(eventDate).toDateString().slice(0, -5)}</p>
@@ -43,7 +43,7 @@ const EventCard = ({ event: { teamOneName, teamTwoName, eventDate }, toggleLogin
         <p>{teamTwoName}</p>
       </div>
       {
-        checkIfEventStarted(eventDate) && (
+        checkEventStatus(eventDate, eventStatus) && (
           <button onClick={toggleLoginModal} type="submit">Bet Now</button>
         )
       }
@@ -66,6 +66,7 @@ class Landing extends React.Component {
     this.props.getEventsForUpcomingDays();
   };
 
+  // TODO: pass in updater function instead
   toggleLoginModal = (key) => {
     const { modalOpen } = this.state;
     this.setState({
@@ -102,14 +103,16 @@ class Landing extends React.Component {
                   <h2> Featured Games</h2>
                 </div>
                 {
-                  sports && sports.sports && sports.sports.map(({ sportName, sportId }) => (
+                  sports && sports.sports && sports.sports.map(({ sportName, sportId, enabled }) => (
+                    enabled && (
                     <div key={sportId} className={styles['sport-bar']}>
                       <h3>{sportName}</h3>
                       {
-                        events && events.map(event => event.sportId == sportId && checkIfEventStarted(event.eventDate)
+                        events && events.map(event => event.sportId == sportId && checkEventStatus(event.eventDate, event.eventStatus)
                           && <EventCard key={event.id} event={event} toggleLoginModal={() => this.toggleLoginModal(event.id)} />)
                       }
                     </div>
+                    )
                   ))
                 }
               </div>
