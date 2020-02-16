@@ -149,4 +149,3 @@ test('it displays error if incorrect login', async () => {
   expect(fakeHistory.push).toHaveBeenCalledTimes(0);
   expect(getByText('Invalid username/password')).toBeDefined();
 });
-

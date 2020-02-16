@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import rootReducer from '../reducers/rootReducer';
 
 const middleware = applyMiddleware(thunk);
-export const store = createStore(rootReducer, middleware);
+export let store = createStore(rootReducer, middleware);
 
 export const resetStore = () => store = createStore(rootReducer, middleware);
 

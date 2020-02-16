@@ -26,9 +26,9 @@ test('it loads and displays signup elements', () => {
   expect(getByText('Sign up')).toBeDefined();
 });
 
-test('it displays error if attempting to login with missing fields', () => {
+test('it displays error if attempting to login with missing fields', async () => {
   const {
-    getByText, queryByText, getByLabelText, getAllByText,
+    getByText, queryByText, getByLabelText, getAllByText, getByTestId
   } = render(
     <ReduxWrapper>
       <Signup />
@@ -37,34 +37,33 @@ test('it displays error if attempting to login with missing fields', () => {
 
   expect(queryByText('Please complete all fields.')).toBeNull();
   const [SignUpButton] = getAllByText('Sign up');
-  const usernameNode = getByLabelText('Username');
-  const passwordNode = getByLabelText('Password');
-  const confirmPasswordNode = getByLabelText('Confirm Password');
-  const addressNode = getByLabelText('Ether Address');
+  const usernameNode = getByTestId('username-signup');
+  const passwordNode = getByTestId('password-signup');
+  const confirmPasswordNode = getByTestId('confirm-signup');
+  const addressNode = getByTestId('address-signup');
 
   SignUpButton.click();
-  expect(getByText('Please complete all fields.')).toBeDefined();
+  expect(getByText('Please complete all fields.')).not.toBeNull();
   fireEvent.change(usernameNode, { target: { value: 'Chris' } });
   expect(queryByText('Please complete all fields.')).toBeNull();
 
   SignUpButton.click();
-  expect(getByText('Please complete all fields.')).toBeDefined();
+  expect(getByText('Please complete all fields.')).not.toBeNull();
   fireEvent.change(passwordNode, { target: { value: 'password' } });
   expect(queryByText('Please complete all fields.')).toBeNull();
-
   SignUpButton.click();
-  expect(getByText('Please complete all fields.')).toBeDefined();
+  expect(getByText('Please complete all fields.')).not.toBeNull();
   fireEvent.change(confirmPasswordNode, { target: { value: 'password' } });
   expect(queryByText('Please complete all fields.')).toBeNull();
 
   SignUpButton.click();
-  expect(getByText('Please complete all fields.')).toBeDefined();
+  expect(getByText('Please complete all fields.')).not.toBeNull();
   fireEvent.change(addressNode, { target: { value: 'address' } });
   expect(queryByText('Please complete all fields.')).toBeNull();
 
   fireEvent.change(confirmPasswordNode, { target: { value: 'password1' } });
   SignUpButton.click();
-  expect(getByText('Passwords do not match.')).toBeDefined();
+  expect(getByText('Passwords do not match.')).not.toBeNull();
 });
 
 test('it creates user', async () => {
@@ -72,7 +71,7 @@ test('it creates user', async () => {
     push: jest.fn(),
   };
   const {
-    getAllByText, getByLabelText,
+    getAllByText, getByTestId,
   } = render(
     <ReduxWrapper>
       <Signup history={fakeHistory} />
@@ -83,10 +82,10 @@ test('it creates user', async () => {
   axios.post.mockResolvedValue(resp);
 
   const SignupButton = getAllByText('Sign up');
-  const usernameNode = getByLabelText('Username');
-  const passwordNode = getByLabelText('Password');
-  const confirmPasswordNode = getByLabelText('Confirm Password');
-  const addressNode = getByLabelText('Ether Address');
+  const usernameNode = getByTestId('username-signup');
+  const passwordNode = getByTestId('password-signup');
+  const confirmPasswordNode = getByTestId('confirm-signup');
+  const addressNode = getByTestId('address-signup');
 
   fireEvent.change(usernameNode, { target: { value: 'Chris' } });
   fireEvent.change(passwordNode, { target: { value: 'Mini' } });
@@ -107,7 +106,7 @@ test('it handles 500 error', async () => {
     push: jest.fn(),
   };
   const {
-    getAllByText, getByLabelText, getByText,
+    getAllByText, getByTestId, getByText,
   } = render(
     <ReduxWrapper>
       <Signup history={fakeHistory} />
@@ -118,10 +117,10 @@ test('it handles 500 error', async () => {
   axios.post.mockRejectedValue(resp);
 
   const SignupButton = getAllByText('Sign up');
-  const usernameNode = getByLabelText('Username');
-  const passwordNode = getByLabelText('Password');
-  const confirmPasswordNode = getByLabelText('Confirm Password');
-  const addressNode = getByLabelText('Ether Address');
+  const usernameNode = getByTestId('username-signup');
+  const passwordNode = getByTestId('password-signup');
+  const confirmPasswordNode = getByTestId('confirm-signup');
+  const addressNode = getByTestId('address-signup');
 
   fireEvent.change(usernameNode, { target: { value: 'Chris' } });
   fireEvent.change(passwordNode, { target: { value: 'Mini' } });

@@ -61,6 +61,7 @@ class Signup extends React.Component {
               <input
                 name="username"
                 margin="dense"
+                data-testid="username-signup"
                 id="username"
                 label="Username"
                 onChange={this.handleChange}
@@ -71,6 +72,7 @@ class Signup extends React.Component {
               <input
                 type="password"
                 margin="dense"
+                data-testid="password-signup"
                 id="password1"
                 label="Password"
                 onChange={this.handleChange}
@@ -81,6 +83,7 @@ class Signup extends React.Component {
               <input
                 type="password"
                 margin="dense"
+                data-testid="confirm-signup"
                 id="password2"
                 label="Confirm Password"
                 onChange={this.handleChange}
@@ -91,6 +94,7 @@ class Signup extends React.Component {
               <input
                 type="password"
                 margin="dense"
+                data-testid="address-signup"
                 id="address"
                 label="Ether Address"
                 onChange={this.handleChange}
