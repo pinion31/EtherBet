@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import axios from 'axios';
-import { ReduxWrapper, store, resetStore } from '../../src/components/ReduxWrapper';
+import { ReduxWrapper, store, resetStore } from '../testHelpers/ReduxWrapper';
 import CreateBetModal from '../../src/components/functional/CreateBetModal.jsx';
 import compiledEvents from '../responses/compiledEvents';
 import mockBet from '../responses/mockBet';

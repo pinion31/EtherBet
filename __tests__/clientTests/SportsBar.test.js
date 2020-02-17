@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from 'react-testing-library';
 import { formatDate } from 'react-day-picker/moment';
-import { ReduxWrapper, store, resetStore } from '../../src/components/ReduxWrapper';
+import { ReduxWrapper, store, resetStore } from '../testHelpers/ReduxWrapper';
 import SportsBar from '../../src/components/functional/SportsBar.jsx';
 import sportsEvents from '../responses/formattedSportsFromDB.json';
 import sports from '../responses/sportsFromDb';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import { ReduxWrapper } from '../../src/components/ReduxWrapper';
+import { ReduxWrapper } from '../testHelpers/ReduxWrapper';
 import MenuBar from '../../src/components/functional/MenuBar.jsx';
 
 afterEach(cleanup);
@@ -20,6 +20,4 @@ test('it loads and displays Bet Card', async () => {
   expect(getByText('Today\'s Events')).toBeDefined();
   expect(getByText('Browse Events')).toBeDefined();
   expect(getByText('Your Bets')).toBeDefined();
-  expect(getByText('Stats')).toBeDefined();
-  expect(getByText('Login')).toBeDefined();
 });

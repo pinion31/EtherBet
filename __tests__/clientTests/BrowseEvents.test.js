@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-  render, fireEvent, cleanup,
+  render, cleanup,
 } from 'react-testing-library';
-import { ReduxWrapper, store, resetStore } from '../../src/components/ReduxWrapper';
+import { ReduxWrapper, resetStore } from '../testHelpers/ReduxWrapper';
 import Home from '../../src/components/Home.jsx';
-import sports from '../responses/sportsFromDb';
-import events from '../responses/eventsForToday';
 
 afterEach(() => {
   cleanup();
@@ -13,7 +11,7 @@ afterEach(() => {
 });
 
 test('it loads and displays sports bar', () => {
-  const { getByText, queryAllByText, getAllByText } = render(
+  const { getByText } = render(
     <ReduxWrapper>
       <Home />
     </ReduxWrapper>,

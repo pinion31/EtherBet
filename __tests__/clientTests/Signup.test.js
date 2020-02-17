@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import axios from 'axios';
-import { ReduxWrapper } from '../../src/components/ReduxWrapper';
+import { ReduxWrapper } from '../testHelpers/ReduxWrapper';
 import Signup from '../../src/components/Signup.jsx';
 
 jest.mock('axios');

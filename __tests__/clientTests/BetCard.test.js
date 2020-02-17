@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import { ReduxWrapper } from '../../src/components/ReduxWrapper';
+import { ReduxWrapper } from '../testHelpers/ReduxWrapper';
 import BetCard from '../../src/components/functional/BetCard.jsx';
 import bet from '../responses/mockBet';
 

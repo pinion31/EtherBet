@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, cleanup } from 'react-testing-library';
 import axios from 'axios';
-import { ReduxWrapper, store, resetStore } from '../../src/components/ReduxWrapper';
+import { ReduxWrapper, store, resetStore } from '../testHelpers/ReduxWrapper';
 import Bets from '../../src/components/Bets.jsx';
 import mockBetsInStates from '../responses/mockBetsInVariousStates';
 

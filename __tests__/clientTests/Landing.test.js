@@ -3,7 +3,7 @@ import {
   render, fireEvent, cleanup,
 } from 'react-testing-library';
 import axios from 'axios';
-import { ReduxWrapper } from '../../src/components/ReduxWrapper';
+import { ReduxWrapper } from '../testHelpers/ReduxWrapper';
 import Landing from '../../src/components/Landing.jsx';
 import sportsFromDB from '../responses/sportsFromDb.json';
 import formattedEvents from '../responses/formattedEvents.json';
