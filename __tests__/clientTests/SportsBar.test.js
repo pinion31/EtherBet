@@ -20,57 +20,57 @@ const flushPromise = () => new Promise((resolve) => {
   setTimeout(resolve, 0);
 });
 
-// test('it loads and displays sports bar', async () => {
-//   const {
-//     getByText, getByPlaceholderText,
-//   } = render(
-//     <ReduxWrapper>
-//       <SportsBar sportsList={sportsEvents} tabIndex={0} sportsEvents={sportsEvents} />
-//     </ReduxWrapper>,
-//   );
+test('it loads and displays sports bar', async () => {
+  const {
+    getByText, getByPlaceholderText,
+  } = render(
+    <ReduxWrapper>
+      <SportsBar sportsList={sportsEvents} tabIndex={0} sportsEvents={sportsEvents} />
+    </ReduxWrapper>,
+  );
 
-//   await flushPromise();
+  await flushPromise();
 
-//   expect(getByPlaceholderText(`${formatDate(new Date(Date.now()))}`)).toBeDefined();
-//   expect(getByText('NCAA Football')).toBeDefined();
-//   expect(getByText('NFL')).toBeDefined();
-//   expect(getByText('MLB')).toBeDefined();
-//   expect(getByText('NBA')).toBeDefined();
-//   expect(getByText('NCAA Men\'s Basketball')).toBeDefined();
-//   expect(getByText('NHL')).toBeDefined();
-//   expect(getByText('UFC/MMA')).toBeDefined();
-//   expect(getByText('WNBA')).toBeDefined();
-// });
+  expect(getByPlaceholderText(`${formatDate(new Date(Date.now()))}`)).toBeDefined();
+  expect(getByText('NCAA Football')).toBeDefined();
+  expect(getByText('NFL')).toBeDefined();
+  expect(getByText('MLB')).toBeDefined();
+  expect(getByText('NBA')).toBeDefined();
+  expect(getByText('NCAA Men\'s Basketball')).toBeDefined();
+  expect(getByText('NHL')).toBeDefined();
+  expect(getByText('UFC/MMA')).toBeDefined();
+  expect(getByText('WNBA')).toBeDefined();
+});
 
-// test('it loads correct events for date for sport with id of 1', async (done) => {
-//   store.dispatch({ type: 'GET_SPORTS', payload: sports });
+test('it loads correct events for date for sport with id of 1', async (done) => {
+  store.dispatch({ type: 'GET_SPORTS', payload: sports });
 
-//   await flushPromise();
-//   const {
-//     queryAllByText,
-//   } = render(
-//     <ReduxWrapper>
-//       <Provider value={{ handleToggleModal: () => {} }}>
-//         <SportsBar
-//           sportsList={sportsEvents}
-//           tabIndex={3}
-//           sportsEvents={events}
-//           selectedDate="2019-07-21"
-//           sportsMap={sportsMap}
-//         />
-//       </Provider>
-//     </ReduxWrapper>,
-//   );
-//   await flushPromise();
+  await flushPromise();
+  const {
+    queryAllByText,
+  } = render(
+    <ReduxWrapper>
+      <Provider value={{ handleToggleModal: () => {} }}>
+        <SportsBar
+          sportsList={sportsEvents}
+          tabIndex={3}
+          sportsEvents={events}
+          selectedDate="2019-07-21"
+          sportsMap={sportsMap}
+        />
+      </Provider>
+    </ReduxWrapper>,
+  );
+  await flushPromise();
 
-//   expect(queryAllByText('Washington Nationals').length).toBe(1);
-//   expect(queryAllByText('@Atlanta Braves').length).toBe(1);
-//   expect(queryAllByText('Sunday, July 21, 2019 6:05 PM CT').length).toBe(1);
-//   expect(queryAllByText('Home').length).toBe(1);
-//   expect(queryAllByText('Away').length).toBe(1);
-//   expect(queryAllByText('0').length).toBe(2);
-//   done();
-// });
+  expect(queryAllByText('Washington Nationals').length).toBe(1);
+  expect(queryAllByText('@Atlanta Braves').length).toBe(1);
+  expect(queryAllByText('Sunday, July 21, 2019 6:05 PM CT').length).toBe(1);
+  expect(queryAllByText('Home').length).toBe(1);
+  expect(queryAllByText('Away').length).toBe(1);
+  expect(queryAllByText('0').length).toBe(2);
+  done();
+});
 
 test('it loads correct events for date for sport with id of 2', async (done) => {
   store.dispatch({ type: 'GET_SPORTS', payload: sports });
