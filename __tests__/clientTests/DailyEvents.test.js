@@ -20,7 +20,7 @@ const flushPromise = () => new Promise((resolve) => {
   setTimeout(resolve, 0);
 });
 
-test('it loads and displays daily events elements', async () => {
+test('it loads and displays daily events elements (if not logged in)', async () => {
   axios.get.mockResolvedValueOnce({ data: [events[4], events[6]] }); // this must be before render call
   const resp = { data: [mockBet, mockBet2] };
   axios.post.mockResolvedValueOnce(resp);
@@ -31,7 +31,7 @@ test('it loads and displays daily events elements', async () => {
   );
 
   await flushPromise();
-  expect(queryAllByText('Today\'s Events').length).toBe(2);
+  expect(queryAllByText('Today\'s Events').length).toBe(1);
   expect(getByText('Washington Nationals')).toBeDefined();
   expect(getByText('@Atlanta Braves')).toBeDefined();
   expect(getByText('New York Mets')).toBeDefined();
@@ -48,7 +48,7 @@ test('it displays create bet modal when create bet is clicked', async () => {
   axios.post.mockResolvedValueOnce(resp);
 
   const {
-    getByText, getByLabelText, queryAllByText, getAllByText, getByPlaceholderText,
+    getByText, queryAllByText, getAllByText, getByPlaceholderText,
   } = render(
     <ReduxWrapper>
       <DailyEvents />
@@ -79,9 +79,7 @@ test('it retrieves a users current bets', async () => {
   const resp = { data: [mockBet, mockBet2] };
   axios.post.mockResolvedValueOnce(resp);
 
-  const {
-    getByText, getByLabelText, queryAllByText, getAllByText, getByPlaceholderText,
-  } = render(
+  render(
     <ReduxWrapper>
       <DailyEvents />
     </ReduxWrapper>,
