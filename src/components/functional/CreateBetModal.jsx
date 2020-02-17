@@ -84,86 +84,88 @@ class CreateBetModal extends React.Component {
           onClose={toggleBetModal}
         >
           { !betCreated && (
-          <>
-            <DialogTitle>Invite A Friend To Bet</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-            Bet:
-              </DialogContentText>
-              <Select
-                value={!teamSelectedToWin && events && events[selectedEvent] ? events[selectedEvent].teamOneName : teamSelectedToWin}
-                onChange={this.handleChange}
-                inputProps={{
-                  name: 'teamSelectedToWin',
-                  id: 'teamSelectedToWin',
-                }}
-              >
-                {
-                events && events[selectedEvent]
-                && ['One', 'Two'].map(
-                  (number, key) => (
-                    <MenuItem
-                      key={key}
-                      value={events[selectedEvent][`team${number}Name`]}
-                    >
-                      {events[selectedEvent][`team${number}Name`]}
-                    </MenuItem>
-                  ),
-                )
-              }
-              </Select>
-              <DialogContentText>
-            Wagering:
-              </DialogContentText>
-              <TextField
-                onChange={this.handleChange}
-                data-testid="wager"
-                autoFocus
-                type="number"
-                margin="dense"
-                name="wager"
-                placeholder="Amount in Wei"
-              />
-              <DialogContentText>
-            Friend to offer bet:
-              </DialogContentText>
-              <TextField
-                onChange={this.handleChange}
-                autoFocus
-                margin="dense"
-                name="receiverLogin"
-                placeholder="Login of Friend"
-              />
-            </DialogContent>
-            <DialogActions>
-              <button type="submit" className="smButton" onClick={this.toggleModalAndResetSelected} color="primary">
-            Cancel
-              </button>
-              <button type="submit" className="smButton" onClick={this.sendBet} color="primary">
-            Propose Bet
-              </button>
-            </DialogActions>
-            <h5>{errorMessage}</h5>
-          </>
+            <>
+              <DialogTitle>Invite A Friend To Bet</DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                  Bet:
+                </DialogContentText>
+                <Select
+                  value={!teamSelectedToWin && events && events[selectedEvent] ? events[selectedEvent].teamOneName : teamSelectedToWin}
+                  native={false}
+                  data-testid="team-select"
+                  onChange={this.handleChange}
+                  inputProps={{
+                    name: 'teamSelectedToWin',
+                    id: 'teamSelectedToWin',
+                  }}
+                >
+                  {
+                  events && events[selectedEvent]
+                  && ['One', 'Two'].map(
+                    (number, key) => (
+                      <MenuItem
+                        key={key}
+                        value={events[selectedEvent][`team${number}Name`]}
+                      >
+                        {events[selectedEvent][`team${number}Name`]}
+                      </MenuItem>
+                    ),
+                  )
+                }
+                </Select>
+                <DialogContentText>
+                  Wagering:
+                </DialogContentText>
+                <TextField
+                  onChange={this.handleChange}
+                  data-testid="wager"
+                  autoFocus
+                  type="number"
+                  margin="dense"
+                  name="wager"
+                  placeholder="Amount in Wei"
+                />
+                <DialogContentText>
+                  Friend to offer bet:
+                </DialogContentText>
+                <TextField
+                  onChange={this.handleChange}
+                  autoFocus
+                  margin="dense"
+                  name="receiverLogin"
+                  placeholder="Login of Friend"
+                />
+              </DialogContent>
+              <DialogActions>
+                <button type="submit" className="smButton" onClick={this.toggleModalAndResetSelected} color="primary">
+                  Cancel
+                </button>
+                <button type="submit" className="smButton" onClick={this.sendBet} color="primary">
+                  Propose Bet
+                </button>
+              </DialogActions>
+              <h5>{errorMessage}</h5>
+            </>
           )}
           {
            betCreated && (
-           <>
-             <DialogTitle>Bet Sent</DialogTitle>
-             <DialogContent>
-               <DialogContentText>
-                Bet Successfully Created!
-               </DialogContentText>
-             </DialogContent>
-             <DialogActions>
-               <button type="submit" className="smButton" onClick={this.props.toggleBetModal} color="primary">
-                Ok
-               </button>
-             </DialogActions>
-             <h5>{errorMessage}</h5>
-           </>
+             <>
+               <DialogTitle>Bet Sent</DialogTitle>
+               <DialogContent>
+                 <DialogContentText>
+                   Bet Successfully Created!
+                 </DialogContentText>
+               </DialogContent>
+               <DialogActions>
+                 <button type="submit" className="smButton" onClick={this.props.toggleBetModal} color="primary">
+                   Ok
+                 </button>
+               </DialogActions>
+               <h5>{errorMessage}</h5>
+             </>
            )}
-         }
+          }
         </Dialog>
       </>
     );
