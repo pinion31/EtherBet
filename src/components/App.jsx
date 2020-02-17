@@ -9,7 +9,6 @@ import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
 import Home from './Home.jsx';
 import Landing from './Landing.jsx';
-import Login from './Login.jsx';
 import DailyEvents from './DailyEvents.jsx';
 import Stats from './Stats.jsx';
 import Bets from './Bets.jsx';
@@ -32,7 +31,6 @@ const App = () => (
     <PersistGate loading={null} persistor={persistor}>
       <Router>
         <Route exact path="/" component={Landing} />
-        <Route exact path="/login" component={Login} />
         <Route exact path="/sign-up" component={Signup} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/todays-events" component={DailyEvents} />
