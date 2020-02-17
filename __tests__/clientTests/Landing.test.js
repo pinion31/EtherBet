@@ -10,7 +10,6 @@ import formattedEvents from '../responses/formattedEvents.json';
 
 Date.now = jest.fn(() => new Date(Date.UTC(2019, 4, 12, 5)).valueOf());
 
-console.log('date', new Date(Date.now()));
 jest.mock('axios');
 
 afterEach(cleanup);
