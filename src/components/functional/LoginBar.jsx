@@ -179,7 +179,7 @@ class LoginBar extends React.Component {
                 <h3 type="submit" onClick={() => this.props.history.push('/todays-events')}>{'Today\'s Events'}</h3>
                 <h3 type="submit" onClick={() => this.props.history.push('/home')}>Browse Events</h3>
                 <h3 type="submit" onClick={() => this.props.history.push('/your-bets')}>Your Bets</h3>
-                <button type="submit" onClick={this.logOutUser}> Log Out </button>
+                <button type="submit" data-testid="wide-logout" onClick={this.logOutUser}> Log Out </button>
               </div>
             </>
             )

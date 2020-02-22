@@ -106,7 +106,7 @@ class Signup extends React.Component {
           </div>
         </form>
         <div>
-          <button onClick={this.submitUser} className="smButton signUpButton">
+          <button onClick={this.submitUser} className="smButton signUpButton" data-testid="complete-signup">
               Sign up
           </button>
         </div>
