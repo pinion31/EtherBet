@@ -6,10 +6,14 @@ import Sport from '../models/Sport';
 
 const client = redis.createClient();
 
-User.destroy({ truncate: true, cascade: false });
-Bet.destroy({ truncate: true, cascade: false });
-Event.destroy({ truncate: true, cascade: false });
-Sport.destroy({ truncate: true, cascade: false });
-
-client.flushall('ASYNC', () => console.log('Redis flushed'));
+const allTasks = [];
+allTasks.push(User.destroy({ truncate: true, cascade: false }));
+allTasks.push(Bet.destroy({ truncate: true, cascade: false }));
+allTasks.push(Event.destroy({ truncate: true, cascade: false }));
+allTasks.push(Sport.destroy({ truncate: true, cascade: false }));
+allTasks.push(client.flushall());
 client.quit();
+
+Promise.all(allTasks)
+  .then(() => console.log('DBs reset'))
+  .catch((e) => console.log('Error resetting database', e));

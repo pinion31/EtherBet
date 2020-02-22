@@ -1,11 +1,4 @@
 
-// const usernameNode = getByTestId('username-signup');
-// const passwordNode = getByTestId('password-signup');
-// const confirmPasswordNode = getByTestId('confirm-signup');
-// const addressNode = getByTestId('address-signup');
-
-Date.now = () => new Date(Date.UTC(2019, 6, 22, 4)).valueOf();
-
 describe('Landing page', () => {
   // it should not allow duplicate user sign up
   // it should verify input
@@ -72,5 +65,106 @@ describe('Landing page', () => {
       .click()
       .queryByText('Passwords do not match.')
       .should('exist');
+  });
+
+  it('should create prompt to login if not logged in and attempting to create a bet and user should create bet', () => {
+    cy
+      .visit('/')
+      .queryAllByText('Bet Now')
+      .first()
+      .click()
+      .findByTestId('username')
+      .type('Nicole')
+      .findByTestId('password-login-modal')
+      .type('c')
+      .findByTestId('submit-login-modal')
+      .click()
+      .findByTestId('wager')
+      .type(10)
+      .findByTestId('friend-bet-modal')
+      .type('Lucy')
+      .findByTestId('submit-bet-modal')
+      .click()
+      .queryByText('Bet Successfully Created!')
+      .should('exist')
+      .queryAllByText('Ok')
+      .first()
+      .click()
+      .findByText('Your Bets')
+      .click()
+      .queryByText('Portland Trail Blazers vs Denver Nuggets')
+      .should('exist')
+      .queryByText('Wager: 10 eth')
+      .should('exist')
+      .queryByText('Betting Against: Lucy')
+      .should('exist')
+      .queryByText('Bet: to win by 10pts')
+      .should('exist')
+      .queryByText('Status: OFFER PENDING')
+      .should('exist')
+      .findByTestId('wide-logout')
+      .click()
+      .assertRoute('/');
+  });
+
+  it('should handle error if user tries to a create bet with a non-existent user', () => {
+    cy
+      .visit('/')
+      .queryAllByText('Bet Now')
+      .first()
+      .click()
+      .findByTestId('username')
+      .type('Nicole')
+      .findByTestId('password-login-modal')
+      .type('c')
+      .findByTestId('submit-login-modal')
+      .click()
+      .findByTestId('wager')
+      .type(10)
+      .findByTestId('friend-bet-modal')
+      .type('Mini')
+      .findByTestId('submit-bet-modal')
+      .click()
+      .queryByText('User not found')
+      .should('exist')
+      .findByTestId('cancel-bet-modal')
+      .click()
+      .findByTestId('wide-logout')
+      .click()
+      .assertRoute('/');
+  });
+
+  it('should create prompt to login if not logged in and user should not be able to login with wrong password', () => {
+    cy
+      .visit('/')
+      .queryAllByText('Bet Now')
+      .first()
+      .click()
+      .findByTestId('username')
+      .type('Nicole')
+      .findByTestId('password-login-modal')
+      .type('invalid')
+      .findByTestId('submit-login-modal')
+      .click()
+      .findByTestId('error-title-modal')
+      .should('exist')
+      .findByTestId('error-content-modal')
+      .should('exist')
+      .findByTestId('error-ok-modal')
+      .click()
+      .findByTestId('cancel-login-modal')
+      .click();
+  });
+
+  it('should create prompt to login if not logged in and user should not be able to close modal with cancel button', () => {
+    cy
+      .visit('/')
+      .queryAllByText('Bet Now')
+      .first()
+      .click()
+      .findByTestId('cancel-login-modal')
+      .click()
+      .findByTestId('username')
+      .should('not.exist');
   });
 });

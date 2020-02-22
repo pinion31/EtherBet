@@ -131,6 +131,7 @@ class CreateBetModal extends React.Component {
                 </DialogContentText>
                 <TextField
                   onChange={this.handleChange}
+                  data-testid="friend-bet-modal"
                   autoFocus
                   margin="dense"
                   name="receiverLogin"
@@ -138,10 +139,10 @@ class CreateBetModal extends React.Component {
                 />
               </DialogContent>
               <DialogActions>
-                <button type="submit" className="smButton" onClick={this.toggleModalAndResetSelected} color="primary">
+                <button data-testid="cancel-bet-modal" type="submit" className="smButton" onClick={this.toggleModalAndResetSelected} color="primary">
                   Cancel
                 </button>
-                <button type="submit" className="smButton" onClick={this.sendBet} color="primary">
+                <button data-testid="submit-bet-modal" type="submit" className="smButton" onClick={this.sendBet} color="primary">
                   Propose Bet
                 </button>
               </DialogActions>

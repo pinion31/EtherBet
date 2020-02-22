@@ -14,15 +14,15 @@ const ErrorModal = ({ modalOpen, toggleModal, message }) => (
       onClose={toggleModal}
     >
       <DialogTitle>
-        <div style={{ color: 'black' }}>Error!</div>
+        <div style={{ color: 'black' }} data-testid="error-title-modal">Error!</div>
       </DialogTitle>
       <DialogContent>
-        <DialogContentText>
+        <DialogContentText data-testid="error-content-modal">
           {message}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <button type="submit" className="smButton" onClick={toggleModal} color="primary">
+        <button data-testid="error-ok-modal" type="submit" className="smButton" onClick={toggleModal} color="primary">
           OK
         </button>
       </DialogActions>

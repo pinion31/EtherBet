@@ -30,7 +30,11 @@ const formatDateForDisplay = (eventDate) => {
 
 const checkEventStatus = (eventDate, eventStatus) => new Date(Date.now()) < new Date(eventDate) && eventStatus == 'STATUS_SCHEDULED';
 
-const EventCard = ({ event: { teamOneName, teamTwoName, eventDate, eventStatus }, toggleLoginModal }) => (
+const EventCard = ({
+  event: {
+    teamOneName, teamTwoName, eventDate, eventStatus,
+  }, toggleLoginModal,
+}) => (
   <div className={styles['game-row']}>
     <div>
       <p>{new Date(eventDate).toDateString().slice(0, -5)}</p>

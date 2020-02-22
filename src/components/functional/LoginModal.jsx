@@ -19,7 +19,7 @@ const LoginModal = ({
       <DialogTitle>Login</DialogTitle>
       <DialogContent>
         <DialogContentText>
-        Login:
+          Login:
         </DialogContentText>
         <TextField
           onChange={handleChange}
@@ -32,7 +32,7 @@ const LoginModal = ({
           placeholder="User Login"
         />
         <DialogContentText>
-        Password:
+          Password:
         </DialogContentText>
         <TextField
           onChange={handleChange}
@@ -42,13 +42,14 @@ const LoginModal = ({
           margin="dense"
           name="password"
           placeholder="Password"
+          data-testid="password-login-modal"
         />
       </DialogContent>
       <DialogActions>
-        <button className="smButton" onClick={toggleLoginModal} type="submit">
+        <button data-testid="cancel-login-modal" className="smButton" onClick={toggleLoginModal} type="submit">
         Cancel
         </button>
-        <button className="smButton" onClick={() => loginUser(true)} type="submit">
+        <button data-testid="submit-login-modal" className="smButton" onClick={() => loginUser(true)} type="submit">
         Login
         </button>
       </DialogActions>
