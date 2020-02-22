@@ -4,7 +4,7 @@
     "sportId": 5,
     "sportName": "NCAA Men's Basketball",
     "enabled": true,
-    "lastQueryDate": "",
+    "lastQueryDate": null,
     "createdAt": "2019-07-14 16:27:24.1-05",
     "updatedAt": "2019-07-14 16:27:24.1-05"
   },
@@ -13,7 +13,7 @@
     "sportId": 6,
     "sportName": "NHL",
     "enabled": true,
-    "lastQueryDate": "",
+    "lastQueryDate": null,
     "createdAt": "2019-07-14 16:27:24.1-05",
     "updatedAt": "2019-07-14 16:27:24.1-05"
   },
@@ -22,7 +22,7 @@
     "sportId": 4,
     "sportName": "NBA",
     "enabled": true,
-    "lastQueryDate": "",
+    "lastQueryDate": null,
     "createdAt": "2019-07-14 16:27:24.1-05",
     "updatedAt": "2019-07-14 16:27:24.1-05"
   },
@@ -31,7 +31,7 @@
     "sportId": 8,
     "sportName": "WNBA",
     "enabled": false,
-    "lastQueryDate": "",
+    "lastQueryDate": null,
     "createdAt": "2019-07-14 16:27:24.101-05",
     "updatedAt": "2019-07-14 16:27:24.101-05"
   },
@@ -40,7 +40,7 @@
     "sportId": 1,
     "sportName": "NCAA Football",
     "enabled": true,
-    "lastQueryDate": "",
+    "lastQueryDate": null,
     "createdAt": "2019-07-14 16:27:24.095-05",
     "updatedAt": "2019-07-14 16:27:24.095-05"
   },
@@ -49,7 +49,7 @@
     "sportId": 9,
     "sportName": "CFL",
     "enabled": false,
-    "lastQueryDate": "",
+    "lastQueryDate": null,
     "createdAt": "2019-07-14 16:27:24.101-05",
     "updatedAt": "2019-07-14 16:27:24.101-05"
   },
@@ -58,7 +58,7 @@
     "sportId": 2,
     "sportName": "NFL",
     "enabled": true,
-    "lastQueryDate": "",
+    "lastQueryDate": null,
     "createdAt": "2019-07-14 16:27:24.099-05",
     "updatedAt": "2019-07-14 16:27:24.099-05"
   },
@@ -67,7 +67,7 @@
     "sportId": 3,
     "sportName": "MLB",
     "enabled": true,
-    "lastQueryDate": "",
+    "lastQueryDate": null,
     "createdAt": "2019-07-14 16:27:24.099-05",
     "updatedAt": "2019-07-14 16:27:24.099-05"
   },
@@ -76,7 +76,7 @@
     "sportId": 7,
     "sportName": "UFC/MMA",
     "enabled": true,
-    "lastQueryDate": "",
+    "lastQueryDate": null,
     "createdAt": "2019-07-14 16:27:24.1-05",
     "updatedAt": "2019-07-14 16:27:24.1-05"
   }

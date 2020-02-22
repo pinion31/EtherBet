@@ -67,6 +67,7 @@ export const verifyToken = (req, res) => new Promise((resolve, reject) => {
                   expires: refreshTokenMaxage,
                 }), redis.print,
               );
+
             }
             const token = jwt.sign({ uid: decoded.uid }, jwtSecret, {
               expiresIn: jwtExpiration,

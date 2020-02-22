@@ -18,6 +18,7 @@ export const startCronJob = () => {
         if (!result) return logger.info('Error resetting cache for Sports');
         logger.info(`Resetting Cache for Sports: ${result}`);
         client.set('sports', JSON.stringify(result));
+        client.quit();
       });
 
 

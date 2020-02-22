@@ -3,10 +3,10 @@ const Bet = require('./models/Bet');
 const User = require('./models/User');
 const Sport = require('./models/Sport');
 
-// Bet.sync();
-// Event.sync();
+Bet.sync();
+Event.sync();
 User.sync();
-// Sport.sync();
+Sport.sync();
 
 /*
 const sports = {

@@ -3,11 +3,16 @@
 // const passwordNode = getByTestId('password-signup');
 // const confirmPasswordNode = getByTestId('confirm-signup');
 // const addressNode = getByTestId('address-signup');
-import uuid from 'uuid';
+
+Date.now = () => new Date(Date.UTC(2019, 6, 22, 4)).valueOf();
 
 describe('Landing page', () => {
   // it should not allow duplicate user sign up
   // it should verify input
+  beforeEach(() => {
+    // reset and seed the database prior to every test
+    cy.exec('npm run db:reset && npm run db:seed');
+  });
 
   it('can navigate to sign up from landing page and sign up', () => {
     cy
@@ -16,7 +21,7 @@ describe('Landing page', () => {
       .click()
       .assertRoute('/sign-up')
       .findByTestId('username-signup')
-      .type(uuid())
+      .type('chris')
       .findByTestId('complete-signup')
       .click()
       .queryByText('Please complete all fields.')

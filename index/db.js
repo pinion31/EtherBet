@@ -48,7 +48,7 @@ const {
 } : {
   username: 'postgres',
   password: 'postgres',
-  dbName: 'Etherbet',
+  dbName: 'etherbet',
   dbUrl: 'localhost',
 };
 
