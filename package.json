@@ -4,7 +4,7 @@
   "description": "A betting app",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test && jest --watch --coverage --runInBand",
+    "test": "cross-env NODE_ENV=test && jest __tests__/clientTests --watch --coverage --runInBand",
     "dev:watch": "webpack-dev-server --hot --inline",
     "dev:cy:open": "cypress open",
     "dev": "npm-run-all --parallel dev:*",
