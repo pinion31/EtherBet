@@ -1,5 +1,5 @@
-import axios from "axios";
-import { GET_BETS, PROPOSE_BET, SET_STATUS } from "../constants/actionTypes";
+import axios from 'axios';
+import { GET_BETS, PROPOSE_BET, SET_STATUS } from '../constants/actionTypes';
 
 export const proposeBet = (bet, cb) => (dispatch) => {
   axios
@@ -16,7 +16,7 @@ export const proposeBet = (bet, cb) => (dispatch) => {
     });
 };
 
-export const getBets = (userId) => (dispatch) => {
+export const getBets = userId => (dispatch) => {
   axios
     .post(`${process.env.API_URL}/bets/get-bets`, { userId })
     .then((res) => {
