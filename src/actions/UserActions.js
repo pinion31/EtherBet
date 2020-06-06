@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { GET_USER, CREATE_USER, LOGOUT_USER } from '../constants/actionTypes';
+import { API_URL } from '../constants/api_url';
 
 export const createUser = user => dispatch => axios
-  .post(`${process.env.API_URL}/users/create-user`, user)
+  .post(`${API_URL}/users/create-user`, user)
   .then((res) => {
     dispatch({ type: CREATE_USER, payload: res.data });
     return { status: res.status, user: res.data };
@@ -10,7 +11,7 @@ export const createUser = user => dispatch => axios
   .catch(() => ({ status: 500 }));
 
 export const getUser = (username, password) => dispatch => axios
-  .post(`${process.env.API_URL}/users/get-user`, { username, password })
+  .post(`${API_URL}/users/get-user`, { username, password })
   .then((res) => {
     dispatch({ type: GET_USER, payload: res.data });
     if (res.status == 200) {
@@ -20,7 +21,7 @@ export const getUser = (username, password) => dispatch => axios
   .catch(() => ({ status: 500, error: 'Error logging in user.' }));
 
 export const logoutUser = id => dispatch => axios
-  .post(`${process.env.API_URL}/users/logout`, { id })
+  .post(`${API_URL}/users/logout`, { id })
   .then((res) => {
     dispatch({ type: LOGOUT_USER, payload: {} });
     if (res.status == 200) {

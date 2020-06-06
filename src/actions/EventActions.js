@@ -4,10 +4,11 @@ import {
   GET_EVENTS_FOR_DAY,
   GET_EVENTS_FOR_SUBSEQUENT_DAYS,
 } from '../constants/actionTypes';
+import { API_URL } from '../constants/api_url';
 
 export const getEvents = () => (dispatch) => {
   axios
-    .get(`${process.env.API_URL}/events/events-for-today`)
+    .get(`${API_URL}/events/events-for-today`)
     .then(res => dispatch({ type: GET_EVENTS, payload: res.data }))
     .catch((err) => {
       throw err;
@@ -15,7 +16,7 @@ export const getEvents = () => (dispatch) => {
 };
 
 export const getEventsForDay = eventDate => dispatch => axios
-  .post(`${process.env.API_URL}/events/events-for-day`, { eventDate })
+  .post(`${API_URL}/events/events-for-day`, { eventDate })
   .then((res) => {
     if (res.data) {
       dispatch({ type: GET_EVENTS_FOR_DAY, payload: res.data });
@@ -27,7 +28,7 @@ export const getEventsForDay = eventDate => dispatch => axios
   });
 
 export const getEventsForUpcomingDays = () => dispatch => axios
-  .get(`${process.env.API_URL}/events/events-for-subsequent-days`)
+  .get(`${API_URL}/events/events-for-subsequent-days`)
   .then((res) => {
     if (res.data) {
       dispatch({ type: GET_EVENTS_FOR_SUBSEQUENT_DAYS, payload: res.data });

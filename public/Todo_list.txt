@@ -1,4 +1,0 @@
-1. Make sure wager is 0;
-2.Make sure user has enough ether for wager with outstanding bets; 
-maybe have an outstanding wager field
-3. make sure a user cant be added twice
