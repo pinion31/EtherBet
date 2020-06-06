@@ -3,9 +3,6 @@ WORKDIR /app
 COPY ./package.json ./
 RUN npm install
 COPY . . 
-ARG api_url
-ENV API_URL=${api_url}
-RUN node env.js
 RUN npm run compile
 
 FROM nginx
